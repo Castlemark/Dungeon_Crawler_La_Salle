@@ -1,1 +1,0 @@
-aquest fitxer es perqué es mostri la carpeta buida a github.
