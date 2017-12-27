@@ -5,9 +5,13 @@ var enemigos = [];
 
 function iniciarJuego() {
   /* TODO */
-  //preparar objectes joc
+  //preparar objetos del juego
   objetos = {};
+
+  //mostramos la imagen de inicio en el visor
   pintaImagen('first-frame.png', 0, 0);
+
+  //inicializamos los tooltips
   $('.tooltip-element').tooltip();
 }
 
