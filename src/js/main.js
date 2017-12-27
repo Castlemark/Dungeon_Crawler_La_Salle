@@ -63,3 +63,64 @@ function partidaNueva() {
     }
   });
 }
+
+//Abre el modal #nameAvatarForm con la configuración para iniciar una nueva partida
+function modalNuevaPartida(){
+  $('#name').prop('value', '');
+  $('#avatarId').prop('value', 0);
+  $('.avatar_selected').removeClass('avatar_selected');
+  $('#iniciarPartidaButton').prop('hidden', false);
+  $('#modal-info').prop('hidden', false);
+  $('#cambiarInfoButton').prop('hidden', true);
+  $('#avatarNameModalLabel').html('NUEVA PARTIDA');
+  $('#avatarNameModal').modal('show');
+}
+
+//Abre el modal #avatarNameModal con la configuración para cambiar la info
+function modalCambiarInfo(){
+  $('#name').prop('value', player.nombre);
+  $('#avatarId').prop('value', player.avatar);
+  $('.avatar_selected').removeClass('avatar_selected');
+  $('#avatar_' + player.avatar).addClass('avatar_selected');
+  $('#iniciarPartidaButton').prop('hidden', true);
+  $('#cambiarInfoButton').prop('hidden', false);
+  $('#modal-info').prop('hidden', true);
+  $('#avatarNameModalLabel').html('EDITAR INFORMACIÓN JUGADOR');
+  $('#avatarNameModal').modal('show');
+}
+
+//Remarca el avatar selecionado en el modal
+function selectAvatar(id){
+  $('#avatarId').prop('value', id);
+  $('.avatar_selected').removeClass('avatar_selected');
+  $('#avatar_' + id).addClass('avatar_selected');
+}
+
+//función que se llama al iniciar partida en el modal
+function iniciarPartida(){
+  if($('#name').val() != '' && $('#avatarId').val() != 0){
+    //TODO Aquí ha d'anar la crida ajax a nova partida i les comandes següents s'han de realitzar només si s'ha completat amb exit
+    player.nombre = $('#name').val();
+    player.avatar = $('#avatarId').val();
+    $('header .player-name').html($('#name').val());
+    $('header .avatar').prop('src', 'media/images/avatar' + $('#avatarId').val() + '.png');
+    $('#menu-nuevaPartida').prop('hidden', true);
+    $('#menu-cargarPartida').prop('hidden', true);
+    $('#menu-jugador').prop('hidden', false);
+    $('#menu-guardarPartida').prop('hidden', false);
+    $('#menu-salir').prop('hidden', false);
+    $('#avatarNameModal').modal('hide');
+
+  }
+}
+
+//función que se llama al guardar cambios del jugador en el modal
+function cambiarInfoJugador(){
+  if($('#name').val() != '' && $('#avatarId').val() != 0){
+    player.nombre = $('#name').val();
+    player.avatar = $('#avatarId').val();
+    $('header .player-name').html($('#name').val());
+    $('header .avatar').prop('src', 'media/images/avatar' + $('#avatarId').val() + '.png');
+    $('#avatarNameModal').modal('hide');
+  }
+}

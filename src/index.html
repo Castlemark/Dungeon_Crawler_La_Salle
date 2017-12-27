@@ -16,12 +16,14 @@
   <body>
     <header class="row">
 
-      <h1 class="col-md-4 logo"><img src="media/images/logo.png" width="400px"/></h1>
+      <h1 class="col-md-4 logo"><img src="media/images/logo.png" width="400px" alt="LaSalle Dungeon"/></h1>
       <nav class="col-md-8">
         <ul>
-          <li><a class="user-info"><img class="avatar" src="media/images/user.png" width="50px"/><span> Nombre del jugador</span></a></li>
-          <li><a>Cargar partida</a></li>
-          <li><a>Nueva partida</a></li>
+          <li id="menu-jugador" hidden><a onclick="modalCambiarInfo()" class="user-info"><img class="avatar" src="media/images/user.png" width="50px" alt="avatar"/><span class="player-name"></span></a></li>
+          <li id="menu-cargarPartida"><a>Cargar partida</a></li>
+          <li id="menu-nuevaPartida"><a onclick="modalNuevaPartida()">Nueva partida</a></li>
+          <li id="menu-salir" hidden><a>Salir sin guardar</a></li>
+          <li id="menu-guardarPartida" hidden><a>Guardar partida</a></li>
         </ul>
       </nav>
     </header>
@@ -59,7 +61,7 @@
             <div class="row">
               <div class="col-md-6">
                 <label>Mano Izquierda</label>
-                <img src="media/images/square.jpg" width="75%"/>
+                <img src="media/images/square.jpg" width="75%" alt="Equipo"/>
                 <label>Calculadora</label>
                 <p>Ataque: <span>0</span></p>
                 <p>Defensa: <span>0</span></p>
@@ -67,7 +69,7 @@
               </div>
               <div class="col-md-6">
                 <label>Mano Derecha</label>
-                <img src="media/images/square.jpg" width="75%"/>
+                <img src="media/images/square.jpg" width="75%" alt="Equipo"/>
                 <label>Soldador</label>
                 <p>Ataque: <span>0</span></p>
                 <p>Defensa: <span>0</span></p>
@@ -76,11 +78,11 @@
             </div>
             <label><b>Mochila</b></label>
             <div class="mochila">
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta"/>
+              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
+              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
+              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
+              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
+              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
             </div>
           </div>
         </section>
@@ -105,12 +107,12 @@
           </div>
           <div class="box-body">
             <div>
-              <a href="#" id="movendavant"><img src="media/images/up.png" width="25%"/></a>
+              <a href="#" id="movendavant"><img src="media/images/up.png" width="25%" alt="arriba"/></a>
             </div>
             <div>
-              <a href="#" id="movesquerra"><img src="media/images/left.png" width="25%"/></a>
-              <a href="#" id="movdreta"><img src="media/images/down.png" width="25%"/></a>
-              <a href="#" id="movendarrere"><img src="media/images/right.png" width="25%"/></a>
+              <a href="#" id="movesquerra"><img src="media/images/left.png" width="25%" alt="izquierda"/></a>
+              <a href="#" id="movdreta"><img src="media/images/down.png" width="25%" alt="abajo"/></a>
+              <a href="#" id="movendarrere"><img src="media/images/right.png" width="25%" alt="derecha"/></a>
             </div>
           </div>
         </section>
@@ -120,14 +122,57 @@
           </div>
           <div class="box-body">
             <label>Nivel -1</label>
-            <img src="media/images/mapa.png" width="80%"/>
+            <img src="media/images/mapa.png" width="80%" alt="mapa"/>
           </div>
         </section>
       </div>
 
     </div>
 
-
+    <!--Modal para seleccionar nombre y avatar-->
+    <div class="modal fade" id="avatarNameModal" tabindex="-1" role="dialog" aria-labelledby="avatarNameModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="avatarNameModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="modal-info">Para iniciar una nueva partida, escriba el nombre del jugador y seleccione un avatar:</p>
+            <form id="nameAvatarForm">
+              <div class="form-group">
+                <label for="name"><b>Nombre jugador</b> (máximo 30 car.)</label>
+                <input type="text" name="name" required class="form-control" id="name" maxlength="30">
+              </div>
+              <div class="form-group">
+                <label for="avatarId"><b>Avatar</b></label>
+                <input hidden type="number" class="form-control" name="avatarId" id="avatarId">
+              </div>
+              <div class="row avatares">
+                <div class="col-md-3">
+                  <img id="avatar_1" onclick="selectAvatar(1)" src="media/images/avatar1.png" width="80%" alt="avatar1"/>
+                </div>
+                <div class="col-md-3">
+                  <img id="avatar_2" onclick="selectAvatar(2)" src="media/images/avatar2.png" width="80%" alt="avatar2"/>
+                </div>
+                <div class="col-md-3">
+                  <img id="avatar_3" onclick="selectAvatar(3)" src="media/images/avatar3.png" width="80%" alt="avatar3"/>
+                </div>
+                <div class="col-md-3">
+                  <img id="avatar_4" onclick="selectAvatar(4)" src="media/images/avatar4.png" width="80%" alt="avatar4"/>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button onclick="iniciarPartida()" id="iniciarPartidaButton" type="button" class="btn btn-salle">Iniciar partida</button>
+            <button hidden onclick="cambiarInfoJugador()" id="cambiarInfoButton" type="button" class="btn btn-salle">Guardar cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

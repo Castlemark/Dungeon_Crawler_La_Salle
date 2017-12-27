@@ -32,6 +32,7 @@ header ul {
 }
 
 header ul li {
+  cursor: pointer;
   float: right;
 }
 
@@ -158,4 +159,45 @@ header ul li .user-info {
 
 #equipo .mochila img {
   width: 70px;
+}
+
+.modal-dialog {
+  margin: 150px auto;
+}
+
+.modal-dialog .modal-header {
+  background-color: #6aade4;
+  color: #fff;
+}
+
+.modal-dialog .modal-header .close {
+  margin: 0;
+  padding: 0;
+}
+
+.modal-dialog .modal-title {
+  margin: 0 auto;
+}
+
+.modal-dialog .modal-footer {
+  margin: 0 auto;
+  border: 0;
+}
+
+#nameAvatarForm .avatares .col-md-3 {
+  text-align: center;
+}
+
+#nameAvatarForm .avatares .col-md-3 .avatar_selected {
+  border: 4px solid black;
+}
+
+.btn-salle {
+  background-color: #6aade4;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-salle:hover {
+  background-color: #b5b5b5;
 }

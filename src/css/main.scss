@@ -25,6 +25,7 @@ header{
     list-style: none;
     display: block;
     li{
+      cursor: pointer;
       float: right;
       a{
         font-size: 18px;
@@ -148,4 +149,41 @@ header{
       width: 70px;
     }
   }
+}
+
+
+.modal-dialog{
+  margin: 150px auto;
+  .modal-header{
+    background-color: #6aade4;
+    color: #fff;
+    .close{
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .modal-title{
+    margin: 0 auto;
+  }
+  .modal-footer{
+    margin: 0 auto;
+    border: 0;
+  }
+}
+
+#nameAvatarForm .avatares .col-md-3{
+  text-align: center;
+  .avatar_selected{
+    border: 4px solid black;
+  }
+}
+
+.btn-salle{
+  background-color: #6aade4;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-salle:hover{
+  background-color: #b5b5b5;
 }
