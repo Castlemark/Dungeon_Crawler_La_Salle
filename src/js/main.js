@@ -13,6 +13,9 @@ function iniciarJuego() {
 
   //inicializamos los tooltips
   $('.tooltip-element').tooltip();
+
+  //mostramos el mensaje de bienvenida por Consola
+  messageToConsole("Bienvenido a LaSalle Dungeon! Seleccione 'Nueva Partida' o 'Cargar Partida' para empezar a jugar");
 }
 
 
@@ -110,7 +113,7 @@ function iniciarPartida(){
     $('#menu-guardarPartida').prop('hidden', false);
     $('#menu-salir').prop('hidden', false);
     $('#avatarNameModal').modal('hide');
-
+    messageToConsole('Bienvenid@ ' + player.nombre + '! ¿List@ para enfrentarte a los peligros de LaSalle?');
   }
 }
 
@@ -123,4 +126,10 @@ function cambiarInfoJugador(){
     $('header .avatar').prop('src', 'media/images/avatar' + $('#avatarId').val() + '.png');
     $('#avatarNameModal').modal('hide');
   }
+}
+
+//Funcion que va añadiendo mensajes a la consola y que usa la librería moment.js para poner la hora
+function messageToConsole(msg){
+  var now = new moment();
+  $('#console-text').prepend('[' + now.format("HH:mm:ss") + '] ' + msg + '<br>');
 }

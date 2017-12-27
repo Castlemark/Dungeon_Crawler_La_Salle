@@ -139,6 +139,7 @@ header ul li .user-info {
   background-color: black;
   color: white;
   height: 200px;
+  overflow-y: scroll;
 }
 
 #controles .box-body {
