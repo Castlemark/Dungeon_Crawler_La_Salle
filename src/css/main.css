@@ -64,13 +64,13 @@ header ul li .user-info {
   background-color: black;
   height: 44px;
   text-align: right;
-  padding: 8px 20px;
+  padding: 8px 0px;
   margin-right: -15px;
 }
 
 #informacion li {
   color: #fff;
-  margin: 0 50px;
+  padding: 0 50px;
   display: -webkit-inline-box;
 }
 
