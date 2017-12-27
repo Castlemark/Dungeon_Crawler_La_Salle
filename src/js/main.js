@@ -6,7 +6,8 @@ function iniciarJuego() {
   /* TODO */
   //preparar objectes joc
   objetos = {};
-
+  pintaImagen('first-frame.png', 0, 0);
+  $('.tooltip-element').tooltip();
 }
 
 

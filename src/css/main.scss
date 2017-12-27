@@ -1,0 +1,151 @@
+#navegacion {
+  text-align: center!important;
+  height: min-content;
+  canvas{
+    height: min-content;
+  }
+}
+
+#equipcarac {
+  float:left;
+}
+
+header{
+  background-color: #6aade4;
+  padding-right: 20px;
+  padding-left: 20px;
+  .logo{
+    float: left;
+    margin: 10px 0;
+  }
+  nav{
+    margin: 16px 0 17px;
+  }
+  ul{
+    list-style: none;
+    display: block;
+    li{
+      float: right;
+      a{
+        font-size: 18px;
+        color: #fff !important;
+        line-height: 24px;
+        padding: 15px 18px;
+        display: block;
+        .avatar{
+          display: inline-block;
+          height: 36px;
+          width: 36px;
+          vertical-align: middle;
+          margin-right: 6px;
+          margin-left: 6px;
+        }
+      }
+      a:hover{
+        background-color: #b5b5b5;
+      }
+      .user-info{
+            padding: 9px 18px 8px;
+      }
+    }
+  }
+}
+
+
+#informacion{
+  background-color: black;
+  height: 44px;
+  text-align: right;
+  padding: 8px 20px;
+  margin-right: -15px;
+  li{
+    color: #fff;
+    margin: 0 50px;
+    display: -webkit-inline-box;
+    .progress{
+      width: 150px;
+      margin: 5px;
+      .ataque{
+          background-color: red;
+      }
+      .defensa{
+        background-color: green;
+      }
+      .vida{
+        background-color: pink;
+      }
+    }
+  }
+}
+
+.box{
+  border: 0.5px solid #c0ccdc;
+  height: min-content;
+  .box-body{
+    padding: 15px;
+
+  }
+  .box-header{
+    background-color: #6aade4;
+    padding: 10px 15px;
+    h2{
+      color: #fff;
+      font-weight: normal;
+      font-size: 1.4em;
+      line-height: 32px;
+    }
+
+  }
+}
+
+.left-part section{
+  margin: 20px 0px 20px 20px;
+}
+
+.center-part section{
+  margin: 20px 0;
+}
+
+.right-part section{
+  margin: 20px 20px 20px 0px;
+}
+
+#mapa{
+  .box-body{
+    display: block;
+    text-align: center;
+    label{
+      text-align: left;
+      width: 100%;
+    }
+  }
+}
+
+#consola{
+  .box-body{
+    background-color: black;
+    color: white;
+    height: 200px;
+  }
+}
+
+#controles{
+  .box-body{
+    text-align: center;
+  }
+}
+
+#equipo{
+  .box-body .row{
+    text-align: center;
+    p{
+      text-align: left;
+    }
+  }
+  .mochila{
+    display: table;
+    img{
+      width: 70px;
+    }
+  }
+}
