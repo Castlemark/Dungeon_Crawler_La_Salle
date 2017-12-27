@@ -1,3 +1,4 @@
+var token = '844dc4d3-d096-4a5b-b6bf-b6515691cce6';
 
 /* Inicializar el juego */
 var enemigos = [];
@@ -33,260 +34,28 @@ function mapaToImg(x, y) {
   /* TODO */
 }
 
-function partidaNueva(json){
-  //tratamos json recibido del servidor
-  mapa = json.Mapa;
-  for(var i = 0; i < json.Enemics.length; i++){
-    enemigo = json.Enemics[i].atributs;
-    enemigos[json.Enemics[i].nom] =enemigo;
-  }
-  objetos = json.Objectes;
-}
-
-//mentres no tinguem el json pujat al servidor, el tractem aquí
-json = {
-  "Objectes": [
-    {
-      "nom": "portatil",
-      "atributs": [
-        {
-          "atac": 3
-        },
-        {
-          "defensa": 5
-        },
-        {
-          "durabilitat": 30
+function partidaNueva() {
+  console.log('Descargando la configuración de partida nueva...');
+  $.ajax({
+    dataType: 'json',
+    method: 'get',
+    url: 'http://puigpedros.salleurl.edu/pwi/pac4/partida.php?token=' + token + '&slot=nueva',
+    statusCode: {
+      200: function(json) {
+        console.log('Descargada la configuración de partida nueva.');
+        console.log(json);
+        // Ahora que ya tenemos la información podemos inicializar las variables globales del juego
+        mapa = json.Mapa;
+        for (var i = 0; i < json.Enemics.length; i++) {
+          enemigo = json.Enemics[i].atributs;
+          enemigos[json.Enemics[i].nom] = enemigo;
         }
-      ]
-    },
-    {
-      "nom": "soldador",
-      "atributs": [
-        {
-          "atac": 5
-        },
-        {
-          "defensa": 1
-        },
-        {
-          "durabilitat": 30
-        }
-      ]
-    },
-    {
-      "nom": "calculadora",
-      "atributs": [
-        {
-          "atac": 3
-        },
-        {
-          "defensa": 3
-        },
-        {
-          "durabilitat": 30
-        }
-      ]
-    },
-    {
-      "nom": "usb",
-      "atributs": [
-        {
-          "atac": 3
-        },
-        {
-          "defensa": 2
-        },
-        {
-          "durabilitat": 50
-        }
-      ]
+        objetos = json.Objectes;
+      },
+      404: function(responseText) {
+        console.log('ERROR: Ha ocurrido un error. Es posible que aún no exista la configuración de partida nueva. A continuación se imprime informacion sobre el error:');
+        console.log(responseText);
+      }
     }
-  ],
-  "Enemics": [
-    {
-      "nom": "LSMaker",
-      "atributs": [
-        {
-          "atac": 2
-        },
-        {
-          "defensa": 3
-        },
-        {
-          "vida": 10
-        }
-      ]
-    },
-    {
-      "nom": "Profesor",
-      "atributs": [
-        {
-          "atac": 4
-        },
-        {
-          "defensa": 4
-        },
-        {
-          "vida": 15
-        }
-      ]
-    },
-    {
-      "nom": "Becari",
-      "atributs": [
-        {
-          "atac": 3
-        },
-        {
-          "defensa": 4
-        },
-        {
-          "vida": 10
-        }
-      ]
-    }
-  ],
-  "Mapa": [
-    {
-      "Fila 1": [
-        "Paret",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Sortida",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Paret"
-      ]
-    },
-    {
-      "Fila 2": [
-        "Paret",
-        "Paret",
-        "Becari",
-        "Terra",
-        "Terra",
-        "Terra",
-        "Terra",
-        "Profesor",
-        "Paret",
-        "Paret"
-      ]
-    },
-    {
-      "Fila 3": [
-        "Paret",
-        "Terra",
-        "Terra",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Terra",
-        "Paret",
-        "Paret"
-      ]
-    },
-    {
-      "Fila 4": [
-        "Paret",
-        "Terra",
-        "Paret",
-        "Paret",
-        "Terra",
-        "Portatil",
-        "Terra",
-        "Terra",
-        "Paret",
-        "Paret"
-      ]
-    },
-    {
-      "Fila 5": [
-        "Paret",
-        "Terra",
-        "Paret",
-        "Terra",
-        "Terra",
-        "Paret",
-        "Paret",
-        "Terra",
-        "Paret",
-        "Paret"
-      ]
-    },
-    {
-      "Fila 6": [
-        "Paret",
-        "Terra",
-        "Terra",
-        "LSMaker",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Terra",
-        "Paret",
-        "Paret"
-      ]
-    },
-    {
-      "Fila 7": [
-        "Paret",
-        "Terra",
-        "Paret",
-        "Terra",
-        "Terra",
-        "Paret",
-        "Terra",
-        "LSMaker",
-        "Terra",
-        "Paret"
-      ]
-    },
-    {
-      "Fila 8": [
-        "Paret",
-        "Terra",
-        "Paret",
-        "Paret",
-        "Terra",
-        "Paret",
-        "Terra",
-        "Paret",
-        "Terra",
-        "Paret"
-      ]
-    },
-    {
-      "Fila 9": [
-        "Paret",
-        "LSMaker",
-        "Terra",
-        "Calculadora",
-        "Terra",
-        "Origen",
-        "Terra",
-        "Soldador",
-        "Terra",
-        "Paret"
-      ]
-    },
-    {
-      "Fila 10": [
-        "Paret",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Paret",
-        "Paret"
-      ]
-    }
-  ]
+  });
 }
