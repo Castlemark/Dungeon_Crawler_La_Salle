@@ -1,0 +1,18 @@
+<html>
+<head>
+<script src="jquery-3.2.1.min.js"></script>
+<script src="json.js"></script>
+<script>
+$.ajax({
+  dataType: 'text',
+  method: 'post',
+  url: 'http://puigpedros.salleurl.edu/pwi/pac4/partida.php?token=844dc4d3-d096-4a5b-b6bf-b6515691cce6&slot=nueva',
+  data: {json: json},
+  success: function(response) {console.log(response)},
+  error: function( jqXHR, textStatus, errorThrown ) { alert( 'Error!!' + jqXHR + textStatus + errorThrown ); console.log(jqXHR);console.log(errorThrown); }
+});
+</script>
+</head>
+<body>
+</body>
+</html>
