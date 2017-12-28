@@ -9,10 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css" type="text/css" media="all" />
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/juego.js"></script>
-    <script src="js/main.js"></script>
-    <script src="vendors/moment/moment.js"></script>
   </head>
   <body>
     <header class="row">
@@ -21,10 +17,10 @@
       <nav class="col-md-8">
         <ul>
           <li id="menu-jugador" hidden><a onclick="modalCambiarInfo()" class="user-info"><img class="avatar" src="media/images/user.png" width="50px" alt="avatar"/><span class="player-name"></span></a></li>
-          <li id="menu-cargarPartida"><a>Cargar partida</a></li>
+          <li id="menu-cargarPartida"><a onclick="modalCargarPartida()">Cargar partida</a></li>
           <li id="menu-nuevaPartida"><a onclick="modalNuevaPartida()">Nueva partida</a></li>
           <li id="menu-salir" hidden><a>Salir sin guardar</a></li>
-          <li id="menu-guardarPartida" hidden><a>Guardar partida</a></li>
+          <li id="menu-guardarPartida" hidden><a onclick="modalGuardarPartida()">Guardar partida</a></li>
         </ul>
       </nav>
     </header>
@@ -130,19 +126,19 @@
 
     </div>
 
-    <!--Modal para seleccionar nombre y avatar-->
-    <div class="modal fade" id="avatarNameModal" tabindex="-1" role="dialog" aria-labelledby="avatarNameModalLabel" aria-hidden="true">
+    <!-- Modal para nueva partida (seleccionar nombre de la partida y avatar) -->
+    <div class="modal fade" id="newGameModal" tabindex="-1" role="dialog" aria-labelledby="newGameModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="avatarNameModalLabel"></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="newGameModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="newGameModalClose">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p id="modal-info">Para iniciar una nueva partida, escriba el nombre del jugador y seleccione un avatar:</p>
-            <form id="nameAvatarForm">
+            <p id="newGameModal-info">Para iniciar una nueva partida, escriba el nombre del jugador y seleccione un avatar:</p>
+            <form id="newGameForm">
               <div class="form-group">
                 <label for="name"><b>Nombre jugador</b> (máximo 30 car.)</label>
                 <input type="text" name="name" required class="form-control" id="name" maxlength="30">
@@ -166,6 +162,7 @@
                 </div>
               </div>
             </form>
+            <p id="newGameModal-info-downloading">Descargando la configuración de partida nueva...</p>
           </div>
           <div class="modal-footer">
             <button onclick="iniciarPartida()" id="iniciarPartidaButton" type="button" class="btn btn-salle">Iniciar partida</button>
@@ -175,10 +172,63 @@
       </div>
     </div>
 
+    <!-- Modal para cargar partida -->
+    <div class="modal fade" id="loadGameModal" tabindex="-1" role="dialog" aria-labelledby="loadGameModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loadGameModalLabel">CARGAR PARTIDA</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="loadGameModalClose">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="loadGameModal-info">Elige un slot para cargar la partida.</p>
+            <form id="loadGameForm">
+              <div class="form-group">
+                <button id="slot1-load" type="button" class="btn btn-secondary btn-slot disabled">Slot 1: cargando información...</button>
+              </div>
+              <div class="form-group">
+                <button id="slot2-load" type="button" class="btn btn-secondary btn-slot disabled">Slot 2: cargando información...</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- Modal para guardar partida -->
+    <div class="modal fade" id="saveGameModal" tabindex="-1" role="dialog" aria-labelledby="saveGameModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="saveGameModalLabel">CARGAR PARTIDA</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="saveGameModalClose">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="saveGameModal-info">Elige un slot vacío para guardar la partida o un slot lleno para vaciarlo.</p>
+            <form id="saveGameForm">
+              <div class="form-group">
+                <button id="slot1-save" type="button" class="btn btn-secondary btn-slot disabled">Slot 1: cargando información...</button>
+              </div>
+              <div class="form-group">
+                <button id="slot2-save" type="button" class="btn btn-secondary btn-slot disabled">Slot 2: cargando información...</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="js/juego.js"></script>
+    <script src="js/main.js"></script>
+    <script src="vendors/moment/moment.js"></script>
 
   </body>
 </html>

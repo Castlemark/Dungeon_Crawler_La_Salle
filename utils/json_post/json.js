@@ -1,5 +1,6 @@
 var json = `
 {
+    "jugador": {},
   "Terreno": [
     {
       "nombre": "Pared",

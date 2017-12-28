@@ -172,11 +172,17 @@ header{
   }
 }
 
-#nameAvatarForm .avatares .col-md-3{
+#newGameForm .avatares .col-md-3{
   text-align: center;
   .avatar_selected{
     border: 4px solid black;
   }
+}
+
+#newGameModal-info-downloading {
+  display: none;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .btn-salle{
@@ -186,5 +192,9 @@ header{
 }
 
 .btn-salle:hover{
-  background-color: #b5b5b5;
+  background-color: #298fed;//b5b5b5
+}
+
+.btn-slot {
+  width: 100%;
 }
