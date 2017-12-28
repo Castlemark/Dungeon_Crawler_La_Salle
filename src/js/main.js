@@ -198,6 +198,10 @@ function modalCambiarInfo() {
   $('#avatarId').prop('value', partida.jugador.avatar);
   $('.avatar_selected').removeClass('avatar_selected');
   $('#avatar_' + partida.jugador.avatar).addClass('avatar_selected');
+  $('#newGameModal-info').show();
+  $('#newGameForm').show();
+  $('#iniciarPartidaButton').css('opacity', 1);
+  $('#newGameModal-info-downloading').hide();
   $('#iniciarPartidaButton').prop('hidden', true);
   $('#cambiarInfoButton').prop('hidden', false);
   $('#newGameModal-info').prop('hidden', true);
@@ -235,11 +239,6 @@ function iniciarPartida() {
       // Cerramos el modal
       $('#newGameModal').modal('hide');
       messageToConsole('Bienvenid@ ' + partida.jugador.nombre + '! ¿List@ para enfrentarte a los peligros de LaSalle?');
-      // Revertimos los estilos que indicaban que estábamos descargando la configuración de partida nueva
-      $('#newGameModal-info').show();
-      $('#newGameForm').show();
-      $('#iniciarPartidaButton').css('opacity', 1);
-      $('#newGameModal-info-downloading').hide();
     });
   }
 }
