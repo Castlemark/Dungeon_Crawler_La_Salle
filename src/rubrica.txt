@@ -32,7 +32,7 @@ No puedes coger una arma hasta que no tienes suficiente XP
 Tipos de enemigos:
 - Robot LSMaker (son merda)
 - Profesors
-- Final boss (Xavi Senmartí)
+- Final boss (Xavi Senmartí) (al guanyar al final boss (xavi), guanyes la matricula com a objecte i pots sortir)
 Tipos de objectos:
 - Software (scripts y chuletas)
 - Hardware (portatils, ..., oscil·loscopi, que es el mes fort)
