@@ -14,6 +14,7 @@ header{
   background-color: #6aade4;
   padding-right: 20px;
   padding-left: 20px;
+  min-width: 1150px;
   .logo{
     float: left;
     margin: 10px 0;
@@ -54,29 +55,34 @@ header{
 
 
 #informacion{
+  min-width: 1135px;
   background-color: black;
-  height: 44px;
+  height: auto;
   text-align: right;
   padding: 8px 0px;
   margin-right: -15px;
-  li{
-    color: #fff;
-    padding: 0 50px;
-    display: -webkit-inline-box;
-    .progress{
-      width: 60%;
-      margin: 5px;
-      .ataque{
-          background-color: red;
-      }
-      .defensa{
-        background-color: green;
-      }
-      .vida{
-        background-color: pink;
+  ul{
+    margin-bottom: 0;
+    li{
+      color: #fff;
+      padding: 0 50px;
+      display: -webkit-inline-box;
+      .progress{
+        width: 60%;
+        margin: 5px;
+        .ataque{
+            background-color: red;
+        }
+        .defensa{
+          background-color: green;
+        }
+        .vida{
+          background-color: pink;
+        }
       }
     }
   }
+
 }
 
 .box{
@@ -197,4 +203,8 @@ header{
 
 .btn-slot {
   width: 100%;
+}
+
+#player-board{
+  min-width: 1150px;
 }

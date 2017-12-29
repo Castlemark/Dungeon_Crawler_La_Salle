@@ -15,6 +15,7 @@ header {
   background-color: #6aade4;
   padding-right: 20px;
   padding-left: 20px;
+  min-width: 1150px;
 }
 
 header .logo {
@@ -62,33 +63,38 @@ header ul li .user-info {
 }
 
 #informacion {
+  min-width: 1135px;
   background-color: black;
-  height: 44px;
+  height: auto;
   text-align: right;
   padding: 8px 0px;
   margin-right: -15px;
 }
 
-#informacion li {
+#informacion ul {
+  margin-bottom: 0;
+}
+
+#informacion ul li {
   color: #fff;
   padding: 0 50px;
   display: -webkit-inline-box;
 }
 
-#informacion li .progress {
+#informacion ul li .progress {
   width: 60%;
   margin: 5px;
 }
 
-#informacion li .progress .ataque {
+#informacion ul li .progress .ataque {
   background-color: red;
 }
 
-#informacion li .progress .defensa {
+#informacion ul li .progress .defensa {
   background-color: green;
 }
 
-#informacion li .progress .vida {
+#informacion ul li .progress .vida {
   background-color: pink;
 }
 
@@ -211,4 +217,8 @@ header ul li .user-info {
 
 .btn-slot {
   width: 100%;
+}
+
+#player-board {
+  min-width: 1150px;
 }
