@@ -48,6 +48,13 @@ function descargarPartidaNueva(callback) {
       404: function(responseText) {
         console.log('ERROR: Es posible que aún no exista la configuración de partida nueva. A continuación se imprime informacion sobre el error:');
         console.log(responseText);
+        swal({
+          title: 'Error al cargar nueva partida',
+          text: responseText,
+          type: 'error',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#6aade4',
+        });
       }
     }
   });
@@ -68,6 +75,13 @@ function descargarInfoSlots(callback) {
       404: function(responseText) {
         console.log('ERROR: Es posible el token sea incorrecto. A continuación se imprime informacion sobre el error:');
         console.log(responseText);
+        swal({
+          title: 'Error al connectar slots',
+          text: responseText,
+          type: 'error',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#6aade4',
+        });
       }
     }
   });
@@ -187,6 +201,13 @@ function descargarPartida(slot, callback) {
       404: function(responseText) {
         console.log('ERROR: Es posible que el slot solicitado esté vacío. A continuación se imprime informacion sobre el error:');
         console.log(responseText);
+        swal({
+          title: 'Error al cargar la partida',
+          text: responseText,
+          type: 'error',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#6aade4',
+        });
       }
     }
   });
@@ -408,6 +429,13 @@ function vaciarSlot(slot, callback) {
       404: function(responseText) {
         console.log('ERROR: Es posible que no exista partida guardada en el slot solicitado o que se haya indicado un slot erróneo. A continuación se imprime informacion sobre el error:');
         console.log(responseText);
+        swal({
+          title: 'Error al vaciar slot',
+          text: responseText,
+          type: 'error',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#6aade4',
+        });
       }
     }
   });
@@ -428,7 +456,30 @@ function guardarPartida(slot, callback) {
       404: function(responseText) {
         console.log('ERROR: Es posible que el slot no esté libre. A continuación se imprime informacion sobre el error:');
         console.log(responseText);
+        swal({
+          title: 'Error al guardar partida',
+          text: responseText,
+          type: 'error',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#6aade4',
+        });
       }
     }
+  });
+}
+
+//función para salir sin guardar de la partida, esta te preguntara si realmente quieres salir antes
+function salirSinGuardar(){
+  swal({
+    title: 'Estás seguro?',
+    text: 'Si confirmas perderás tus cambios no guardados',
+    type: 'warning',
+    showConfirmButton: true,
+    showCancelButton: true,
+    confirmButtonColor: '#6aade4',
+    confirmButtonText: 'Salir',
+    cancelButtonText: 'Cancelar'
+  }).then(function(){
+    //salir
   });
 }

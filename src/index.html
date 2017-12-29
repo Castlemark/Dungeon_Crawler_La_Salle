@@ -19,7 +19,7 @@
           <li id="menu-jugador" hidden><a onclick="modalCambiarInfo()" class="user-info"><img class="avatar" src="media/images/user.png" width="50px" alt="avatar"/><span class="player-name"></span></a></li>
           <li id="menu-cargarPartida"><a onclick="modalCargarPartida()">Cargar partida</a></li>
           <li id="menu-nuevaPartida"><a onclick="modalNuevaPartida()">Nueva partida</a></li>
-          <li id="menu-salir" hidden><a>Salir sin guardar</a></li>
+          <li id="menu-salir" hidden><a onclick="salirSinGuardar()">Salir sin guardar</a></li>
           <li id="menu-guardarPartida" hidden><a onclick="modalGuardarPartida()">Guardar partida</a></li>
         </ul>
       </nav>
@@ -226,6 +226,8 @@
     <script src="js/juego.js"></script>
     <script src="js/main.js"></script>
     <script src="vendors/moment/moment.js"></script>
+    <script src="vendors/sweetalert/sweetalert.all.min.js"></script>
+
 
   </body>
 </html>
