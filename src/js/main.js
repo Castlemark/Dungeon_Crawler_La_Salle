@@ -11,6 +11,14 @@ partida.enemigos = [];
 partida.objetos = objetos;
 partida.jugador = player;
 
+var info = {
+  nivel: 0,
+  xp: 0,
+  ataque: 0,
+  defensa: 0,
+  vida: 0
+};
+
 function iniciarJuego() {
   /* TODO */
   //preparar objetos de la partida
@@ -46,6 +54,17 @@ function descargarPartidaNueva(callback) {
         callback();
       },
       404: function(responseText) {
+        console.log('ERROR: Es posible que aún no exista la configuración de partida nueva. A continuación se imprime informacion sobre el error:');
+        console.log(responseText);
+        swal({
+          title: 'Error al cargar nueva partida',
+          text: responseText,
+          type: 'error',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#6aade4',
+        });
+      },
+      default: function(responseText) {
         console.log('ERROR: Es posible que aún no exista la configuración de partida nueva. A continuación se imprime informacion sobre el error:');
         console.log(responseText);
         swal({
@@ -482,4 +501,35 @@ function salirSinGuardar(){
   }).then(function(){
     //salir
   });
+}
+
+function mostrarInformacion(){
+  var nextLevelP = 20;
+  var distPoints = 20;
+  while(nextLevelP < info.xp){
+    nextLevelP += distPoints + 10;
+    distPoints += 10;
+  }
+
+  $('#progress-bar-xp').attr('aria-valuemax', nextLevelP).attr('aria-valuenow', info.xp).css('width', info.xp/$('#progress-bar-xp').attr('aria-valuemax') *100 + '%');
+  $('#label-xp').html(info.xp + '/' + $('#progress-bar-xp').attr('aria-valuemax') + ' (Nivel ' + getNivel(info.xp) + ')');
+  $('#progress-bar-ataque').attr('aria-valuenow', info.ataque).css('width', info.ataque/$('#progress-bar-ataque').attr('aria-valuemax') *100 + '%');
+  $('#label-ataque').html(info.ataque + '/' + $('#progress-bar-ataque').attr('aria-valuemax'));
+  $('#progress-bar-defensa').attr('aria-valuenow', info.defensa).css('width', info.defensa/$('#progress-bar-defensa').attr('aria-valuemax') *100 + '%');
+  $('#label-defensa').html(info.defensa + '/' + $('#progress-bar-defensa').attr('aria-valuemax'));
+  $('#progress-bar-vida').attr('aria-valuenow', info.vida).css('width', info.vida/$('#progress-bar-vida').attr('aria-valuemax') *100 + '%');
+  $('#label-vida').html(info.vida + '/' + $('#progress-bar-vida').attr('aria-valuemax'));
+}
+
+//funcion para saber en que nivel está el jugador mediante sus xp
+function getNivel(xp){
+  var nivel = 1;
+  var puntos = xp;
+  while(puntos > 0){
+    puntos = puntos - ((nivel+1) * 10);
+    if(puntos >= 0){
+      nivel++;
+    }
+  }
+  return nivel;
 }
