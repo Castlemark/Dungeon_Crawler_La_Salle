@@ -60,7 +60,7 @@ Teletransportador de -3 a -1 o -1 a -3 (has copiado en un examen)
 
 
 TECNOLOGIA
- 
+
 -----------------
 API
 - Envía y recibe y hace tratamiento de los códigos devueltos.
