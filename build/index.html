@@ -9,47 +9,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css" type="text/css" media="all" />
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/juego.js"></script>
-    <script src="js/main.js"></script>
   </head>
   <body>
     <header class="row">
 
-      <h1 class="col-md-4 logo"><img src="media/images/logo.png" width="400px"/></h1>
+      <h1 class="col-md-4 logo"><img src="media/images/logo.png" width="400px" alt="LaSalle Dungeon"/></h1>
       <nav class="col-md-8">
         <ul>
-          <li><a class="user-info"><img class="avatar" src="media/images/user.png" width="50px"/><span> Nombre del jugador</span></a></li>
-          <li><a>Cargar partida</a></li>
-          <li><a>Nueva partida</a></li>
+          <li id="menu-jugador" hidden><a onclick="modalCambiarInfo()" class="user-info"><img class="avatar" src="media/images/user.png" width="50px" alt="avatar"/><span class="player-name"></span></a></li>
+          <li id="menu-cargarPartida"><a onclick="modalCargarPartida()">Cargar partida</a></li>
+          <li id="menu-nuevaPartida"><a onclick="modalNuevaPartida()">Nueva partida</a></li>
+          <li id="menu-salir" hidden><a onclick="salirSinGuardar()">Salir sin guardar</a></li>
+          <li id="menu-guardarPartida" hidden><a onclick="modalGuardarPartida()">Guardar partida</a></li>
         </ul>
       </nav>
     </header>
     <section id="informacion">
-      <ul>
-        <li>Xp <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width:1%">
+      <ul class="row">
+        <li class="col-md-3"><label>Xp </label><div class="progress">
+              <div id="progress-bar-xp" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10" style="width:10%">
               </div>
-          </div> 23/40 (Nivel 2)</li>
-        <li><label>Ataque </label><div class="progress">
-              <div class="progress-bar ataque" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+          </div> <label id="label-xp">23/40 (Nivel 2)</label></li>
+        <li class="col-md-3"><label>Ataque </label><div class="progress">
+              <div id="progress-bar-ataque" class="progress-bar ataque" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="200" style="width:70%">
               </div>
-          </div> 70/200</li>
-          <li><label>Defensa </label><div class="progress">
-                <div class="progress-bar defensa" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+          </div> <label id="label-ataque">70/200</label></li>
+          <li class="col-md-3"><label>Defensa </label><div class="progress">
+                <div id="progress-bar-defensa" class="progress-bar defensa" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="200" style="width:70%">
                 </div>
-            </div> 70/200</li>
-            <li><label>Vida </label><div class="progress">
-                  <div class="progress-bar vida" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                    <span class="sr-only">46</span>
+            </div> <label id="label-defensa">70/200</label></li>
+            <li class="col-md-3"><label>Vida </label><div class="progress">
+                  <div id="progress-bar-vida" class="progress-bar vida" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10" style="width:70%">
                   </div>
-              </div> 7/10</li>
+              </div> <label id="label-vida">7/10</label></li>
       </ul>
-
-      <!-- <p>Defensa: 0</p>
-      <p>Vida: 0</p> -->
     </section>
-    <div class="row">
+    <div id="player-board" class="row">
       <div class="col-md-3 left-part">
         <section id="equipo" class="box">
           <div class="box-header">
@@ -59,7 +54,7 @@
             <div class="row">
               <div class="col-md-6">
                 <label>Mano Izquierda</label>
-                <img src="media/images/square.jpg" width="100px"/>
+                <img src="media/images/square.jpg" width="75%" alt="Equipo"/>
                 <label>Calculadora</label>
                 <p>Ataque: <span>0</span></p>
                 <p>Defensa: <span>0</span></p>
@@ -67,7 +62,7 @@
               </div>
               <div class="col-md-6">
                 <label>Mano Derecha</label>
-                <img src="media/images/square.jpg" width="100px"/>
+                <img src="media/images/square.jpg" width="75%" alt="Equipo"/>
                 <label>Soldador</label>
                 <p>Ataque: <span>0</span></p>
                 <p>Defensa: <span>0</span></p>
@@ -76,11 +71,11 @@
             </div>
             <label><b>Mochila</b></label>
             <div class="mochila">
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta"/>
+              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
+              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
+              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
+              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
+              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
             </div>
           </div>
         </section>
@@ -94,7 +89,7 @@
             <h2>Consola</h2>
           </div>
           <div class="box-body">
-            <text id="console-text">[16:38:06] Bienvenido a LaSalle Dungeon! Seleccione 'Nueva Partida' o 'Cargar Partida' para empezar a jugar</text>
+            <text id="console-text"></text>
           </div>
         </section>
       </div>
@@ -105,12 +100,12 @@
           </div>
           <div class="box-body">
             <div>
-              <a href="#" id="movendavant"><img src="media/images/up.png" width="80px"/></a>
+              <a href="#" id="movendavant"><img src="media/images/up.png" width="25%" alt="arriba"/></a>
             </div>
             <div>
-              <a href="#" id="movesquerra"><img src="media/images/left.png" width="80px"/></a>
-              <a href="#" id="movdreta"><img src="media/images/down.png" width="80px"/></a>
-              <a href="#" id="movendarrere"><img src="media/images/right.png" width="80px"/></a>
+              <a href="#" id="movesquerra"><img src="media/images/left.png" width="25%" alt="izquierda"/></a>
+              <a href="#" id="movdreta"><img src="media/images/down.png" width="25%" alt="abajo"/></a>
+              <a href="#" id="movendarrere"><img src="media/images/right.png" width="25%" alt="derecha"/></a>
             </div>
           </div>
         </section>
@@ -120,19 +115,125 @@
           </div>
           <div class="box-body">
             <label>Nivel -1</label>
-            <img src="media/images/mapa.png" width="200px"/>
+            <img src="media/images/mapa.png" width="80%" alt="mapa"/>
           </div>
         </section>
       </div>
 
     </div>
 
+    <!-- Modal para nueva partida (seleccionar nombre de la partida y avatar) -->
+    <div class="modal fade" id="newGameModal" tabindex="-1" role="dialog" aria-labelledby="newGameModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newGameModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="newGameModalClose">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="newGameModal-info">Para iniciar una nueva partida, escriba el nombre del jugador y seleccione un avatar:</p>
+            <form id="newGameForm">
+              <div class="form-group">
+                <label for="name"><b>Nombre jugador</b> (máximo 30 car.)</label>
+                <input type="text" name="name" required class="form-control" id="name" maxlength="30">
+              </div>
+              <div class="form-group">
+                <label for="avatarId"><b>Avatar</b></label>
+                <input hidden type="number" class="form-control" name="avatarId" id="avatarId">
+              </div>
+              <div class="row avatares">
+                <div class="col-md-3">
+                  <img id="avatar_1" onclick="selectAvatar(1)" src="media/images/avatar1.png" width="80%" alt="avatar1"/>
+                </div>
+                <div class="col-md-3">
+                  <img id="avatar_2" onclick="selectAvatar(2)" src="media/images/avatar2.png" width="80%" alt="avatar2"/>
+                </div>
+                <div class="col-md-3">
+                  <img id="avatar_3" onclick="selectAvatar(3)" src="media/images/avatar3.png" width="80%" alt="avatar3"/>
+                </div>
+                <div class="col-md-3">
+                  <img id="avatar_4" onclick="selectAvatar(4)" src="media/images/avatar4.png" width="80%" alt="avatar4"/>
+                </div>
+              </div>
+            </form>
+            <p id="newGameModal-info-downloading">Descargando la configuración de partida nueva...</p>
+          </div>
+          <div class="modal-footer">
+            <button onclick="iniciarPartida()" id="iniciarPartidaButton" type="button" class="btn btn-salle">Iniciar partida</button>
+            <button hidden onclick="cambiarInfoJugador()" id="cambiarInfoButton" type="button" class="btn btn-salle">Guardar cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para cargar partida -->
+    <div class="modal fade" id="loadGameModal" tabindex="-1" role="dialog" aria-labelledby="loadGameModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loadGameModalLabel">CARGAR PARTIDA</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="loadGameModalClose">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="loadGameModal-info">Elige un slot para cargar la partida.</p>
+            <form id="loadGameForm">
+              <div class="form-group">
+                <button id="slot1-load" type="button" class="btn btn-secondary btn-slot disabled">Slot 1: cargando información...</button>
+              </div>
+              <div class="form-group">
+                <button id="slot2-load" type="button" class="btn btn-secondary btn-slot disabled">Slot 2: cargando información...</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para guardar partida -->
+    <div class="modal fade" id="saveGameModal" tabindex="-1" role="dialog" aria-labelledby="saveGameModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="saveGameModalLabel">CARGAR PARTIDA</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="saveGameModalClose">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="saveGameModal-info">Elige un slot vacío para guardar la partida o un slot lleno para vaciarlo.</p>
+            <form id="saveGameForm">
+              <div class="form-group">
+                <button id="slot1-save" type="button" class="btn btn-secondary btn-slot disabled">Slot 1: cargando información...</button>
+              </div>
+              <div class="form-group">
+                <button id="slot2-save" type="button" class="btn btn-secondary btn-slot disabled">Slot 2: cargando información...</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="js/juego.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/modals.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/graphics.js"></script>
+    <script src="js/move.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/objetos.js"></script>
+    <script src="js/enemigos.js"></script>
+
+    <script src="js/vendor.min.js"></script>
+
 
   </body>
 </html>
