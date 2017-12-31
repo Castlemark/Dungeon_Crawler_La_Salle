@@ -1,211 +1,190 @@
 var json = `
 {
-    "jugador": {},
-  "Terreno": [
+  "jugador": {
+    "nivel": 1,
+    "experiencia": 0,
+    "ataque": 0,
+    "defensa": 0,
+    "vida": 10
+  },
+  "terreno": [
     {
-      "nombre": "Pared",
+      "nombre": "pared",
       "id": 10
     },
     {
-      "nombre": "Suelo",
+      "nombre": "suelo",
       "id": 11
     },
     {
-      "nombre": "Salida",
+      "nombre": "salida",
       "id": 12
     },
     {
-      "nombre": "Origen",
+      "nombre": "origen",
       "id": 13
     }
   ],
-  "Objetos": [
+  "objetos": [
     {
       "nombre": "portatil",
       "id": 20,
-      "atributos": [
-        {
-          "ataque": 3
-        },
-        {
-          "defensa": 5
-        },
-        {
-          "durabilidad": 30
-        }
-      ]
+      "atributos": {
+        "ataque": 3,
+        "defensa": 5,
+        "durabilidad": 30
+      }
     },
     {
       "nombre": "soldador",
       "id": 21,
-      "atributos": [
-        {
-          "ataque": 5
-        },
-        {
-          "defensa": 1
-        },
-        {
-          "durabilitat": 30
-        }
-      ]
+      "atributos": {
+        "ataque": 5,
+        "defensa": 1,
+        "durabilitat": 30
+      }
     },
     {
       "nombre": "calculadora",
       "id": 22,
-      "atributos": [
-        {
-          "ataque": 3
-        },
-        {
-          "defensa": 3
-        },
-        {
-          "durabilidad": 30
-        }
-      ]
+      "atributos": {
+        "ataque": 3,
+        "defensa": 3,
+        "durabilidad": 30
+      }
     },
     {
       "nombre": "usb",
       "id": 23,
-      "atributos": [
-        {
-          "ataque": 3
-        },
-        {
-          "defensa": 2
-        },
-        {
-          "durabilidad": 50
-        }
-      ]
+      "atributos": {
+        "ataque": 3,
+        "defensa": 2,
+        "durabilidad": 50
+      }
     }
   ],
-  "Enemics": [
+  "enemigos": [
     {
-      "nombre": "LSMaker",
+      "nombre": "lsmaker",
       "id": 30,
-      "atributos": [
-        {
-          "ataque": 2
-        },
-        {
-          "defensa": 3
-        },
-        {
-          "vida": 10
-        }
-      ]
+      "objetos": [
+        23
+      ],
+      "atributos": {
+        "ataque": 2,
+        "defensa": 3,
+        "vida": 10,
+        "xp": 4
+      }
     },
     {
-      "nombre": "Daniel",
+      "nombre": "daniel",
       "id": 31,
-      "atributos": [
-        {
-          "ataque": 4
-        },
-        {
-          "defensa": 4
-        },
-        {
-          "vida": 15
-        }
-      ]
+      "objetos": [
+        20,
+        23
+      ],
+      "atributos": {
+        "ataque": 4,
+        "defensa": 4,
+        "vida": 15,
+        "xp": 6
+      }
     },
     {
-      "nombre": "Emiliano",
+      "nombre": "emiliano",
       "id": 32,
-      "atributos": [
-        {
-          "ataque": 4
-        },
-        {
-          "defensa": 4
-        },
-        {
-          "vida": 15
-        }
-      ]
+      "objetos": [
+        22
+      ],
+      "atributos": {
+        "ataque": 4,
+        "defensa": 4,
+        "vida": 15,
+        "xp": 6
+      }
     },
     {
-      "nombre": "Eva",
+      "nombre": "eva",
       "id": 33,
-      "atributos": [
-        {
-          "ataque": 4
-        },
-        {
-          "defensa": 4
-        },
-        {
-          "vida": 15
-        }
-      ]
+      "objetos": [
+        21,
+        23
+      ],
+      "atributos": {
+        "ataque": 4,
+        "defensa": 4,
+        "vida": 15,
+        "xp": 6
+      }
     },
     {
-      "nombre": "Guillem",
+      "nombre": "guillem",
       "id": 34,
-      "atributos": [
-        {
-          "ataque": 4
-        },
-        {
-          "defensa": 4
-        },
-        {
-          "vida": 15
-        }
-      ]
+      "objetos": [
+        23
+      ],
+      "atributos": {
+        "ataque": 4,
+        "defensa": 4,
+        "vida": 15,
+        "xp": 6
+      }
     },
     {
-      "nombre": "Ignasi",
+      "nombre": "ignasi",
       "id": 35,
-      "atributos": [
-        {
-          "ataque": 4
-        },
-        {
-          "defensa": 4
-        },
-        {
-          "vida": 15
-        }
-      ]
+      "objetos": [
+        20,
+        22
+      ],
+      "atributos": {
+        "ataque": 4,
+        "defensa": 4,
+        "vida": 15,
+        "xp": 6
+      }
     },
     {
-      "nombre": "Jose",
+      "nombre": "jose",
       "id": 36,
-      "atributos": [
-        {
-          "ataque": 4
-        },
-        {
-          "defensa": 4
-        },
-        {
-          "vida": 15
-        }
-      ]
+      "objetos": [
+        22,
+        22
+      ],
+      "atributos": {
+        "ataque": 4,
+        "defensa": 4,
+        "vida": 15,
+        "xp": 6
+      }
     },
     {
-      "nombre": "Xevi",
+      "nombre": "xevi",
       "id": 37,
-      "atributos": [
-        {
-          "ataque": 6
-        },
-        {
-          "defensa": 5
-        },
-        {
-          "vida": 15
-        }
-      ]
+      "objetos": [
+        21,
+        21
+      ],
+      "atributos": {
+        "ataque": 6,
+        "defensa": 5,
+        "vida": 15,
+        "xp": 10
+      }
     }
   ],
-  "Mapa 1": [
-    {
-      "Fila 1": [
+  "mapa1": {
+    "origen": [
+      9,
+      5
+    ],
+    "orientacion": [
+      1,
+      0
+    ],
+    "distribucion": [
+      [
         10,
         10,
         10,
@@ -216,10 +195,8 @@ var json = `
         10,
         10,
         10
-      ]
-    },
-    {
-      "Fila 2": [
+      ],
+      [
         10,
         10,
         31,
@@ -230,10 +207,8 @@ var json = `
         31,
         10,
         10
-      ]
-    },
-    {
-      "Fila 3": [
+      ],
+      [
         10,
         11,
         11,
@@ -244,10 +219,8 @@ var json = `
         11,
         10,
         10
-      ]
-    },
-    {
-      "Fila 4": [
+      ],
+      [
         10,
         11,
         10,
@@ -258,10 +231,8 @@ var json = `
         11,
         10,
         10
-      ]
-    },
-    {
-      "Fila 5": [
+      ],
+      [
         10,
         11,
         10,
@@ -272,10 +243,8 @@ var json = `
         11,
         10,
         10
-      ]
-    },
-    {
-      "Fila 6": [
+      ],
+      [
         10,
         11,
         11,
@@ -286,10 +255,8 @@ var json = `
         11,
         10,
         10
-      ]
-    },
-    {
-      "Fila 7": [
+      ],
+      [
         10,
         11,
         10,
@@ -300,10 +267,8 @@ var json = `
         30,
         11,
         10
-      ]
-    },
-    {
-      "Fila 8": [
+      ],
+      [
         10,
         11,
         10,
@@ -314,10 +279,8 @@ var json = `
         10,
         11,
         10
-      ]
-    },
-    {
-      "Fila 9": [
+      ],
+      [
         10,
         30,
         11,
@@ -328,10 +291,8 @@ var json = `
         21,
         11,
         10
-      ]
-    },
-    {
-      "Fila 10": [
+      ],
+      [
         10,
         10,
         10,
@@ -343,11 +304,19 @@ var json = `
         10,
         10
       ]
-    }
-  ],
-  "Mapa 2": [
-    {
-      "Fila 1": [
+    ]
+  },
+  "mapa2": {
+    "origen": [
+      10,
+      5
+    ],
+    "orientacion": [
+      1,
+      0
+    ],
+    "distribucion": [
+      [
         10,
         10,
         10,
@@ -358,10 +327,8 @@ var json = `
         10,
         10,
         10
-      ]
-    },
-    {
-      "Fila 2": [
+      ],
+      [
         10,
         35,
         11,
@@ -372,10 +339,8 @@ var json = `
         11,
         33,
         10
-      ]
-    },
-    {
-      "Fila 3": [
+      ],
+      [
         10,
         11,
         10,
@@ -386,10 +351,8 @@ var json = `
         10,
         11,
         10
-      ]
-    },
-    {
-      "Fila 4": [
+      ],
+      [
         10,
         11,
         30,
@@ -400,10 +363,8 @@ var json = `
         10,
         30,
         10
-      ]
-    },
-    {
-      "Fila 5": [
+      ],
+      [
         10,
         11,
         10,
@@ -414,10 +375,8 @@ var json = `
         10,
         11,
         10
-      ]
-    },
-    {
-      "Fila 6": [
+      ],
+      [
         10,
         30,
         10,
@@ -428,10 +387,8 @@ var json = `
         10,
         30,
         10
-      ]
-    },
-    {
-      "Fila 7": [
+      ],
+      [
         10,
         11,
         11,
@@ -442,10 +399,8 @@ var json = `
         10,
         11,
         10
-      ]
-    },
-    {
-      "Fila 8": [
+      ],
+      [
         10,
         11,
         10,
@@ -456,10 +411,8 @@ var json = `
         10,
         30,
         10
-      ]
-    },
-    {
-      "Fila 9": [
+      ],
+      [
         10,
         11,
         23,
@@ -470,10 +423,8 @@ var json = `
         11,
         21,
         10
-      ]
-    },
-    {
-      "Fila 10": [
+      ],
+      [
         10,
         10,
         10,
@@ -485,11 +436,19 @@ var json = `
         10,
         10
       ]
-    }
-  ],
-  "Mapa 3": [
-    {
-      "Fila 1": [
+    ]
+  },
+  "mapa3": {
+    "origen": [
+      10,
+      5
+    ],
+    "orientacion": [
+      1,
+      0
+    ],
+    "distribucion": [
+      [
         10,
         10,
         10,
@@ -500,10 +459,8 @@ var json = `
         10,
         10,
         10
-      ]
-    },
-    {
-      "Fila 2": [
+      ],
+      [
         10,
         11,
         11,
@@ -514,10 +471,8 @@ var json = `
         11,
         11,
         10
-      ]
-    },
-    {
-      "Fila 3": [
+      ],
+      [
         10,
         10,
         10,
@@ -528,10 +483,8 @@ var json = `
         10,
         11,
         10
-      ]
-    },
-    {
-      "Fila 4": [
+      ],
+      [
         10,
         22,
         11,
@@ -542,10 +495,8 @@ var json = `
         30,
         11,
         10
-      ]
-    },
-    {
-      "Fila 5": [
+      ],
+      [
         10,
         10,
         10,
@@ -556,10 +507,8 @@ var json = `
         11,
         21,
         10
-      ]
-    },
-    {
-      "Fila 6": [
+      ],
+      [
         10,
         30,
         10,
@@ -570,10 +519,8 @@ var json = `
         10,
         10,
         10
-      ]
-    },
-    {
-      "Fila 7": [
+      ],
+      [
         10,
         11,
         11,
@@ -584,10 +531,8 @@ var json = `
         10,
         20,
         10
-      ]
-    },
-    {
-      "Fila 8": [
+      ],
+      [
         10,
         21,
         10,
@@ -598,10 +543,8 @@ var json = `
         11,
         11,
         10
-      ]
-    },
-    {
-      "Fila 9": [
+      ],
+      [
         10,
         10,
         10,
@@ -612,10 +555,8 @@ var json = `
         10,
         10,
         10
-      ]
-    },
-    {
-      "Fila 10": [
+      ],
+      [
         10,
         10,
         10,
@@ -627,7 +568,7 @@ var json = `
         10,
         10
       ]
-    }
-  ]
+    ]
+  }
 }
 `;
