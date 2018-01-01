@@ -107,17 +107,19 @@ function guardarPartida(slot, callback) {
       200: function() {
         console.log('Partida guardada en el slot.');
         callback();
+        //refrescarSlotsGuardarPartida();
       },
       404: function(responseText) {
         console.log('ERROR: Es posible que el slot no esté libre. A continuación se imprime informacion sobre el error:');
         console.log(responseText);
         swal({
-          title: 'Error al guardar partida',
-          text: responseText,
+          title: 'Error al guardar la partida',
+          text: 'Por favor, vuelve a intentarlo.',
           type: 'error',
           confirmButtonText: 'Aceptar',
           confirmButtonColor: '#6aade4',
         });
+        refrescarSlotsGuardarPartida();
       }
     }
   });
@@ -133,17 +135,19 @@ function vaciarSlot(slot, callback) {
       202: function() {
         console.log('Slot vaciado.');
         callback();
+        //refrescarSlotsGuardarPartida();
       },
       404: function(responseText) {
         console.log('ERROR: Es posible que no exista partida guardada en el slot solicitado o que se haya indicado un slot erróneo. A continuación se imprime informacion sobre el error:');
         console.log(responseText);
         swal({
-          title: 'Error al vaciar slot',
-          text: responseText,
+          title: 'Error al vaciar el slot',
+          text: 'Por favor, vuelve a intentarlo.',
           type: 'error',
           confirmButtonText: 'Aceptar',
           confirmButtonColor: '#6aade4',
         });
+        refrescarSlotsGuardarPartida();
       }
     }
   });

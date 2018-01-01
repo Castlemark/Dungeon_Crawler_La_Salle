@@ -47,6 +47,14 @@ function iniciarPartida() {
   }
 }
 
+function closeLoadGameModal() {
+  // Hacemos que el modal se pueda cerrar
+  loadGameModalDisableClose = false;
+  $('#loadGameModalClose').fadeTo('fast', 1);
+  // Cerramos el modal
+  $('#loadGameModal').modal('hide');
+}
+
 function modalCargarPartida() {
   // En primer lugar "desatamos" (unbind) los eventos de click de los botones
   $('#slot1-load').off();
@@ -76,14 +84,11 @@ function modalCargarPartida() {
          $(this).text('Descargando partida de slot 1...');
          descargarPartida('1', function() {
            // Partida descargada
-           // Hacemos que el modal se pueda cerrar
-           loadGameModalDisableClose = false;
-           $('#loadGameModalClose').fadeTo('fast', 1);
            // Refrescamos la info de la UI
            refrescarInfoJugador();
            mostrarMenusPartida();
            // Cerramos el modal
-           $('#loadGameModal').modal('hide');
+           closeLoadGameModal();
          });
        });
      }
@@ -109,14 +114,11 @@ function modalCargarPartida() {
          $(this).text('Descargando partida de slot 2...');
          descargarPartida('2', function() {
            // Partida descargada
-           // Hacemos que el modal se pueda cerrar
-           loadGameModalDisableClose = false;
-           $('#loadGameModalClose').fadeTo('fast', 1);
            // Refrescamos la info de la UI
            refrescarInfoJugador();
            mostrarMenusPartida();
            // Cerramos el modal
-           $('#loadGameModal').modal('hide');
+           closeLoadGameModal();
          });
        });
      }
@@ -154,6 +156,142 @@ function cambiarInfoJugador() {
   }
 }
 
+// Función que asocia el evento de hacer click en el botón que se le pasa con la acción de vaciar el slot correspondiente
+function bindEmptySlotActionTo(button, slotNumber) {
+  // En primer lugar "desatamos" (unbind) cualquier acción asociada al evento de click de este botón
+  button.off();
+
+  button.click(function() {
+    swal({
+      title: '¿Estás seguro?',
+      text: 'Si vacias el slot ' + slotNumber + ' no podrás recuperar la partida guardada en él.',
+      type: 'warning',
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonColor: '#6aade4',
+      confirmButtonText: 'Vaciar slot',
+      cancelButtonText: 'Cancelar'
+    }).then(function() {
+      // El usuario ha confirmado que quiere vaciar el slot
+      // Procedemos a vaciar el slot
+      // En primer lugar "desatamos" (unbind) cualquier acción asociada al evento de click de este botón
+      $(this).off();
+      // Hacemos que el modal no se pueda cerrar
+      saveGameModalDisableClose = true;
+      $('#saveGameModalClose').fadeTo('fast', 0);
+      // Avisamos de que estamos vaciando el slot
+      $(this).text('Vaciando el slot ' + slotNumber + '...');
+      vaciarSlot(slotNumber, function() {
+        // Slot vaciado
+        // Hacemos que el modal se pueda cerrar
+        saveGameModalDisableClose = false;
+        $('#saveGameModalClose').fadeTo('fast', 1);
+        // Avisamos de que el slot se ha vaciado correctamente
+        button.removeClass('btn-danger');
+        button.addClass('btn-success');
+        button.text('Slot ' + slotNumber + ': libre (click para guardar partida)');
+        swal({
+          title: 'Slot ' + slotNumber + ' vaciado correctamente',
+          text: 'Ahora puedes usar el slot para guardar la partida.',
+          type: 'success',
+          showConfirmButton: true,
+          showCancelButton: false,
+          confirmButtonColor: '#6aade4',
+          confirmButtonText: 'OK',
+        });
+        bindFillSlotActionTo(button, slotNumber);
+      });
+    });
+  });
+}
+
+// Función que asocia el evento de hacer click en el botón que se le pasa con la acción de guardar la partida en el slot correspondiente
+function bindFillSlotActionTo(button, slotNumber) {
+  // En primer lugar "desatamos" (unbind) cualquier acción asociada al evento de click de este botón
+  button.off();
+
+  button.click(function() {
+    // En primer lugar "desatamos" (unbind) cualquier acción asociada al evento de click de este botón
+    $(this).off();
+    // Hacemos que el modal no se pueda cerrar
+    saveGameModalDisableClose = true;
+    $('#saveGameModalClose').fadeTo('fast', 0);
+    // Avisamos de que estamos guardando la partida en el slot
+    $(this).text('Guardando la partida en el slot ' + slotNumber + '...');
+    guardarPartida(slotNumber, function() {
+      // Partida guardada en el slot
+      // Cerramos el modal
+      closeSaveGameModal();
+      // Avisamos de que la partida se ha guardado en el slot correctamente
+      button.removeClass('btn-success');
+      button.addClass('btn-danger');
+      button.text('Slot ' + slotNumber + ': ocupado (click para vaciar)');
+      swal({
+        title: 'Partida guardada correctamente',
+        text: 'La partida se ha guardado en el slot ' + slotNumber + '.',
+        type: 'success',
+        showConfirmButton: true,
+        showCancelButton: false,
+        confirmButtonColor: '#6aade4',
+        confirmButtonText: 'OK',
+      });
+      bindEmptySlotActionTo(button, slotNumber);
+    });
+  });
+}
+
+function closeSaveGameModal() {
+  // Hacemos que el modal se pueda cerrar
+  saveGameModalDisableClose = false;
+  $('#saveGameModalClose').fadeTo('fast', 1);
+  // Cerramos el modal
+  $('#saveGameModal').modal('hide');
+}
+
+function refrescarSlotsGuardarPartida() {
+  descargarInfoSlots(function(json) {
+    // En primer lugar "desatamos" (unbind) los eventos de click de los botones
+    $('#slot1-load').off();
+    $('#slot2-load').off();
+
+    // Slot 1
+    if ($.inArray('1', json) > -1) {
+      // Slot 1 está ocupado
+      $('#slot1-save').removeClass('disabled');
+      $('#slot1-save').removeClass('btn-secondary');
+      $('#slot1-save').addClass('btn-danger');
+      $('#slot1-save').text('Slot 1: ocupado (click para vaciar)');
+      bindEmptySlotActionTo($('#slot1-save'), 1);
+    }
+    else {
+      // Slot 1 está libre
+      $('#slot1-save').removeClass('disabled');
+      $('#slot1-save').removeClass('btn-secondary');
+      $('#slot1-save').addClass('btn-success');
+      $('#slot1-save').text('Slot 1: libre (click para guardar partida)');
+      bindFillSlotActionTo($('#slot1-save'), 1);
+    }
+
+    // Slot 2
+    if ($.inArray('2', json) > -1) {
+      // Slot 2 está ocupado
+      $('#slot2-save').removeClass('disabled');
+      $('#slot2-save').removeClass('btn-secondary');
+      $('#slot2-save').addClass('btn-danger');
+      $('#slot2-save').text('Slot 2: ocupado (click para vaciar)');
+      bindEmptySlotActionTo($('#slot2-save'), 2);
+    }
+    else {
+      // Slot 2 está libre
+      $('#slot2-save').removeClass('disabled');
+      $('#slot2-save').removeClass('btn-secondary');
+      $('#slot2-save').addClass('btn-success');
+      $('#slot2-save').text('Slot 2: libre (click para guardar partida)');
+      bindFillSlotActionTo($('#slot2-save'), 2);
+    }
+  });
+}
+
 function modalGuardarPartida() {
   // En primer lugar "desatamos" (unbind) los eventos de click de los botones
   $('#slot1-save').off();
@@ -165,129 +303,21 @@ function modalGuardarPartida() {
       e.preventDefault();
     }
    });
-   descargarInfoSlots(function(json) {
-     // Slot 1
-     if ($.inArray('1', json) > -1) {
-       // Slot 1 está ocupado
-       $('#slot1-save').removeClass('disabled');
-       $('#slot1-save').removeClass('btn-secondary');
-       $('#slot1-save').addClass('btn-danger');
-       $('#slot1-save').text('Slot 1: ocupado (click para vaciar)');
-       $('#slot1-save').click(function() {
-         // En primer lugar "desatamos" (unbind) el evento de click de este botón
-         $(this).off();
-         // Hacemos que el modal no se pueda cerrar
-         saveGameModalDisableClose = true;
-         $('#saveGameModalClose').fadeTo('fast', 0);
-         // Avisamos de que estamos vaciando el slot
-         $(this).text('Vaciando el slot 1...');
-         vaciarSlot('1', function() {
-           // Slot vaciado
-           // Hacemos que el modal se pueda cerrar
-           saveGameModalDisableClose = false;
-           $('#saveGameModalClose').fadeTo('fast', 1);
-           // Avisamos de que el slot se ha vaciado correctamente
-           $('#slot1-save').removeClass('btn-danger');
-           $('#slot1-save').addClass('btn-success');
-           $('#slot1-save').text('Slot 1: libre (click para guardar partida)');
-         });
-       });
-     }
-     else {
-       // Slot 1 está libre
-       $('#slot1-save').removeClass('disabled');
-       $('#slot1-save').removeClass('btn-secondary');
-       $('#slot1-save').addClass('btn-success');
-       $('#slot1-save').text('Slot 1: libre (click para guardar partida)');
-       $('#slot1-save').click(function() {
-         // En primer lugar "desatamos" (unbind) el evento de click de este botón
-         $(this).off();
-         // Hacemos que el modal no se pueda cerrar
-         saveGameModalDisableClose = true;
-         $('#saveGameModalClose').fadeTo('fast', 0);
-         // Avisamos de que estamos guardando la partida en el slot
-         $(this).text('Guardando la partida en el slot 1...');
-         guardarPartida('1', function() {
-           // Partida guardada en el slot
-           // Hacemos que el modal se pueda cerrar
-           saveGameModalDisableClose = false;
-           $('#saveGameModalClose').fadeTo('fast', 1);
-           // Avisamos de que la partida se ha guardado en el slot correctamente
-           $('#slot1-save').removeClass('btn-success');
-           $('#slot1-save').addClass('btn-salle');
-           $('#slot1-save').text('Partida guardada en el slot 1');
-         });
-       });
-     }
-
-     // Slot 2
-     if ($.inArray('2', json) > -1) {
-       // Slot 2 está ocupado
-       $('#slot2-save').removeClass('disabled');
-       $('#slot2-save').removeClass('btn-secondary');
-       $('#slot2-save').addClass('btn-danger');
-       $('#slot2-save').text('Slot 2: ocupado (click para vaciar)');
-       $('#slot2-save').click(function() {
-         // En primer lugar "desatamos" (unbind) el evento de click de este botón
-         $(this).off();
-         // Hacemos que el modal no se pueda cerrar
-         saveGameModalDisableClose = true;
-         $('#saveGameModalClose').fadeTo('fast', 0);
-         // Avisamos de que estamos vaciando el slot
-         $(this).text('Vaciando el slot 2...');
-         vaciarSlot('2', function() {
-           // Slot vaciado
-           // Hacemos que el modal se pueda cerrar
-           saveGameModalDisableClose = false;
-           $('#saveGameModalClose').fadeTo('fast', 1);
-           // Avisamos de que el slot se ha vaciado correctamente
-           $('#slot2-save').removeClass('btn-danger');
-           $('#slot2-save').addClass('btn-success');
-           $('#slot2-save').text('Slot 2: libre (click para guardar partida)');
-         });
-       });
-     }
-     else {
-       // Slot 2 está libre
-       $('#slot2-save').removeClass('disabled');
-       $('#slot2-save').removeClass('btn-secondary');
-       $('#slot2-save').addClass('btn-success');
-       $('#slot2-save').text('Slot 2: libre (click para guardar partida)');
-       $('#slot2-save').click(function() {
-         // En primer lugar "desatamos" (unbind) el evento de click de este botón
-         $(this).off();
-         // Hacemos que el modal no se pueda cerrar
-         saveGameModalDisableClose = true;
-         $('#saveGameModalClose').fadeTo('fast', 0);
-         // Avisamos de que estamos guardando la partida en el slot
-         $(this).text('Guardando la partida en el slot 2...');
-         guardarPartida('2', function() {
-           // Partida guardada en el slot
-           // Hacemos que el modal se pueda cerrar
-           saveGameModalDisableClose = false;
-           $('#saveGameModalClose').fadeTo('fast', 1);
-           // Avisamos de que la partida se ha guardado en el slot correctamente
-           $('#slot2-save').removeClass('btn-success');
-           $('#slot2-save').addClass('btn-salle');
-           $('#slot2-save').text('Partida guardada en el slot 2');
-         });
-       });
-     }
-   });
+   refrescarSlotsGuardarPartida();
 }
 
-//función para salir sin guardar de la partida, esta te preguntara si realmente quieres salir antes
-function salirSinGuardar(){
+// Función para salir sin guardar de la partida. Ésta pregunta al usuario si realmente quieres salir sin guardar
+function salirSinGuardar() {
   swal({
-    title: 'Estás seguro?',
-    text: 'Si confirmas perderás tus cambios no guardados',
+    title: '¿Estás seguro?',
+    text: 'Si sales perderás tus cambios no guardados.',
     type: 'warning',
     showConfirmButton: true,
     showCancelButton: true,
     confirmButtonColor: '#6aade4',
     confirmButtonText: 'Salir',
     cancelButtonText: 'Cancelar'
-  }).then(function(){
-    //salir
+  }).then(function() {
+    // Salir sin guardar
   });
 }
