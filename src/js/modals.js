@@ -35,6 +35,7 @@ function iniciarPartida() {
     descargarPartidaNueva(function() {
       partida.jugador.nombre = $('#name').val();
       partida.jugador.avatar = $('#avatarId').val();
+      partida.jugador.posicion = posicion;
       refrescarInfoJugador();
       mostrarMenusPartida();
       // Hacemos que el modal se pueda cerrar
@@ -43,6 +44,9 @@ function iniciarPartida() {
       // Cerramos el modal
       $('#newGameModal').modal('hide');
       messageToConsole('Bienvenid@ ' + partida.jugador.nombre + '! ¿List@ para enfrentarte a los peligros de LaSalle?');
+      //habilitamos los controles y mostramos la pantalla
+      disableControls = false;
+      comprovarPosicion();
     });
   }
 }
@@ -89,6 +93,9 @@ function modalCargarPartida() {
            mostrarMenusPartida();
            // Cerramos el modal
            closeLoadGameModal();
+           //habilitamos los controles y mostramos la pantalla
+           disableControls = false;
+           comprovarPosicion();
          });
        });
      }
@@ -114,11 +121,15 @@ function modalCargarPartida() {
          $(this).text('Descargando partida de slot 2...');
          descargarPartida('2', function() {
            // Partida descargada
+
            // Refrescamos la info de la UI
            refrescarInfoJugador();
            mostrarMenusPartida();
            // Cerramos el modal
            closeLoadGameModal();
+           //habilitamos los controles y mostramos la pantalla
+           disableControls = false;
+           comprovarPosicion();
          });
        });
      }

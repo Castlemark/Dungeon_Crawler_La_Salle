@@ -20,9 +20,18 @@ var actualPosition = {
   y : 0
 };
 
+var enemigos = {};
+
+var posicion = {
+  x : 9,
+  y: 4,
+  mapa: 2,
+  orientacion: [-1,0]
+};
+
 function iniciarJuego() {
   /* TODO */
-  //preparar objetos de la partida
+  //preparar variables de la partida
   partida.objetos = {};
 
   //mostramos la imagen de inicio en el visor
@@ -37,5 +46,18 @@ function iniciarJuego() {
 
 /* Convierte lo que hay en el mapa en un archivo de imagen */
 function mapaToImg(x, y) {
-  /* TODO */
+  if(!(partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] < 0 || partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] > 9 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] < 0 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] > 9)){
+    var front = partida.mapas[partida.jugador.posicion.mapa].distribucion[x + partida.jugador.posicion.orientacion[0]][y + partida.jugador.posicion.orientacion[1]];
+    if(front == 11 || front == 13){
+      return ('/dungeon_step.png');
+    }
+    switch(front){
+      case 10:
+        return ('/dungeon_wall.png');
+      default:
+        return ('/dungeon_lsmaker_standing.png');
+    }
+  }else{
+    return ('/dungeon_wall.png');
+  }
 }
