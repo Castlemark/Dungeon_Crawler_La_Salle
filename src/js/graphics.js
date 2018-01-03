@@ -28,17 +28,17 @@ function messageToConsole(msg) {
 function mostrarInformacion(){
   var nextLevelP = 20;
   var distPoints = 20;
-  while(nextLevelP < info.xp){
+  while(nextLevelP < partida.jugador.experiencia){
     nextLevelP += distPoints + 10;
     distPoints += 10;
   }
 
-  $('#progress-bar-xp').attr('aria-valuemax', nextLevelP).attr('aria-valuenow', info.xp).css('width', info.xp/$('#progress-bar-xp').attr('aria-valuemax') *100 + '%');
-  $('#label-xp').html(info.xp + '/' + $('#progress-bar-xp').attr('aria-valuemax') + ' (Nivel ' + getNivel(info.xp) + ')');
-  $('#progress-bar-ataque').attr('aria-valuenow', info.ataque).css('width', info.ataque/$('#progress-bar-ataque').attr('aria-valuemax') *100 + '%');
-  $('#label-ataque').html(info.ataque + '/' + $('#progress-bar-ataque').attr('aria-valuemax'));
-  $('#progress-bar-defensa').attr('aria-valuenow', info.defensa).css('width', info.defensa/$('#progress-bar-defensa').attr('aria-valuemax') *100 + '%');
-  $('#label-defensa').html(info.defensa + '/' + $('#progress-bar-defensa').attr('aria-valuemax'));
-  $('#progress-bar-vida').attr('aria-valuenow', info.vida).css('width', info.vida/$('#progress-bar-vida').attr('aria-valuemax') *100 + '%');
-  $('#label-vida').html(info.vida + '/' + $('#progress-bar-vida').attr('aria-valuemax'));
+  $('#progress-bar-xp').attr('aria-valuemax', nextLevelP).attr('aria-valuenow', partida.jugador.experiencia).css('width', partida.jugador.experiencia/$('#progress-bar-xp').attr('aria-valuemax') *100 + '%');
+  $('#label-xp').html(partida.jugador.experiencia + '/' + $('#progress-bar-xp').attr('aria-valuemax') + ' (Nivel ' + getNivel(partida.jugador.experiencia) + ')');
+  $('#progress-bar-ataque').attr('aria-valuenow', partida.jugador.ataque).css('width', partida.jugador.ataque/$('#progress-bar-ataque').attr('aria-valuemax') *100 + '%');
+  $('#label-ataque').html(partida.jugador.ataque + '/' + $('#progress-bar-ataque').attr('aria-valuemax'));
+  $('#progress-bar-defensa').attr('aria-valuenow', partida.jugador.defensa).css('width', partida.jugador.defensa/$('#progress-bar-defensa').attr('aria-valuemax') *100 + '%');
+  $('#label-defensa').html(partida.jugador.defensa + '/' + $('#progress-bar-defensa').attr('aria-valuemax'));
+  $('#progress-bar-vida').attr('aria-valuenow', partida.jugador.vida).css('width', partida.jugador.vida/$('#progress-bar-vida').attr('aria-valuemax') *100 + '%');
+  $('#label-vida').html(partida.jugador.vida + '/' + $('#progress-bar-vida').attr('aria-valuemax'));
 }

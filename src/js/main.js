@@ -54,8 +54,32 @@ function mapaToImg(x, y) {
     switch(front){
       case 10:
         return ('/dungeon_wall.png');
-      default:
+      case 12:
+        return ('/dungeon_door.png');
+      case 20:
+        return ('/dungeon_step.png');
+      case 21:
+        return ('/dungeon_step.png');
+      case 22:
+        return ('/dungeon_step.png');
+      case 23:
+        return ('/dungeon_step.png');
+      case 30:
         return ('/dungeon_lsmaker_standing.png');
+      case 31:
+        return ('/dungeon_daniel_standing.png');
+      case 32:
+        return ('/dungeon_emiliano_standing.png');
+      case 33:
+        return ('/dungeon_eva_standing.png');
+      case 34:
+        return ('/dungeon_guillem_standing.png');
+      case 35:
+        return ('/dungeon_ignasi_standing.png');
+      case 36:
+        return ('/dungeon_jose_standing.png');
+      case 37:
+        return ('/dungeon_xavier_standing.png');
     }
   }else{
     return ('/dungeon_wall.png');

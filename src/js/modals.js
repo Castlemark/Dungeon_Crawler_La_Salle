@@ -47,6 +47,7 @@ function iniciarPartida() {
       //habilitamos los controles y mostramos la pantalla
       disableControls = false;
       comprovarPosicion();
+      mostrarInformacion();
     });
   }
 }
@@ -103,6 +104,7 @@ function modalCargarPartida() {
            //habilitamos los controles y mostramos la pantalla
            disableControls = false;
            comprovarPosicion();
+           mostrarInformacion();
          });
        });
      }
@@ -144,6 +146,7 @@ function modalCargarPartida() {
            //habilitamos los controles y mostramos la pantalla
            disableControls = false;
            comprovarPosicion();
+           mostrarInformacion();
          });
        });
      }
