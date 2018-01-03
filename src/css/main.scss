@@ -131,9 +131,14 @@ header{
 #consola{
   .box-body{
     background-color: black;
-    color: white;
     height: 200px;
     overflow-y: scroll;
+    .first-line{
+      color: white;
+    }
+    .second-line{
+      color: #6b6b6b;
+    }
   }
 }
 

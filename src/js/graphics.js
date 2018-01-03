@@ -21,7 +21,8 @@ function mostrarMenusPartida() {
 //Funcion que va añadiendo mensajes a la consola y que usa la librería moment.js para poner la hora
 function messageToConsole(msg) {
   var now = new moment();
-  $('#console-text').prepend('[' + now.format("HH:mm:ss") + '] ' + msg + '<br>');
+  $('#console-text').prepend($('#first-console-text').html());
+  $('#first-console-text').html('[' + now.format("HH:mm:ss") + '] ' + msg + '<br>');
 }
 
 //función que al llamarla actualiza las barras de xp, ataque, defensa y vida
