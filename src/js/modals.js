@@ -87,6 +87,13 @@ function modalCargarPartida() {
            // Refrescamos la info de la UI
            refrescarInfoJugador();
            mostrarMenusPartida();
+           cargarMochila();
+           if (partida.jugador.manos.izq != null) {
+             mostrarEnMano(partida.jugador.manos.izq, 'mano-izq');
+           }
+           if (partida.jugador.manos.der != null) {
+             mostrarEnMano(partida.jugador.manos.der, 'mano-der');
+           }
            // Cerramos el modal
            closeLoadGameModal();
          });
@@ -117,6 +124,13 @@ function modalCargarPartida() {
            // Refrescamos la info de la UI
            refrescarInfoJugador();
            mostrarMenusPartida();
+           cargarMochila();
+           if (partida.jugador.manos.izq != null) {
+             mostrarEnMano(partida.jugador.manos.izq, 'mano-izq');
+           }
+           if (partida.jugador.manos.der != null) {
+             mostrarEnMano(partida.jugador.manos.der, 'mano-der');
+           }
            // Cerramos el modal
            closeLoadGameModal();
          });

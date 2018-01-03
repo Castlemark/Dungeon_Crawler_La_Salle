@@ -8,7 +8,7 @@
     <meta name="author" content="Daniel Amo" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/main.min.css" type="text/css" media="all" />
   </head>
   <body>
     <header class="row">
@@ -53,29 +53,29 @@
           <div class="box-body">
             <div class="row">
               <div class="col-md-6">
-                <label>Mano Izquierda</label>
-                <img src="media/images/square.jpg" width="75%" alt="Equipo"/>
-                <label>Calculadora</label>
-                <p>Ataque: <span>0</span></p>
-                <p>Defensa: <span>0</span></p>
-                <p>Durabilidad: <span>0</span></p>
+                <label>Mano izquierda</label>
+                <div id="mano-izq" class="dropzone"></div>
+                <div id="info-mano-izq">
+                  <label id="nombre-mano-izq">Arma</label>
+                  <p>Ataque: <span id="ataque-mano-izq">0</span></p>
+                  <p >Defensa: <span id="defensa-mano-izq">0</span></p>
+                  <p>Durabilidad: <span id="durabilidad-mano-izq">0</span></p>
+                </div>
               </div>
               <div class="col-md-6">
-                <label>Mano Derecha</label>
-                <img src="media/images/square.jpg" width="75%" alt="Equipo"/>
-                <label>Soldador</label>
-                <p>Ataque: <span>0</span></p>
-                <p>Defensa: <span>0</span></p>
-                <p>Durabilidad: <span>0</span></p>
+                <label>Mano derecha</label>
+                <div id="mano-der" class="dropzone"></div>
+                <div id="info-mano-der">
+                  <label id="nombre-mano-der">Arma</label>
+                  <p>Ataque: <span id="ataque-mano-der">0</span></p>
+                  <p >Defensa: <span id="defensa-mano-der">0</span></p>
+                  <p>Durabilidad: <span id="durabilidad-mano-der">0</span></p>
+                </div>
               </div>
             </div>
-            <label><b>Mochila</b></label>
-            <div class="mochila">
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
-              <img src="media/images/square.jpg" class="tooltip-element" data-toggle="tooltip" title="Chuleta" alt="Equipo"/>
+            <label class="title"><b>Mochila</b></label>
+            <div class="mochila" id="mochila">
+              <div><i class="vacia">Mochila vacía</i></div>
             </div>
           </div>
         </section>
@@ -222,6 +222,10 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="vendors/moment/moment.js"></script>
+    <script src="vendors/sweetalert/sweetalert.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.3.3/dist/interact.min.js"></script>
+
     <script src="js/juego.js"></script>
     <script src="js/main.js"></script>
     <script src="js/modals.js"></script>
@@ -232,8 +236,8 @@
     <script src="js/objetos.js"></script>
     <script src="js/enemigos.js"></script>
 
-    <script src="vendors/moment/moment.js"></script>
-    <script src="vendors/sweetalert/sweetalert.all.min.js"></script>
+    <script>
+    </script>
 
 
   </body>

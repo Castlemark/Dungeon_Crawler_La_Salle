@@ -5,29 +5,36 @@ var json = `
     "experiencia": 0,
     "ataque": 0,
     "defensa": 0,
-    "vida": 10
+    "vida": 10,
+    "posicion": [],
+    "mapa": 0,
+    "mochila": [],
+    "manos": {
+        "izq": null,
+        "der": null
+    }
   },
   "terreno": [
     {
-      "nombre": "pared",
+      "nombre": "Pared",
       "id": 10
     },
     {
-      "nombre": "suelo",
+      "nombre": "Suelo",
       "id": 11
     },
     {
-      "nombre": "salida",
+      "nombre": "Salida",
       "id": 12
     },
     {
-      "nombre": "origen",
+      "nombre": "Origen",
       "id": 13
     }
   ],
-  "objetos": [
-    {
-      "nombre": "portatil",
+  "objetos": {
+    "20": {
+      "nombre": "Portátil",
       "id": 20,
       "atributos": {
         "ataque": 3,
@@ -35,8 +42,8 @@ var json = `
         "durabilidad": 30
       }
     },
-    {
-      "nombre": "soldador",
+    "21": {
+      "nombre": "Soldador",
       "id": 21,
       "atributos": {
         "ataque": 5,
@@ -44,8 +51,8 @@ var json = `
         "durabilitat": 30
       }
     },
-    {
-      "nombre": "calculadora",
+    "22": {
+      "nombre": "Calculadora",
       "id": 22,
       "atributos": {
         "ataque": 3,
@@ -53,8 +60,8 @@ var json = `
         "durabilidad": 30
       }
     },
-    {
-      "nombre": "usb",
+    "23": {
+      "nombre": "USB",
       "id": 23,
       "atributos": {
         "ataque": 3,
@@ -62,10 +69,10 @@ var json = `
         "durabilidad": 50
       }
     }
-  ],
+  },
   "enemigos": [
     {
-      "nombre": "lsmaker",
+      "nombre": "LSMaker",
       "id": 30,
       "objetos": [
         23
@@ -78,7 +85,7 @@ var json = `
       }
     },
     {
-      "nombre": "daniel",
+      "nombre": "Daniel",
       "id": 31,
       "objetos": [
         20,
@@ -92,7 +99,7 @@ var json = `
       }
     },
     {
-      "nombre": "emiliano",
+      "nombre": "Emiliano",
       "id": 32,
       "objetos": [
         22
@@ -105,7 +112,7 @@ var json = `
       }
     },
     {
-      "nombre": "eva",
+      "nombre": "Eva",
       "id": 33,
       "objetos": [
         21,
@@ -119,7 +126,7 @@ var json = `
       }
     },
     {
-      "nombre": "guillem",
+      "nombre": "Guillem",
       "id": 34,
       "objetos": [
         23
@@ -132,7 +139,7 @@ var json = `
       }
     },
     {
-      "nombre": "ignasi",
+      "nombre": "Ignasi",
       "id": 35,
       "objetos": [
         20,
@@ -146,7 +153,7 @@ var json = `
       }
     },
     {
-      "nombre": "jose",
+      "nombre": "Jose Antonio",
       "id": 36,
       "objetos": [
         22,
@@ -160,7 +167,7 @@ var json = `
       }
     },
     {
-      "nombre": "xevi",
+      "nombre": "Xavier",
       "id": 37,
       "objetos": [
         21,
@@ -174,7 +181,8 @@ var json = `
       }
     }
   ],
-  "mapa1": {
+  "mapas" :[
+    {
     "origen": [
       9,
       5
@@ -305,8 +313,7 @@ var json = `
         10
       ]
     ]
-  },
-  "mapa2": {
+  },{
     "origen": [
       10,
       5
@@ -438,7 +445,7 @@ var json = `
       ]
     ]
   },
-  "mapa3": {
+  {
     "origen": [
       10,
       5
@@ -569,6 +576,6 @@ var json = `
         10
       ]
     ]
-  }
+  }]
 }
 `;

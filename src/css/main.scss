@@ -146,8 +146,17 @@ header{
 #equipo{
   .box-body .row{
     text-align: center;
+    label{
+      font-weight: bold;
+    }
+    #info-mano-izq, #info-mano-der{
+      label{
+        font-weight: normal;
+      }
+    }
     p{
-      text-align: left;
+      text-align: center;
+      margin-bottom: 0px;
     }
   }
   .mochila{
@@ -158,6 +167,13 @@ header{
   }
 }
 
+label.title{
+  margin-top: 20px;
+}
+
+i.vacia {
+  color: gray;
+}
 
 .modal-dialog{
   margin: 150px auto;
@@ -207,4 +223,58 @@ header{
 
 #player-board{
   min-width: 1150px;
+}
+
+#mano-izq, #mano-der {
+  width: 75%;
+  height: 100px;
+  border-radius: 4px;
+  margin: 10px auto;
+  margin-bottom: 0;
+  padding: 10px;
+  background-size: cover;
+}
+
+#info-mano-izq, #info-mano-der {
+  display: none;
+}
+
+#outer-dropzone {
+  height: 140px;
+}
+
+#inner-dropzone {
+  height: 80px;
+}
+
+.dropzone {
+  background-color: #ccc;
+  border: dashed 4px #aaa;
+  border-radius: 4px;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  transition: background-color 0.3s;
+}
+
+.drop-active {
+  border-color: black;
+  background-color: white;
+}
+
+.drop-target {
+  background-color: #ccffcc;
+  border-color: green;
+}
+
+.drag-drop {
+  display: inline-block;
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+  transition: background-color 0.3s;
+}
+
+.drag-drop.can-drop {
+  color: #000;
+  background-color: #4e4;
 }
