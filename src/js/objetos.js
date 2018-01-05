@@ -4,6 +4,7 @@ function guardarEnMochila(infoObjeto) {
 }
 
 function mostrarEnMochila(infoObjeto, idEnMochila) {
+  $('#mochila').children().find('i').remove();
   $('#mochila').append('<img id="objeto' + idEnMochila + '" src="' + imagenPeqObjeto(infoObjeto.id) + '" class="tooltip-element draggable drag-drop objeto-mochila" data-toggle="tooltip" title="' + infoObjeto.nombre + '" alt="' + infoObjeto.nombre + '"/>');
   $('#objeto' + idEnMochila).tooltip();
 }

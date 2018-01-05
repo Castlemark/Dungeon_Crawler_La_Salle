@@ -278,3 +278,37 @@ i.vacia {
   color: #000;
   background-color: #4e4;
 }
+
+#protection-selector {
+  width: 362px;
+  height: 500px;
+  margin-left: 50px;
+  background-image: url('../media/images/jugador_torso.png');
+}
+
+.protection-selector-cabeza {
+  background-image: url('../media/images/jugador_cabeza.png') !important;
+}
+
+.protection-selector-torso {
+  background-image: url('../media/images/jugador_torso.png') !important;
+}
+
+.protection-selector-piernas {
+  background-image: url('../media/images/jugador_piernas.png') !important;
+}
+
+#area-cabeza, #area-torso, #area-piernas {
+  width: 362px;
+  cursor: pointer;
+}
+
+#area-cabeza {
+  height: 180px;
+}
+#area-torso {
+  height: 120px;
+}
+#area-piernas {
+  height: 200px;
+}
