@@ -70,8 +70,8 @@ var json = `
       }
     }
   },
-  "enemigos": [
-    {
+  "enemigos": {
+    "30": {
       "nombre": "LSMaker",
       "id": 30,
       "objetos": [
@@ -84,7 +84,7 @@ var json = `
         "xp": 4
       }
     },
-    {
+    "31": {
       "nombre": "Daniel",
       "id": 31,
       "objetos": [
@@ -98,7 +98,7 @@ var json = `
         "xp": 6
       }
     },
-    {
+    "32": {
       "nombre": "Emiliano",
       "id": 32,
       "objetos": [
@@ -111,7 +111,7 @@ var json = `
         "xp": 6
       }
     },
-    {
+    "33": {
       "nombre": "Eva",
       "id": 33,
       "objetos": [
@@ -125,7 +125,7 @@ var json = `
         "xp": 6
       }
     },
-    {
+    "34": {
       "nombre": "Guillem",
       "id": 34,
       "objetos": [
@@ -138,7 +138,7 @@ var json = `
         "xp": 6
       }
     },
-    {
+    "35": {
       "nombre": "Ignasi",
       "id": 35,
       "objetos": [
@@ -152,7 +152,7 @@ var json = `
         "xp": 6
       }
     },
-    {
+    "36": {
       "nombre": "Jose Antonio",
       "id": 36,
       "objetos": [
@@ -166,7 +166,7 @@ var json = `
         "xp": 6
       }
     },
-    {
+    "37": {
       "nombre": "Xavier",
       "id": 37,
       "objetos": [
@@ -180,7 +180,7 @@ var json = `
         "xp": 10
       }
     }
-  ],
+  },
   "mapas" :[
     {
     "origen": [

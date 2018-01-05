@@ -19,7 +19,7 @@ function descargarPartidaNueva(callback) {
         console.log(responseText);
         swal({
           title: 'Error al cargar nueva partida',
-          text: responseText,
+          text: 'Es posible que aún no exista la configuración de partida nueva. Por favor, vuelve a intentarlo.',
           type: 'error',
           confirmButtonText: 'Aceptar',
           confirmButtonColor: '#6aade4',
@@ -30,7 +30,7 @@ function descargarPartidaNueva(callback) {
         console.log(responseText);
         swal({
           title: 'Error al cargar nueva partida',
-          text: responseText,
+          text: 'Es posible que aún no exista la configuración de partida nueva. Por favor, vuelve a intentarlo.',
           type: 'error',
           confirmButtonText: 'Aceptar',
           confirmButtonColor: '#6aade4',

@@ -3,21 +3,27 @@ function mover(dir){
     switch (dir){
       case 'up':
         if(!(partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] < 0 || partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] > 9 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] < 0 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] > 9)){
-          if(partida.mapas[partida.jugador.posicion.mapa].distribucion[partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0]][partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1]] != 10){
+          if(computeCurrentFront() != 10 && !(computeCurrentFront() >= 30 && computeCurrentFront() <= 39)){
             partida.jugador.posicion.x += partida.jugador.posicion.orientacion[0];
             partida.jugador.posicion.y += partida.jugador.posicion.orientacion[1];
             console.log('ok');
             comprovarPosicion();
           }
+          else if (computeCurrentFront() >= 30 && computeCurrentFront() <= 39) {
+            alert('No puedes ir hacia delante porque tienes un enemigo delante.');
+          }
         }
         break;
       case 'down':
         if(!(partida.jugador.posicion.x - partida.jugador.posicion.orientacion[0] < 0 || partida.jugador.posicion.x - partida.jugador.posicion.orientacion[0] > 9 || partida.jugador.posicion.y - partida.jugador.posicion.orientacion[1] < 0 || partida.jugador.posicion.y - partida.jugador.posicion.orientacion[1] > 9)){
-          if(partida.mapas[partida.jugador.posicion.mapa].distribucion[partida.jugador.posicion.x - partida.jugador.posicion.orientacion[0]][partida.jugador.posicion.y - partida.jugador.posicion.orientacion[1]] != 10){
+          if(computeCurrentBack() != 10 && !(computeCurrentBack() >= 30 && computeCurrentBack() <= 39)){
             partida.jugador.posicion.x -= partida.jugador.posicion.orientacion[0];
             partida.jugador.posicion.y -= partida.jugador.posicion.orientacion[1];
             console.log('ok');
             comprovarPosicion();
+          }
+          else if (computeCurrentBack() >= 30 && computeCurrentBack() <= 39) {
+            alert('No puedes ir hacia atrás porque tienes un enemigo detrás.');
           }
         }
         break;
@@ -30,6 +36,8 @@ function mover(dir){
           partida.jugador.posicion.orientacion[0] = 0;
         }
         pintaPosicion(partida.jugador.posicion.x, partida.jugador.posicion.y);
+        // Comprobamos si delante tenemos un enemigo (se está viendo un enemigo en el visor)
+        comprobarEnemigo();
       break;
       case 'left':
         if(partida.jugador.posicion.orientacion[0] == 0){
@@ -40,6 +48,8 @@ function mover(dir){
           partida.jugador.posicion.orientacion[0] = 0;
         }
         pintaPosicion(partida.jugador.posicion.x, partida.jugador.posicion.y);
+        // Comprobamos si delante tenemos un enemigo (se está viendo un enemigo en el visor)
+        comprobarEnemigo();
       break;
     }
   }else{
@@ -64,4 +74,6 @@ function comprovarPosicion(){
   if(casilla >= 30 && casilla <= 39){
     //enemigo
   }
+  // Comprobamos si delante tenemos un enemigo (se está viendo un enemigo en el visor)
+  comprobarEnemigo();
 }

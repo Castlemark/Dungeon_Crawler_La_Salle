@@ -222,6 +222,11 @@ i.vacia {
   background-color: #298fed;//b5b5b5
 }
 
+.btn-salle:disabled:hover{
+  background-color: #6aade4;
+  cursor: default;
+}
+
 .btn-slot {
   width: 100%;
 }
@@ -282,6 +287,43 @@ i.vacia {
 .drag-drop.can-drop {
   color: #000;
   background-color: #4e4;
+}
+
+#lucha {
+  display: none;
+  #info-enemigo {
+    text-align: center;
+    label {
+      font-weight: bold;
+    }
+    p {
+      margin: 0;
+    }
+    #vida-enemigo {
+      display: -webkit-inline-box;
+      label {
+        margin-bottom: 0;
+      }
+      .progress-bar {
+        background: pink;
+      }
+    }
+    .contenedor-pb-vida-enemigo {
+      width: 150px;
+      margin-top: 5px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .objetos-enemigo {
+      text-align: left;
+    }
+    #objetos-enemigo {
+      text-align: left;
+      img {
+        width: 70px;
+      }
+    }
+  }
 }
 
 #protection-selector {

@@ -41,13 +41,13 @@ function iniciarJuego() {
   $('.tooltip-element').tooltip();
 
   //mostramos el mensaje de bienvenida por Consola
-  messageToConsole("Bienvenido a LaSalle Dungeon! Seleccione 'Nueva Partida' o 'Cargar Partida' para empezar a jugar");
+  messageToConsole('¡Bienvenido a LaSalle Dungeon! Selecciona "Nueva partida" o "Cargar partida" para empezar a jugar');
 }
 
 /* Convierte lo que hay en el mapa en un archivo de imagen */
 function mapaToImg(x, y) {
   if(!(partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] < 0 || partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] > 9 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] < 0 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] > 9)){
-    var front = partida.mapas[partida.jugador.posicion.mapa].distribucion[x + partida.jugador.posicion.orientacion[0]][y + partida.jugador.posicion.orientacion[1]];
+    var front = computeFront(x, y);
     if(front == 11 || front == 13){
       return ('/dungeon_step.png');
     }
