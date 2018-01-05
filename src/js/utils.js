@@ -30,3 +30,75 @@ function computeBack(x, y) {
 function computeCurrentBack() {
   return computeBack(partida.jugador.posicion.x, partida.jugador.posicion.y);
 }
+
+//función que suma puntos xp y muestra si has subido de nivel y actualiza la vida máxima, el ataque y la defensa.
+function sumXp(xp){
+  var firstLevel =getNivel(partida.jugador.experiencia);
+  partida.jugador.experiencia += xp;
+  var lastLevel = getNivel(partida.jugador.experiencia);
+  partida.jugador.nivel = lastLevel;
+  var ataque = 0;
+  for(var i = 2; i <= lastLevel; i++){
+    if(i%2){
+      ataque++;
+    }
+  }
+  var defensa = 0;
+  for(i = 1; i < lastLevel; i++){
+    defensa++;
+  }
+
+  partida.jugador.ataque = ataque;
+  partida.jugador.defensa = defensa;
+
+  if(firstLevel != lastLevel){
+    var dif = lastLevel - firstLevel;
+    var vida = partida.jugador.vida;
+    for(i = 1; i <= dif; i++){
+      vida += (firstLevel + i) * 10;
+    }
+    partida.jugador.vida = vida;
+    swal({
+      title: "Level UP!",
+      text: "Has subido de nivel! Ahora estas en el nivel " + lastLevel + " de experiencia, eso significa que tus habilidades han aumentado!",
+      showConfirmButton: true,
+      confirmButtonColor: '#6aade4',
+      confirmButtonText: 'Ok',
+    });
+  }
+  mostrarInformacion();
+}
+
+/*función que retorna la vida máxima que se podria tener en el nivel
+d'exepriencia, eso nos será útil para pintar la barra de infromación del jugador*/
+function getMaxVidas(nivel){
+  var vidaMax = 10;
+  for(var i = 1; i < nivel; i++){
+    vidaMax += 10 * i;
+  }
+  return vidaMax;
+}
+
+//función que retorna la suma de ataque de jugador y los objetos que tiene en las manos
+function getAtaque(){
+  var ataque = partida.jugador.ataque;
+  if(partida.jugador.manos.der != null){
+    ataque += partida.jugador.manos.der.atributos.ataque;
+  }
+  if(partida.jugador.manos.izq != null){
+    ataque += partida.jugador.manos.izq.atributos.ataque;
+  }
+  return ataque;
+}
+
+//función que retorna la suma de defensa de jugador y los objetos que tiene en las manos
+function getDefensa(){
+  var defensa = partida.jugador.defensa;
+  if(partida.jugador.manos.der != null){
+    defensa += partida.jugador.manos.der.atributos.defensa;
+  }
+  if(partida.jugador.manos.izq != null){
+    defensa += partida.jugador.manos.izq.atributos.defensa;
+  }
+  return defensa;
+}
