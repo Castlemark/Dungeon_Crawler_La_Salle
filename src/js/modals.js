@@ -48,6 +48,7 @@ function iniciarPartida() {
       disableControls = false;
       comprovarPosicion();
       mostrarInformacion();
+      actualizarMapa();
     });
   }
 }
@@ -105,6 +106,7 @@ function modalCargarPartida() {
            disableControls = false;
            comprovarPosicion();
            mostrarInformacion();
+           actualizarMapa();
          });
        });
      }
@@ -147,6 +149,7 @@ function modalCargarPartida() {
            disableControls = false;
            comprovarPosicion();
            mostrarInformacion();
+           actualizarMapa();
          });
        });
      }
