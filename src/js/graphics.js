@@ -36,10 +36,26 @@ function mostrarInformacion(){
 
   $('#progress-bar-xp').attr('aria-valuemax', nextLevelP).attr('aria-valuenow', partida.jugador.experiencia).css('width', partida.jugador.experiencia/$('#progress-bar-xp').attr('aria-valuemax') *100 + '%');
   $('#label-xp').html(partida.jugador.experiencia + '/' + $('#progress-bar-xp').attr('aria-valuemax') + ' (Nivel ' + getNivel(partida.jugador.experiencia) + ')');
-  $('#progress-bar-ataque').attr('aria-valuenow', partida.jugador.ataque).css('width', partida.jugador.ataque/$('#progress-bar-ataque').attr('aria-valuemax') *100 + '%');
-  $('#label-ataque').html(partida.jugador.ataque + '/' + $('#progress-bar-ataque').attr('aria-valuemax'));
-  $('#progress-bar-defensa').attr('aria-valuenow', partida.jugador.defensa).css('width', partida.jugador.defensa/$('#progress-bar-defensa').attr('aria-valuemax') *100 + '%');
-  $('#label-defensa').html(partida.jugador.defensa + '/' + $('#progress-bar-defensa').attr('aria-valuemax'));
-  $('#progress-bar-vida').attr('aria-valuenow', partida.jugador.vida).css('width', partida.jugador.vida/$('#progress-bar-vida').attr('aria-valuemax') *100 + '%');
-  $('#label-vida').html(partida.jugador.vida + '/' + $('#progress-bar-vida').attr('aria-valuemax'));
+
+  var ataqueIzq = 0;
+  var defensaIzq = 0;
+  if(partida.jugador.manos.izq != null){
+    ataqueIzq = partida.jugador.manos.izq.atributos.ataque;
+    defensaIzq = partida.jugador.manos.izq.atributos.defensa;
+  }
+
+  var ataqueDer = 0;
+  var defensaDer = 0;
+  if(partida.jugador.manos.der != null){
+    ataqueIzq = partida.jugador.manos.der.atributos.ataque;
+    defensaIzq = partida.jugador.manos.der.atributos.defensa;
+  }
+
+  $('#progress-bar-ataque').html(partida.jugador.ataque + " + " + ataqueIzq + " + " + ataqueDer);
+  $('#label-ataque').html(getAtaque());
+  $('#progress-bar-defensa').html(partida.jugador.defensa + " + " + defensaIzq + " + " + defensaDer);
+  $('#label-defensa').html(getDefensa());
+
+  $('#progress-bar-vida').css('width', partida.jugador.vida/getMaxVidas(partida.jugador.nivel) *100 + '%');
+  $('#label-vida').html(partida.jugador.vida + '/' + getMaxVidas(partida.jugador.nivel));
 }
