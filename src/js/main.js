@@ -22,13 +22,6 @@ var actualPosition = {
 
 var enemigos = {};
 
-var posicion = {
-  x : 9,
-  y: 4,
-  mapa: 2,
-  orientacion: [-1,0]
-};
-
 function iniciarJuego() {
   /* TODO */
   //preparar variables de la partida
@@ -57,13 +50,17 @@ function mapaToImg(x, y) {
       case 12:
         return ('/dungeon_door.png');
       case 20:
-        return ('/dungeon_step.png');
+        // Portátil
+        return ('/dungeon_portatil.png');
       case 21:
-        return ('/dungeon_step.png');
+        // Soldador
+        return ('/dungeon_soldador.png');
       case 22:
-        return ('/dungeon_step.png');
+        // Calculadora
+        return ('/dungeon_calculador.png');
       case 23:
-        return ('/dungeon_step.png');
+        // USB
+        return ('/dungeon_usb.png');
       case 30:
         return ('/dungeon_lsmaker_standing.png');
       case 31:

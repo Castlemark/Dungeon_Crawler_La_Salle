@@ -35,7 +35,7 @@ function iniciarPartida() {
     descargarPartidaNueva(function() {
       partida.jugador.nombre = $('#name').val();
       partida.jugador.avatar = $('#avatarId').val();
-      partida.jugador.posicion = posicion;
+      colocarEnInicioMapa();
       refrescarInfoJugador();
       mostrarMenusPartida();
       // Hacemos que el modal se pueda cerrar

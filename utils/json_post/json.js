@@ -6,12 +6,21 @@ var json = `
     "ataque": 0,
     "defensa": 0,
     "vida": 10,
-    "posicion": [],
-    "mapa": 0,
+    "posicion": {
+      "mapa": 0,
+      "orientacion": [],
+      "x": null,
+      "y": null
+    },
     "mochila": [],
     "manos": {
         "izq": null,
         "der": null
+    },
+    "lucha": {
+        "activa": false,
+        "vidaEnemigo": null,
+        "animoEnemigo": null
     }
   },
   "terreno": [
@@ -184,7 +193,7 @@ var json = `
   "mapas" :[
     {
     "origen": [
-      9,
+      8,
       5
     ],
     "orientacion": [
@@ -315,8 +324,8 @@ var json = `
     ]
   },{
     "origen": [
-      10,
-      5
+      9,
+      4
     ],
     "orientacion": [
       1,
@@ -447,11 +456,11 @@ var json = `
   },
   {
     "origen": [
-      10,
-      5
+      9,
+      4
     ],
     "orientacion": [
-      1,
+      -1,
       0
     ],
     "distribucion": [

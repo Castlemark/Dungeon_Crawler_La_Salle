@@ -1,3 +1,10 @@
+// Función que hace que la posición y la orientación del jugador sea el origen del mapa actual
+function colocarEnInicioMapa() {
+  partida.jugador.posicion.x = partida.mapas[partida.jugador.posicion.mapa].origen[0];
+  partida.jugador.posicion.y = partida.mapas[partida.jugador.posicion.mapa].origen[1];
+  partida.jugador.posicion.orientacion = partida.mapas[partida.jugador.posicion.mapa].orientacion;
+}
+
 function mover(dir){
   if(!disableControls){
     switch (dir){
@@ -168,6 +175,10 @@ function comprovarPosicion(){
   }
   if(casilla >= 20 && casilla <= 29){
     //objeto
+    recogerObjeto(casilla);
+    pintaPosicion(partida.jugador.posicion.x, partida.jugador.posicion.y);
+    // Quitamos el objeto para que no lo pueda volver a coger. Ponemos suelo (11)
+    partida.mapas[partida.jugador.posicion.mapa].distribucion[partida.jugador.posicion.x][partida.jugador.posicion.y] = 11;
   }
   if(casilla >= 30 && casilla <= 39){
     //enemigo

@@ -4,7 +4,8 @@ function guardarEnMochila(infoObjeto) {
 }
 
 function mostrarEnMochila(infoObjeto, idEnMochila) {
-  $('#mochila').children().find('i').remove();
+  $('#mochila').children().filter('i').remove();
+  console.log($('#mochila').children().filter('i'));
   $('#mochila').append('<img id="objeto' + idEnMochila + '" src="' + imagenPeqObjeto(infoObjeto.id) + '" class="tooltip-element draggable drag-drop objeto-mochila" data-toggle="tooltip" title="' + infoObjeto.nombre + '" alt="' + infoObjeto.nombre + '"/>');
   $('#objeto' + idEnMochila).tooltip();
 }
@@ -25,10 +26,6 @@ function imagenPeqObjeto(idObjeto) {
     case 23:
       return 'media/images/square23.jpg';
   }
-}
-
-function emplearObjetoMochila() {
-  alert(idEnMochila);
 }
 
 // target elements with the "draggable" class
