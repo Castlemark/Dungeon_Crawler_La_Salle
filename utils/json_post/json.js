@@ -19,9 +19,11 @@ var json = `
     },
     "lucha": {
         "activa": false,
+        "turnoJugador": null,
         "vidaEnemigo": null,
         "animoEnemigo": null
-    }
+    },
+    "numEnemigosMuertos": 0
   },
   "terreno": [
     {
@@ -48,7 +50,8 @@ var json = `
       "atributos": {
         "ataque": 3,
         "defensa": 5,
-        "durabilidad": 30
+        "durabilidad": 30,
+        "accionHuir": false
       }
     },
     "21": {
@@ -57,7 +60,8 @@ var json = `
       "atributos": {
         "ataque": 5,
         "defensa": 1,
-        "durabilitat": 30
+        "durabilitat": 30,
+        "accionHuir": false
       }
     },
     "22": {
@@ -66,7 +70,8 @@ var json = `
       "atributos": {
         "ataque": 3,
         "defensa": 3,
-        "durabilidad": 30
+        "durabilidad": 30,
+        "accionHuir": false
       }
     },
     "23": {
@@ -75,7 +80,18 @@ var json = `
       "atributos": {
         "ataque": 3,
         "defensa": 2,
-        "durabilidad": 50
+        "durabilidad": 50,
+        "accionHuir": false
+      }
+    },
+    "24": {
+      "nombre": "Justificante médico",
+      "id": 24,
+      "atributos": {
+        "ataque": 1,
+        "defensa": 1,
+        "durabilidad": 30,
+        "accionHuir": true
       }
     }
   },

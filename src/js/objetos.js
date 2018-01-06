@@ -8,11 +8,21 @@ function mostrarEnMochila(infoObjeto, idEnMochila) {
   console.log($('#mochila').children().filter('i'));
   $('#mochila').append('<img id="objeto' + idEnMochila + '" src="' + imagenPeqObjeto(infoObjeto.id) + '" class="tooltip-element draggable drag-drop objeto-mochila" data-toggle="tooltip" title="' + infoObjeto.nombre + '" alt="' + infoObjeto.nombre + '"/>');
   $('#objeto' + idEnMochila).tooltip();
+  // Actualizamos las barras de ataque y defensa
+  mostrarInformacion();
 }
 
 function recogerObjeto(id) {
   var idEnMochila = guardarEnMochila(partida.objetos[id]);
   mostrarEnMochila(partida.jugador.mochila[idEnMochila], idEnMochila);
+}
+
+function recogerObjetos(ids) {
+  for (i = 0; i < ids.length; i++) {
+    var id = ids[i];
+    var idEnMochila = guardarEnMochila(partida.objetos[id]);
+    mostrarEnMochila(partida.jugador.mochila[idEnMochila], idEnMochila);
+  }
 }
 
 function imagenPeqObjeto(idObjeto) {
@@ -168,6 +178,8 @@ function ponerEnMano(infoObjeto, idMano) {
     }
     partida.jugador.manos.der = infoObjeto;
   }
+  // Actualizamos las barras de ataque y defensa
+  mostrarInformacion();
 }
 
 function mostrarEnMano(infoObjeto, idMano) {
@@ -178,6 +190,24 @@ function mostrarEnMano(infoObjeto, idMano) {
     $('#defensa-mano-izq').text(infoObjeto.atributos.defensa);
     $('#durabilidad-mano-izq').text(infoObjeto.atributos.durabilidad);
     $('#' + idMano).css('background-image', 'url("' + imagenPeqObjeto(infoObjeto.id) + '")');
+    $('#' + idMano).off();
+    $('#' + idMano).hover(
+      function(){
+        $(this).toggleClass('mano-hover');
+      },
+      function(){
+        $(this).toggleClass('mano-hover');
+      }
+    );
+    $('#' + idMano).click(function() {
+      $(this).off();
+      deManoAMochila(partida.jugador.manos.izq);
+      partida.jugador.manos.izq = null;
+      $(this).unbind('mouseenter mouseleave');
+      $(this).removeClass('mano-hover');
+      $(this).css('background-image', 'none');
+      $('#info-mano-izq').hide();
+    });
   }
   else if (idMano == 'mano-der') {
     $('#info-mano-der').show();
@@ -186,10 +216,52 @@ function mostrarEnMano(infoObjeto, idMano) {
     $('#defensa-mano-der').text(infoObjeto.atributos.defensa);
     $('#durabilidad-mano-der').text(infoObjeto.atributos.durabilidad);
     $('#' + idMano).css('background-image', 'url("' + imagenPeqObjeto(infoObjeto.id) + '")');
+    $('#' + idMano).off();
+    $('#' + idMano).hover(
+      function(){
+        $(this).toggleClass('mano-hover');
+      },
+      function(){
+        $(this).toggleClass('mano-hover');
+      }
+    );
+    $('#' + idMano).click(function() {
+      $(this).off();
+      deManoAMochila(partida.jugador.manos.der);
+      partida.jugador.manos.der = null;
+      $(this).unbind('mouseenter mouseleave');
+      $(this).removeClass('mano-hover');
+      $(this).css('background-image', 'none');
+      $('#info-mano-der').hide();
+    });
   }
 }
 
 function deManoAMochila(infoObjeto) {
   var idEnMochila = guardarEnMochila(infoObjeto);
   mostrarEnMochila(partida.jugador.mochila[idEnMochila], idEnMochila);
+}
+
+function cargarMochilaYManos() {
+  cargarMochila();// Vacia visualmente la mochila y muestra lo que hay
+  if (partida.jugador.manos.izq != null) {
+    mostrarEnMano(partida.jugador.manos.izq, 'mano-izq');
+  }
+  else {
+    $('#mano-izq').off();
+    $('#mano-izq').unbind('mouseenter mouseleave');
+    $('#mano-izq').removeClass('mano-hover');
+    $('#mano-izq').css('background-image', 'none');
+    $('#info-mano-izq').hide();
+  }
+  if (partida.jugador.manos.der != null) {
+    mostrarEnMano(partida.jugador.manos.der, 'mano-der');
+  }
+  else {
+    $('#mano-der').off();
+    $('#mano-der').unbind('mouseenter mouseleave');
+    $('#mano-der').removeClass('mano-hover');
+    $('#mano-der').css('background-image', 'none');
+    $('#info-mano-der').hide();
+  }
 }

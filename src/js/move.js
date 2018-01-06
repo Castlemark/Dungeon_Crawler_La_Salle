@@ -16,9 +16,9 @@ function mover(dir){
             console.log('ok');
             comprovarPosicion();
           }
-          else if (computeCurrentFront() >= 30 && computeCurrentFront() <= 39) {
-            alert('No puedes ir hacia delante porque tienes un enemigo delante.');
-          }
+          //else if (computeCurrentFront() >= 30 && computeCurrentFront() <= 39) {
+            //alert('No puedes ir hacia delante porque tienes un enemigo delante.');
+          //}
         }
         break;
       case 'down':
@@ -29,9 +29,9 @@ function mover(dir){
             console.log('ok');
             comprovarPosicion();
           }
-          else if (computeCurrentBack() >= 30 && computeCurrentBack() <= 39) {
-            alert('No puedes ir hacia atrás porque tienes un enemigo detrás.');
-          }
+          //else if (computeCurrentBack() >= 30 && computeCurrentBack() <= 39) {
+            //alert('No puedes ir hacia atrás porque tienes un enemigo detrás.');
+          //}
         }
         break;
       case 'right':

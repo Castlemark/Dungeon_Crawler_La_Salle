@@ -21,6 +21,11 @@ function computeCurrentFront() {
   return computeFront(partida.jugador.posicion.x, partida.jugador.posicion.y);
 }
 
+// Función para determinar las coordenadas de la casilla de enfrente mediante la posición actual del jugador
+function computeCurrentFrontCoords() {
+  return [partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0], partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1]];
+}
+
 // Función para determinar qué es lo que hay en la casilla de detrás dada una posición, con x e y
 function computeBack(x, y) {
   return partida.mapas[partida.jugador.posicion.mapa].distribucion[x - partida.jugador.posicion.orientacion[0]][y - partida.jugador.posicion.orientacion[1]];
@@ -60,8 +65,8 @@ function sumXp(xp){
     partida.jugador.vida = vida;
     swal({
       title: "Level UP!",
+      text: "¡Has subido de nivel! Ahora estás en el nivel " + lastLevel + " de experiencia, ¡eso significa que tus habilidades han aumentado!",
       imageUrl: 'media/images/levelup.gif',
-      text: "Has subido de nivel! Ahora estas en el nivel " + lastLevel + " de experiencia, eso significa que tus habilidades han aumentado!",
       showConfirmButton: true,
       confirmButtonColor: '#6aade4',
       confirmButtonText: 'Ok',
