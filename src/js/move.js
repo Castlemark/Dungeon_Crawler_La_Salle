@@ -79,6 +79,8 @@ function actualizarMapa(){
     oid = (partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0]) * 10 + (partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1]);
     ocasilla = partida.mapas[partida.jugador.posicion.mapa].distribucion[partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0]][partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1]];
 
+    console.log("oid: " + oid + " , ocasilla: " + ocasilla );
+
     if (ocasilla == 10) {
       $("#"+oid).attr("src","media/images/mapa_pared.png");
     }
@@ -169,7 +171,6 @@ function comprovarPosicion(){
   //si es otro tipo de casilla, realizaremos la acción pertinente a esa casilla.
   if(casilla == 12){
     //salida
-    subirPiso();
   }
   if(casilla == 14){
     //puntos xp
