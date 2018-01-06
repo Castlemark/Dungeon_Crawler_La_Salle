@@ -266,11 +266,30 @@ function cargarMochilaYManos() {
   }
 }
 
+<<<<<<< HEAD
 //funcion que comprueba si se puede utilizar el justificante medico
 function comprobarJustificante(){
   if(partida.jugador.lucha.activa && (partida.jugador.manos.izq.id == 24 || partida.jugador.manos.der.id == 24)){
     $('#huirButton').prop('hidden', false);
   }else{
     $('#huirButton').prop('hidden', true);
+=======
+function vaciarMano(idMano) {
+  if (idMano == 'mano-izq') {
+    $('#' + idMano).off();
+    partida.jugador.manos.izq = null;
+    $('#' + idMano).unbind('mouseenter mouseleave');
+    $('#' + idMano).removeClass('mano-hover');
+    $('#' + idMano).css('background-image', 'none');
+    $('#info-mano-izq').hide();
+  }
+  else if (idMano == 'mano-der') {
+    ('#' + idMano).off();
+    partida.jugador.manos.der = null;
+    $('#' + idMano).unbind('mouseenter mouseleave');
+    $('#' + idMano).removeClass('mano-hover');
+    $('#' + idMano).css('background-image', 'none');
+    $('#info-mano-der').hide();
+>>>>>>> c3db34c17d41b14f37a348d5dbecb3ce1d670db2
   }
 }
