@@ -38,6 +38,7 @@ function mostrarLucha() {
   // Si no es turno de nadie significa que la lucha no ha empezado aún
   if (partida.jugador.lucha.turnoJugador == null) {
     $('#empezarLuchaButton').html('¡Empezar lucha!');
+    $('#huirButton').prop('hidden', true);
     $('#empezarLuchaButton').click(function() {
       empezarLucha();
     });
@@ -55,6 +56,7 @@ function mostrarLucha() {
     $('#empezarLuchaButton').click(function() {
       luchar();
     });
+
   }
   $('#lucha').slideDown();
   $('#mensaje-lucha').show();

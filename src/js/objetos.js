@@ -265,3 +265,12 @@ function cargarMochilaYManos() {
     $('#info-mano-der').hide();
   }
 }
+
+//funcion que comprueba si se puede utilizar el justificante medico
+function comprobarJustificante(){
+  if(partida.jugador.lucha.activa && (partida.jugador.manos.izq.id == 24 || partida.jugador.manos.der.id == 24)){
+    $('#huirButton').prop('hidden', false);
+  }else{
+    $('#huirButton').prop('hidden', true);
+  }
+}
