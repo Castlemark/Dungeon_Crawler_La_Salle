@@ -303,3 +303,13 @@ function muerteJugador(){
   disableControls = true;
   reiniciarModals();
 }
+
+
+function huir(){
+  disableControls = false;
+  partida.jugador.lucha.activa = false;
+  ocultarLucha();
+  // Guardamos que ya no es turno de nadie
+  partida.jugador.lucha.turnoJugador = null;
+  
+}
