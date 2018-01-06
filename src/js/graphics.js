@@ -47,8 +47,8 @@ function mostrarInformacion(){
   var ataqueDer = 0;
   var defensaDer = 0;
   if(partida.jugador.manos.der != null){
-    ataqueIzq = partida.jugador.manos.der.atributos.ataque;
-    defensaIzq = partida.jugador.manos.der.atributos.defensa;
+    ataqueDer = partida.jugador.manos.der.atributos.ataque;
+    defensaDer = partida.jugador.manos.der.atributos.defensa;
   }
 
   $('#progress-bar-ataque').html(partida.jugador.ataque + " + " + ataqueIzq + " + " + ataqueDer);

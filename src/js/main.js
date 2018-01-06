@@ -39,46 +39,51 @@ function iniciarJuego() {
 
 /* Convierte lo que hay en el mapa en un archivo de imagen */
 function mapaToImg(x, y) {
-  if(!(partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] < 0 || partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] > 9 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] < 0 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] > 9)){
+  if (!(partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] < 0 || partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] > 9 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] < 0 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] > 9)) {
     var front = computeFront(x, y);
-    if(front == 11 || front == 13){
+    if (front == 11 || front == 13) {
       return ('/dungeon_step.png');
     }
-    switch(front){
-      case 10:
-        return ('/dungeon_wall.png');
-      case 12:
-        return ('/dungeon_door.png');
-      case 20:
-        // Portátil
-        return ('/dungeon_portatil.png');
-      case 21:
-        // Soldador
-        return ('/dungeon_soldador.png');
-      case 22:
-        // Calculadora
-        return ('/dungeon_calculador.png');
-      case 23:
-        // USB
-        return ('/dungeon_usb.png');
-      case 30:
-        return ('/dungeon_lsmaker_standing.png');
-      case 31:
-        return ('/dungeon_daniel_standing.png');
-      case 32:
-        return ('/dungeon_emiliano_standing.png');
-      case 33:
-        return ('/dungeon_eva_standing.png');
-      case 34:
-        return ('/dungeon_guillem_standing.png');
-      case 35:
-        return ('/dungeon_ignasi_standing.png');
-      case 36:
-        return ('/dungeon_jose_standing.png');
-      case 37:
-        return ('/dungeon_xavier_standing.png');
-    }
-  }else{
+    return getImgOf(front);
+  }
+  else {
     return ('/dungeon_wall.png');
+  }
+}
+
+function getImgOf(id) {
+  switch (id) {
+    case 10:
+      return ('/dungeon_wall.png');
+    case 12:
+      return ('/dungeon_door.png');
+    case 20:
+      // Portátil
+      return ('/dungeon_portatil.png');
+    case 21:
+      // Soldador
+      return ('/dungeon_soldador.png');
+    case 22:
+      // Calculadora
+      return ('/dungeon_calculador.png');
+    case 23:
+      // USB
+      return ('/dungeon_usb.png');
+    case 30:
+      return ('/dungeon_lsmaker_standing.png');
+    case 31:
+      return ('/dungeon_daniel_standing.png');
+    case 32:
+      return ('/dungeon_emiliano_standing.png');
+    case 33:
+      return ('/dungeon_eva_standing.png');
+    case 34:
+      return ('/dungeon_guillem_standing.png');
+    case 35:
+      return ('/dungeon_ignasi_standing.png');
+    case 36:
+      return ('/dungeon_jose_standing.png');
+    case 37:
+      return ('/dungeon_xavier_standing.png');
   }
 }

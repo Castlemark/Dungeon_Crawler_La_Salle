@@ -43,7 +43,7 @@ function iniciarPartida() {
       $('#newGameModalClose').fadeTo('fast', 1);
       // Cerramos el modal
       $('#newGameModal').modal('hide');
-      messageToConsole('Bienvenid@ ' + partida.jugador.nombre + '! ¿List@ para enfrentarte a los peligros de LaSalle?');
+      messageToConsole('¡Bienvenid@, ' + partida.jugador.nombre + '! ¿List@ para enfrentarte a los peligros de LaSalle?');
       //habilitamos los controles y mostramos la pantalla
       disableControls = false;
       comprovarPosicion();

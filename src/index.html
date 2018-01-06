@@ -27,23 +27,21 @@
     <section id="informacion">
       <ul class="row">
         <li class="col-md-3"><label>Xp </label><div class="progress">
-              <div id="progress-bar-xp" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10" style="width:55%">
+              <div id="progress-bar-xp" class="progress-bar xp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
               </div>
-          </div> <label id="label-xp">13/20 (Nivel 1)</label></li>
+          </div> <label id="label-xp"></label></li>
         <li class="col-md-3"><label>Ataque </label><div class="progress">
-              <div id="progress-bar-ataque" class="progress-bar ataque" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="200" style="width:100%">
-              0 + 5 + 3
+              <div id="progress-bar-ataque" class="progress-bar ataque" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="200">
               </div>
-        </div> <label id="label-ataque">8</label></li>
+        </div> <label id="label-ataque"></label></li>
         <li class="col-md-3"><label>Defensa </label><div class="progress">
-              <div id="progress-bar-defensa" class="progress-bar defensa" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="200" style="width:100%">
-              1 + 4 + 2
+              <div id="progress-bar-defensa" class="progress-bar defensa" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="200">
               </div>
-        </div> <label id="label-defensa">7</label></li>
+        </div> <label id="label-defensa"></label></li>
         <li class="col-md-3"><label>Vida </label><div class="progress">
-              <div id="progress-bar-vida" class="progress-bar vida" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10" style="width:100%">
+              <div id="progress-bar-vida" class="progress-bar vida" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
               </div>
-        </div> <label id="label-vida">10</label></li>
+        </div> <label id="label-vida"></label></li>
       </ul>
     </section>
     <div id="player-board" class="row">
@@ -84,9 +82,9 @@
         <section class="box" id="mapa">
           <div class="box-header">
             <h2>Mapa</h2>
+            <label id="nivel-actual">Nivel -1</label>
           </div>
           <div class="box-body">
-            <label>Nivel -1</label>
             <table>
               <body>
                 <tr>
@@ -249,16 +247,16 @@
             <h2>Lucha</h2>
           </div>
           <div class="box-body">
-            <p>¡Tienes un enemigo delante! Intenta que tu ataque supere su defensa antes de empezar a luchar.</p>
+            <p id="mensaje-lucha">¡Tienes un enemigo delante! Intenta que tu ataque supere su defensa y que tu defensa supere su ataque.</p>
             <p style="text-align: center">
-              <button onclick="empezarLucha()" id="empezarLuchaButton" type="button" class="btn btn-salle">¡Empezar lucha!</button>
+              <button id="empezarLuchaButton" type="button" class="btn btn-salle">¡Empezar lucha!</button>
               <div id="info-enemigo">
                 <label id="nombre-enemigo"></label>
                 <div id="vida-enemigo">
                   <label>Vida </label>
                   <div class="progress contenedor-pb-vida-enemigo">
-                        <div id="progress-bar-vida-enemigo" class="progress-bar vida" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10" style="width:50%">
-                        </div>
+                    <div id="progress-bar-vida-enemigo" class="progress-bar vida" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
+                    </div>
                   </div>
                   <label id="label-vida-enemigo"><span id="vida-actual-enemigo"></span>/<span id="vida-maxima-enemigo"></span></label>
                 </div>

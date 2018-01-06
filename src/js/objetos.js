@@ -8,11 +8,21 @@ function mostrarEnMochila(infoObjeto, idEnMochila) {
   console.log($('#mochila').children().filter('i'));
   $('#mochila').append('<img id="objeto' + idEnMochila + '" src="' + imagenPeqObjeto(infoObjeto.id) + '" class="tooltip-element draggable drag-drop objeto-mochila" data-toggle="tooltip" title="' + infoObjeto.nombre + '" alt="' + infoObjeto.nombre + '"/>');
   $('#objeto' + idEnMochila).tooltip();
+  // Actualizamos las barras de ataque y defensa
+  mostrarInformacion();
 }
 
 function recogerObjeto(id) {
   var idEnMochila = guardarEnMochila(partida.objetos[id]);
   mostrarEnMochila(partida.jugador.mochila[idEnMochila], idEnMochila);
+}
+
+function recogerObjetos(ids) {
+  for (i = 0; i < ids.length; i++) {
+    var id = ids[i];
+    var idEnMochila = guardarEnMochila(partida.objetos[id]);
+    mostrarEnMochila(partida.jugador.mochila[idEnMochila], idEnMochila);
+  }
 }
 
 function imagenPeqObjeto(idObjeto) {
@@ -168,6 +178,8 @@ function ponerEnMano(infoObjeto, idMano) {
     }
     partida.jugador.manos.der = infoObjeto;
   }
+  // Actualizamos las barras de ataque y defensa
+  mostrarInformacion();
 }
 
 function mostrarEnMano(infoObjeto, idMano) {
