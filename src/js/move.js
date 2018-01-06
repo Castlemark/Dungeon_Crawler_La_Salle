@@ -59,12 +59,11 @@ function mover(dir){
         comprobarEnemigo();
       break;
     }
+    console.log(partida.jugador.posicion.x + " , " + partida.jugador.posicion.y);
+    actualizarMapa();
   }else{
     console.log('Controles deshabilitados');
-
   }
-  console.log(partida.jugador.posicion.x + " , " + partida.jugador.posicion.y);
-  actualizarMapa();
 }
 
 function actualizarMapa(){
