@@ -108,23 +108,6 @@ function getDefensa(){
   }
   return defensa;
 }
-
-<<<<<<< HEAD
-//función que activa/desactiva la música
-function volume(option){
-  switch(option){
-    case 'on':
-    $('#audio')[0].pause();
-    $('#volumeOn').prop('hidden', true);
-    $('#volumeOff').prop('hidden', false);
-    break;
-    case 'off':
-    $('#audio')[0].play();
-    $('#volumeOn').prop('hidden', false);
-    $('#volumeOff').prop('hidden', true);
-    break;
-  }
-=======
 //funcion que devuelve todo el minimapa a su estado original (negro)
 function limpiaMapa(){
   var id;
@@ -180,5 +163,19 @@ function victoriaJugador(){
   });
   disableControls = true;
   reiniciarModals();
->>>>>>> c54f0111964cccb86e3eaf13c54633aec05e7c8c
+}
+
+function volume(option){
+  switch(option){
+    case 'on':
+    $('#audio')[0].pause();
+    $('#volumeOn').prop('hidden', true);
+    $('#volumeOff').prop('hidden', false);
+    break;
+    case 'off':
+    $('#audio')[0].play();
+    $('#volumeOn').prop('hidden', false);
+    $('#volumeOff').prop('hidden', true);
+    break;
+  }
 }
