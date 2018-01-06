@@ -79,7 +79,7 @@ function sumXp(xp){
 d'exepriencia, eso nos será útil para pintar la barra de infromación del jugador*/
 function getMaxVidas(nivel){
   var vidaMax = 10;
-  for(var i = 1; i < nivel; i++){
+  for(var i = 2; i <= nivel; i++){
     vidaMax += 10 * i;
   }
   return vidaMax;

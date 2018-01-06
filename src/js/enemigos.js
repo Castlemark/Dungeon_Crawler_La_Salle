@@ -292,10 +292,10 @@ $(document).ready(function() {
 function muerteJugador(){
   swal({
     title: 'Has muerto!',
+    imageUrl: 'media/images/GameOver.gif',
     confirmButtonText: 'Continuar',
     confirmButtonColor: '#6aade4'
   });
   disableControls = true;
   reiniciarModals();
-
 }

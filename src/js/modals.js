@@ -49,6 +49,7 @@ function iniciarPartida() {
       comprovarPosicion();
       mostrarInformacion();
       actualizarMapa();
+      cargarMochilaYManos();
     });
   }
 }
@@ -107,6 +108,8 @@ function modalCargarPartida() {
            comprovarPosicion();
            mostrarInformacion();
            actualizarMapa();
+           cargarMochilaYManos();
+
          });
        });
      }
@@ -150,6 +153,7 @@ function modalCargarPartida() {
            comprovarPosicion();
            mostrarInformacion();
            actualizarMapa();
+           cargarMochilaYManos();
          });
        });
      }
