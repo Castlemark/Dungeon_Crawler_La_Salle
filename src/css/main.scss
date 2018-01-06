@@ -381,7 +381,14 @@ i.vacia {
 
 table {
     border-collapse: collapse;
+    width: 100%
 }
-th, td {
+
+th, tr, td {
     padding: 0;
+    border: 0;
+}
+
+table img{
+  width: 100%;
 }
