@@ -109,6 +109,7 @@ function getDefensa(){
   return defensa;
 }
 
+<<<<<<< HEAD
 //función que activa/desactiva la música
 function volume(option){
   switch(option){
@@ -123,4 +124,61 @@ function volume(option){
     $('#volumeOff').prop('hidden', true);
     break;
   }
+=======
+//funcion que devuelve todo el minimapa a su estado original (negro)
+function limpiaMapa(){
+  var id;
+
+  for (var i = 0; i < 10; i++) {
+    for (var j = 0; j < 10; j++) {
+      id = i*10 + j;
+
+      $("#"+id).attr("src","media/images/mapa_blanco.png");
+    }
+  }
+  pintaPosicion(partida.jugador.posicion.x, partida.jugador.posicion.y);
+}
+
+function subirPiso(){
+
+  if (partida.jugador.posicion.mapa + 1 < partida.mapas.length) {
+
+    partida.jugador.posicion.mapa++;
+
+    partida.jugador.posicion.x = partida.mapas[partida.jugador.posicion.mapa].origen[0];
+    partida.jugador.posicion.y = partida.mapas[partida.jugador.posicion.mapa].origen[1];
+
+    partida.jugador.orientacion = partida.mapas[partida.jugador.posicion.mapa].orientacion;
+
+    limpiaMapa();
+
+    console.log("pasem del mapa " + partida.jugador.posicion.mapa + " al mapa " + (partida.jugador.posicion.mapa+1));
+    console.log("El nuevo origen es: " + partida.jugador.posicion.x + " , " + partida.jugador.posicion.y + " y la nueva orientacion es: " + partida.jugador.orientacion);
+
+    swal({
+      title: "Subes de Piso!",
+      text: "¡Has llegado al final del piso " + (partida.jugador.posicion.mapa - partida.mapas.length - 1) + "! ¿Estas preparado para el siguiente piso?",
+      imageUrl: 'media/images/nextfloor.gif',
+      showConfirmButton: true,
+      confirmButtonColor: '#6aade4',
+      confirmButtonText: 'Ok',
+    });
+  }
+  else {
+    //partida acabada
+    victoriaJugador();
+  }
+}
+
+function victoriaJugador(){
+  swal({
+    title: 'Felicidades! Acabas de superar la Salle Dungeon, toma tu licenciatura y ve a buscar un trabajo',
+    text: "Dale a Nueva Partida para volver a empezar",
+    imageUrl: 'media/images/winner.gif',
+    confirmButtonText: 'Ok',
+    confirmButtonColor: '#6aade4'
+  });
+  disableControls = true;
+  reiniciarModals();
+>>>>>>> c54f0111964cccb86e3eaf13c54633aec05e7c8c
 }
