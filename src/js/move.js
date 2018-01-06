@@ -171,6 +171,7 @@ function comprovarPosicion(){
   //si es otro tipo de casilla, realizaremos la acción pertinente a esa casilla.
   if(casilla == 12){
     //salida
+    subirPiso();
   }
   if(casilla == 14){
     //puntos xp
