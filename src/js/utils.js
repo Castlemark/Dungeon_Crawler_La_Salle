@@ -108,3 +108,19 @@ function getDefensa(){
   }
   return defensa;
 }
+
+//función que activa/desactiva la música
+function volume(option){
+  switch(option){
+    case 'on':
+    $('#audio')[0].pause();
+    $('#volumeOn').prop('hidden', true);
+    $('#volumeOff').prop('hidden', false);
+    break;
+    case 'off':
+    $('#audio')[0].play();
+    $('#volumeOn').prop('hidden', false);
+    $('#volumeOff').prop('hidden', true);
+    break;
+  }
+}
