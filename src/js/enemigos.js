@@ -127,6 +127,8 @@ function lucharContraEnemigo() {
       ocultarLucha();
       // Guardamos que ya no es turno de nadie
       partida.jugador.lucha.turnoJugador = null;
+      // Guardamos que la lucha ha terminado
+      partida.jugador.lucha.activa = false;
       // Mostramos al enemigo triste porque ha muerto
       mostrarEnemigoTriste();
       // Quitamos al enemigo del mapa. Ponemos suelo (11)
