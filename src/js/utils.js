@@ -124,7 +124,7 @@ function limpiaMapa(){
 }
 
 function subirPiso(){
-  
+
   if (partida.jugador.posicion.mapa + 1 < partida.mapas.length) {
 
     partida.jugador.posicion.mapa++;
@@ -157,8 +157,9 @@ function subirPiso(){
 function victoriaJugador(){
   swal({
     title: 'Felicidades! Acabas de superar la Salle Dungeon, toma tu licenciatura y ve a buscar un trabajo',
+    text: "Dale a Nueva Partida para volver a empezar",
     imageUrl: 'media/images/winner.gif',
-    confirmButtonText: 'Volver a empezar',
+    confirmButtonText: 'Ok',
     confirmButtonColor: '#6aade4'
   });
   disableControls = true;
