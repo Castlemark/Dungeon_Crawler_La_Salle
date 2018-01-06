@@ -172,6 +172,13 @@ function comprovarPosicion(){
   if(casilla == 12){
     //salida
   }
+  if(casilla == 14){
+    //puntos xp
+    sumXp(10);
+    partida.mapas[partida.jugador.posicion.mapa].distribucion[partida.jugador.posicion.x][partida.jugador.posicion.y] = 11;
+    messageToConsole('Has encontrado 10 puntos xp extras!');
+    pintaPosicion(partida.jugador.posicion.x, partida.jugador.posicion.y);
+  }
   if(casilla >= 20 && casilla <= 29){
     //objeto
     recogerObjeto(casilla);

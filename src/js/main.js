@@ -57,6 +57,8 @@ function getImgOf(id) {
       return ('/dungeon_wall.png');
     case 12:
       return ('/dungeon_door.png');
+    case 14:
+      return ('/dungeon_xp.png');
     case 20:
       // Portátil
       return ('/dungeon_portatil.png');
