@@ -65,7 +65,12 @@ function sumXp(xp){
     partida.jugador.vida = vida;
     swal({
       title: "Level UP!",
+<<<<<<< HEAD
       text: "¡Has subido de nivel! Ahora estás en el nivel " + lastLevel + " de experiencia, ¡eso significa que tus habilidades han aumentado!",
+=======
+      imageUrl: 'media/images/levelup.gif',
+      text: "Has subido de nivel! Ahora estas en el nivel " + lastLevel + " de experiencia, eso significa que tus habilidades han aumentado!",
+>>>>>>> 45581944577986f4b0b8f1da0f43078a6c19abed
       showConfirmButton: true,
       confirmButtonColor: '#6aade4',
       confirmButtonText: 'Ok',
