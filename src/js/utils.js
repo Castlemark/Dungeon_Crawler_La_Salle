@@ -108,3 +108,46 @@ function getDefensa(){
   }
   return defensa;
 }
+
+//funcion que devuelve todo el minimapa a su estado original (negro)
+function limpiaMapa(){
+  var id;
+
+  for (var i = 0; i < 10; i++) {
+    for (var j = 0; j < 10; j++) {
+      id = i*10 + j;
+
+      $("#"+id).attr("src","media/images/mapa_blanco.png");
+    }
+  }
+}
+
+function subirPiso(){
+  console.log("length: " + partida.mapas.length + " , actual: " + partida.jugador.posicion.mapa);
+  if (partida.jugador.posicion.mapa + 1 < partida.mapas.length) {
+
+    partida.jugador.posicion.mapa++;
+
+    partida.jugador.posicion.x = partida.mapas[partida.jugador.posicion.mapa].origen[0];
+    partida.jugador.posicion.y = partida.mapas[partida.jugador.posicion.mapa].origen[1];
+
+    partida.jugador.orientacion = partida.mapas[partida.jugador.posicion.mapa].orientacion;
+
+    limpiaMapa();
+
+    console.log("pasem del mapa " + partida.jugador.posicion.mapa + " al mapa " + (partida.jugador.posicion.mapa+1));
+    console.log("El nuevo origen es: " + partida.jugador.posicion.x + " , " + partida.jugador.posicion.y + " y la nueva orientacion es: " + partida.jugador.orientacion);
+
+    swal({
+      title: "Subes de Piso!",
+      text: "¡Has llegado al final del piso " + (partida.jugador.posicion.mapa - partida.mapas.length - 1) + "! ¿Estas preparado para el siguiente piso?",
+      imageUrl: 'media/images/nextfloor.gif',
+      showConfirmButton: true,
+      confirmButtonColor: '#6aade4',
+      confirmButtonText: 'Ok',
+    });
+  }
+  else {
+    //partida acabada
+  }
+}
