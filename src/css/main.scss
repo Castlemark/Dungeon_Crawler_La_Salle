@@ -259,6 +259,11 @@ i.vacia {
   background-position: center center;
 }
 
+.mano-hover {
+  background-image: url('../media/images/square_eliminar.jpg') !important;
+  cursor: pointer !important;
+}
+
 #info-mano-izq, #info-mano-der {
   display: none;
 }

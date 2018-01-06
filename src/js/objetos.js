@@ -190,6 +190,24 @@ function mostrarEnMano(infoObjeto, idMano) {
     $('#defensa-mano-izq').text(infoObjeto.atributos.defensa);
     $('#durabilidad-mano-izq').text(infoObjeto.atributos.durabilidad);
     $('#' + idMano).css('background-image', 'url("' + imagenPeqObjeto(infoObjeto.id) + '")');
+    $('#' + idMano).off();
+    $('#' + idMano).hover(
+      function(){
+        $(this).toggleClass('mano-hover');
+      },
+      function(){
+        $(this).toggleClass('mano-hover');
+      }
+    );
+    $('#' + idMano).click(function() {
+      $(this).off();
+      deManoAMochila(partida.jugador.manos.izq);
+      partida.jugador.manos.izq = null;
+      $(this).unbind('mouseenter mouseleave');
+      $(this).removeClass('mano-hover');
+      $(this).css('background-image', 'none');
+      $('#info-mano-izq').hide();
+    });
   }
   else if (idMano == 'mano-der') {
     $('#info-mano-der').show();
@@ -198,6 +216,24 @@ function mostrarEnMano(infoObjeto, idMano) {
     $('#defensa-mano-der').text(infoObjeto.atributos.defensa);
     $('#durabilidad-mano-der').text(infoObjeto.atributos.durabilidad);
     $('#' + idMano).css('background-image', 'url("' + imagenPeqObjeto(infoObjeto.id) + '")');
+    $('#' + idMano).off();
+    $('#' + idMano).hover(
+      function(){
+        $(this).toggleClass('mano-hover');
+      },
+      function(){
+        $(this).toggleClass('mano-hover');
+      }
+    );
+    $('#' + idMano).click(function() {
+      $(this).off();
+      deManoAMochila(partida.jugador.manos.der);
+      partida.jugador.manos.der = null;
+      $(this).unbind('mouseenter mouseleave');
+      $(this).removeClass('mano-hover');
+      $(this).css('background-image', 'none');
+      $('#info-mano-der').hide();
+    });
   }
 }
 
