@@ -352,3 +352,19 @@ function salirSinGuardar() {
     // Salir sin guardar
   });
 }
+
+function reiniciarModals(){
+  var newGameModalDisableClose = false;
+
+  $('#newGameModalClose').css('display', 'block');
+  $('#newGameModal-info').css('display', 'block');
+  $('#newGameForm').css('display', 'block');
+  $('#iniciarPartidaButton').fadeTo('fast', 1);
+  $('#newGameModal-info-downloading').css('display', 'none');
+  $('#menu-nuevaPartida').prop('hidden', false);
+  $('#menu-cargarPartida').prop('hidden', false);
+  $('#menu-jugador').prop('hidden', true);
+  $('#menu-guardarPartida').prop('hidden', true);
+  $('#menu-salir').prop('hidden', true);
+
+}

@@ -62,3 +62,15 @@ $(document).ready(function() {
     $('#protection-selector').removeClass('protection-selector-piernas');
   });
 });
+
+//llamamos la función cuando muere el jugador
+function muerteJugador(){
+  swal({
+    title: 'Has muerto!',
+    confirmButtonText: 'Continuar',
+    confirmButtonColor: '#6aade4'
+  });
+  disableControls = true;
+  reiniciarModals();
+
+}
