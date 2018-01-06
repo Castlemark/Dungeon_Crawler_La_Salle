@@ -241,3 +241,27 @@ function deManoAMochila(infoObjeto) {
   var idEnMochila = guardarEnMochila(infoObjeto);
   mostrarEnMochila(partida.jugador.mochila[idEnMochila], idEnMochila);
 }
+
+function cargarMochilaYManos() {
+  cargarMochila();// Vacia visualmente la mochila y muestra lo que hay
+  if (partida.jugador.manos.izq != null) {
+    mostrarEnMano(partida.jugador.manos.izq, 'mano-izq');
+  }
+  else {
+    $('#mano-izq').off();
+    $('#mano-izq').unbind('mouseenter mouseleave');
+    $('#mano-izq').removeClass('mano-hover');
+    $('#mano-izq').css('background-image', 'none');
+    $('#info-mano-izq').hide();
+  }
+  if (partida.jugador.manos.der != null) {
+    mostrarEnMano(partida.jugador.manos.der, 'mano-der');
+  }
+  else {
+    $('#mano-der').off();
+    $('#mano-der').unbind('mouseenter mouseleave');
+    $('#mano-der').removeClass('mano-hover');
+    $('#mano-der').css('background-image', 'none');
+    $('#info-mano-der').hide();
+  }
+}
