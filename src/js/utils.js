@@ -120,10 +120,11 @@ function limpiaMapa(){
       $("#"+id).attr("src","media/images/mapa_blanco.png");
     }
   }
+  pintaPosicion(partida.jugador.posicion.x, partida.jugador.posicion.y);
 }
 
 function subirPiso(){
-  console.log("length: " + partida.mapas.length + " , actual: " + partida.jugador.posicion.mapa);
+  
   if (partida.jugador.posicion.mapa + 1 < partida.mapas.length) {
 
     partida.jugador.posicion.mapa++;
@@ -149,5 +150,17 @@ function subirPiso(){
   }
   else {
     //partida acabada
+    victoriaJugador();
   }
+}
+
+function victoriaJugador(){
+  swal({
+    title: 'Felicidades! Acabas de superar la Salle Dungeon, toma tu licenciatura y ve a buscar un trabajo',
+    imageUrl: 'media/images/winner.gif',
+    confirmButtonText: 'Volver a empezar',
+    confirmButtonColor: '#6aade4'
+  });
+  disableControls = true;
+  reiniciarModals();
 }
