@@ -1,3 +1,17 @@
+$web-color: #6aade4;
+
+@mixin part($part, $margin){
+  @if $part == left {
+    margin: $margin 0 $margin $margin;
+  }
+  @if $part == right {
+    margin: $margin $margin $margin 0;
+  }
+  @if $part == center {
+    margin: $margin 0;
+  }
+}
+
 #navegacion {
   text-align: center!important;
   height: min-content;
@@ -11,7 +25,7 @@
 }
 
 header{
-  background-color: #6aade4;
+  background-color: $web-color;
   padding-right: 20px;
   padding-left: 20px;
   min-width: 1150px;
@@ -99,7 +113,7 @@ header{
 
   }
   .box-header{
-    background-color: #6aade4;
+    background-color: $web-color;
     padding: 10px 10px 5px 20px;
     h2{
       color: #fff;
@@ -112,15 +126,15 @@ header{
 }
 
 .left-part section{
-  margin: 20px 0px 20px 20px;
+  @include part(left, 20px);
 }
 
 .center-part section{
-  margin: 20px 0;
+  @include part(center, 20px);
 }
 
 .right-part section{
-  margin: 20px 20px 20px 0px;
+  @include part(right, 20px);
 }
 
 #mapa{
@@ -196,7 +210,7 @@ i.vacia {
 .modal-dialog{
   margin: 150px auto;
   .modal-header{
-    background-color: #6aade4;
+    background-color: $web-color;
     color: #fff;
     .close{
       margin: 0;
@@ -226,17 +240,17 @@ i.vacia {
 }
 
 .btn-salle{
-  background-color: #6aade4;
+  background-color: $web-color;
   color: #fff;
   cursor: pointer;
 }
 
 .btn-salle:hover{
-  background-color: #298fed;//b5b5b5
+  background-color: #298fed;
 }
 
 .btn-salle:disabled:hover{
-  background-color: #6aade4;
+  background-color: $web-color;
   cursor: default;
 }
 
