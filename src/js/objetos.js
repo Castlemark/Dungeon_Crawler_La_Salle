@@ -265,3 +265,22 @@ function cargarMochilaYManos() {
     $('#info-mano-der').hide();
   }
 }
+
+function vaciarMano(idMano) {
+  if (idMano == 'mano-izq') {
+    $('#' + idMano).off();
+    partida.jugador.manos.izq = null;
+    $('#' + idMano).unbind('mouseenter mouseleave');
+    $('#' + idMano).removeClass('mano-hover');
+    $('#' + idMano).css('background-image', 'none');
+    $('#info-mano-izq').hide();
+  }
+  else if (idMano == 'mano-der') {
+    ('#' + idMano).off();
+    partida.jugador.manos.der = null;
+    $('#' + idMano).unbind('mouseenter mouseleave');
+    $('#' + idMano).removeClass('mano-hover');
+    $('#' + idMano).css('background-image', 'none');
+    $('#info-mano-der').hide();
+  }
+}
