@@ -216,6 +216,8 @@ function mostrarEnMano(infoObjeto, idMano) {
       $(this).removeClass('mano-hover');
       $(this).css('background-image', 'none');
       $('#info-mano-izq').hide();
+
+      mostrarInformacion();
     });
   }
   else if (idMano == 'mano-der') {
@@ -244,6 +246,8 @@ function mostrarEnMano(infoObjeto, idMano) {
       $(this).removeClass('mano-hover');
       $(this).css('background-image', 'none');
       $('#info-mano-der').hide();
+
+      mostrarInformacion();
     });
   }
 }
@@ -319,6 +323,7 @@ function afectarDurabilidad() {
     if (partida.jugador.manos.izq.atributos.durabilidad <= 0) {
       vaciarMano('mano-izq');
       messageToConsole('Se ha agotado la durabilidad del objeto que tenías en tu mano izquierda, así que lo has perdido.');
+      mostrarInformacion();
     }
   }
   if (partida.jugador.manos.der != null) {
@@ -330,6 +335,7 @@ function afectarDurabilidad() {
     if (partida.jugador.manos.der.atributos.durabilidad <= 0) {
       vaciarMano('mano-der');
       messageToConsole('Se ha agotado la durabilidad del objeto que tenías en tu mano derecha, así que lo has perdido.');
+      mostrarInformacion();
     }
   }
 }
