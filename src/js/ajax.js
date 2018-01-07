@@ -5,6 +5,7 @@ function descargarPartidaNueva(callback) {
   $.ajax({
     dataType: 'json',
     method: 'get',
+    encoding: 'UTF-8',
     url: 'http://puigpedros.salleurl.edu/pwi/pac4/partida.php?token=' + token + '&slot=nueva',
     statusCode: {
       200: function(json) {
