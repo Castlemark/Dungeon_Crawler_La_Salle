@@ -141,6 +141,8 @@ function lucharContraEnemigo() {
       partida.jugador.lucha.activa = false;
       // Mostramos al enemigo triste porque ha muerto
       mostrarEnemigoTriste();
+      // Pero solo lo mostramos durante 1 segundo porque luego refrescaremos el visor con lo que haya en el mapa
+      setTimeout(refrescarVisor, 1000);
       // Quitamos al enemigo del mapa. Ponemos suelo (11)
       var frontCoords = computeCurrentFrontCoords();
       partida.mapas[partida.jugador.posicion.mapa].distribucion[frontCoords[0]][frontCoords[1]] = 11;

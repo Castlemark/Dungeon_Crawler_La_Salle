@@ -55,8 +55,12 @@ function getImgOf(id) {
   switch (id) {
     case 10:
       return ('/dungeon_wall.png');
+    case 11:
+      return ('/dungeon_step.png');
     case 12:
       return ('/dungeon_door.png');
+    case 13:
+      return ('/dungeon_step.png');
     case 14:
       return ('/dungeon_xp.png');
     case 20:
