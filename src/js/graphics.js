@@ -23,6 +23,10 @@ function messageToConsole(msg) {
   var now = new moment();
   $('#console-text').prepend($('#first-console-text').html());
   $('#first-console-text').html('[' + now.format("HH:mm:ss") + '] ' + msg + '<br>');
+  if(partida.consola != null){
+    partida.consola.first = $('#first-console-text').html();
+    partida.consola.text = $('#console-text').html();
+  }
 }
 
 //función que al llamarla actualiza las barras de xp, ataque, defensa y vida
