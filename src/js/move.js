@@ -67,39 +67,82 @@ function mover(dir){
 }
 
 function actualizarMapa(){
-  var casilla = partida.mapas[partida.jugador.posicion.mapa].distribucion[partida.jugador.posicion.x][partida.jugador.posicion.y];
-  var ocasilla = 0;
-  var id = partida.jugador.posicion.x * 10 + partida.jugador.posicion.y;
-  var oid = 0;
 
+  var cas;
+
+  var id = partida.jugador.posicion.x * 10 + partida.jugador.posicion.y;
+  var idaux;
+
+  var oid = 0;
+  var ocasilla = 0;
   var oposx = partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0];
   var oposy = partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1];
 
-  //limpiamos la flecha del jugador del mapa
-  for (var i = 0; i < 10; i++) {
-    for (var j = 0; j < 10; j++) {
-      idaux = i*10 + j;
+  partida.mapas[partida.jugador.posicion.mapa].visibilidad[partida.jugador.posicion.x][partida.jugador.posicion.y] = true;
 
-      $("#"+idaux).attr("src","media/images/mapa_null.png");
-    }
-  }
-
-  //decide que casilla dibujar en la posicion que esta mirando el jugador
+  //decide si la casilla a la que el jugador mira deberia ser visible
   if ( oposx > -1 && oposy > -1 && oposx < 10 && oposy < 10) {
     oid = (partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0]) * 10 + (partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1]);
     ocasilla = partida.mapas[partida.jugador.posicion.mapa].distribucion[partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0]][partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1]];
 
     if (ocasilla == 10) {
-      $("#"+oid).css("background-image", "url(media/images/mapa_pared.png)");
+      partida.mapas[partida.jugador.posicion.mapa].visibilidad[oposx][oposy] = true;
     }
     else if (ocasilla == 12) {
-      $("#"+oid).css("background-image", "url(media/images/mapa_salida.png)");
+      partida.mapas[partida.jugador.posicion.mapa].visibilidad[oposx][oposy] = true;
+    }
+    else if (ocasilla == 14) {
+      partida.mapas[partida.jugador.posicion.mapa].visibilidad[oposx][oposy] = true;
+    }
+    else if (ocasilla == 15) {
+      partida.mapas[partida.jugador.posicion.mapa].visibilidad[oposx][oposy] = true;
     }
     else if (ocasilla >= 30) {
-      $("#"+oid).css("background-image", "url(media/images/mapa_enemigo.png)");
+      partida.mapas[partida.jugador.posicion.mapa].visibilidad[oposx][oposy] = true;
     }
     else if (ocasilla >= 20 && ocasilla < 30) {
-      $("#"+oid).css("background-image", "url(media/images/mapa_objeto.png)");
+      partida.mapas[partida.jugador.posicion.mapa].visibilidad[oposx][oposy] = true;
+    }
+    console.log(partida.mapas[partida.jugador.posicion.mapa].visibilidad);
+  }
+
+  //mira el mapa de visibilidad y dibuja las casilla que sean visibles
+  for (var k = 0; k < 10; k++) {
+    for (var l = 0; l < 10; l++) {
+      //borra la flecha del jugador
+      $("#"+idaux).attr("src","media/images/mapa_null.png");
+
+      if (partida.mapas[partida.jugador.posicion.mapa].visibilidad[k][l] == true) {
+
+        idaux = k*10 + l;
+        cas = partida.mapas[partida.jugador.posicion.mapa].distribucion[k][l];
+
+        switch (true) {
+          case (cas == 10):
+            $("#"+idaux).css("background-image", "url(media/images/mapa_pared.png)");
+          break;
+          case (cas == 11):
+            $("#"+idaux).css("background-image", "url(media/images/mapa_suelo.png)");
+          break;
+          case (cas == 12):
+            $("#"+idaux).css("background-image", "url(media/images/mapa_salida.png)");
+          break;
+          case (cas == 13):
+            $("#"+idaux).css("background-image", "url(media/images/mapa_origen.png)");
+          break;
+          case (cas == 15 || cas == 14):
+            $("#"+idaux).css("background-image", "url(media/images/mapa_objeto.png)");
+          break;
+          case (cas >= 20 && cas < 30):
+            $("#"+idaux).css("background-image", "url(media/images/mapa_objeto.png)");
+          break;
+          case (cas >= 30):
+            $("#"+idaux).css("background-image", "url(media/images/mapa_enemigo.png)");
+          break;
+          default:
+          break;
+        }
+      }
     }
   }
 
@@ -118,27 +161,8 @@ function actualizarMapa(){
       $("#"+id).attr("src","media/images/mapa_arriba.png");
     break;
     default:
+    break;
   }
-
-  //decide que casilla dibujar en la posicion del jugador
-  switch (casilla) {
-    case 11:
-      console.log("suelo");
-      $("#"+id).css("background-image", "url(media/images/mapa_suelo.png)");
-    break;
-    case 12:
-      console.log(id);
-      $("#"+id).css("background-image", "url(media/images/mapa_salida.png)");
-    break;
-    case 13:
-      console.log("origen");
-      $("#"+id).css("background-image", "url(media/images/mapa_origen.png)");
-    break;
-    default:
-    break;
-
-  }
-
 }
 
 function comprovarPosicion(){
