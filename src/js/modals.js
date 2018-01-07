@@ -35,6 +35,11 @@ function iniciarPartida() {
     descargarPartidaNueva(function() {
       partida.jugador.nombre = $('#name').val();
       partida.jugador.avatar = $('#avatarId').val();
+      if($('#avatarId').val() == 1 || $('#avatarId').val() == 3){
+        partida.jugador.sexo = 'mujer';
+      }else{
+        partida.jugador.sexo = 'hombre';
+      }
       colocarEnInicioMapa();
       refrescarInfoJugador();
       mostrarMenusPartida();
@@ -196,6 +201,11 @@ function cambiarInfoJugador() {
   if($('#name').val() != '' && $('#avatarId').val() != 0){
     partida.jugador.nombre = $('#name').val();
     partida.jugador.avatar = $('#avatarId').val();
+    if($('#avatarId').val() == 1 || $('#avatarId').val() == 3){
+      partida.jugador.sexo = 'mujer';
+    }else{
+      partida.jugador.sexo = 'hombre';
+    }
     refrescarInfoJugador();
     $('#newGameModal').modal('hide');
     messageToConsole('Tus cambios se han guardado correctamente ' + partida.jugador.nombre);
