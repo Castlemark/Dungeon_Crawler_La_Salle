@@ -80,6 +80,7 @@ function descargarPartida(slot, callback) {
         console.log(json);
         // Ahora que ya tenemos la información podemos guardarla en la variable global de la partida
         partida = json;
+
         callback();
       },
       404: function(responseText) {

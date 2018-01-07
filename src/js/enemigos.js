@@ -178,39 +178,19 @@ function reducirVidaEnemigo(cantidad) {
 }
 
 function lucharContraJugador() {
-  // Obtenemos la información del enemigo
-  infoEnemigo = partida.enemigos[computeCurrentFront()];
+
   // Indicamos que estamos luchando
   $('#empezarLuchaButton').prop('disabled', true);
   $('#empezarLuchaButton').off();
   $('#empezarLuchaButton').html('Luchando...');
-  // Operamos para comprobar si el enemigo puede afectar al jugador
-  var ataqueEnemigo = infoEnemigo.atributos.ataque;
-  var defensaJugador = getDefensa();
-  if (ataqueEnemigo > defensaJugador) {
-    // Calculamos la vida que hay que restar al jugador
-    var resta = ataqueEnemigo - defensaJugador;
-    messageToConsole('¡El ataque del enemigo ha superado tu defensa! Se ha restado ' + resta + ' a tu vida.');
 
-    var jugadorMuerto = reducirVidaJugador(resta);
-    // Actualizamos visualmente la vida del jugador
-    mostrarInformacion();
-
-    if (jugadorMuerto) {
-      // El jugador ha muerto
-      disableControls = false;
-      messageToConsole('¡Has muerto! El juego ha acabado.');
-      ocultarLucha();
-      // Guardamos que ya no es turno de nadie
-      partida.jugador.lucha.turnoJugador = null;
-      // Mostramos al enemigo contento porque el jugador ha muerto
-      mostrarEnemigoContento();
-      // Terminamos el juego
-      muerteJugador();
-    }
-    else {
-      // El jugador sigue vivo
-      messageToConsole('¡Sigues vivo aún! ¡Sigue atacando en los próximos turnos!');
+  // Pide la protección y cuando el usuario conteste haz lo siguiente
+  pedirProteccion(function(proteccionJugador) {
+    parteAtaque = Math.floor(Math.random() * 3);// El lugar donde ataca el enemigo
+    var palabras = partesAPalabras([proteccionJugador, parteAtaque]);
+    if (proteccionJugador == parteAtaque) {
+      // El jugador ha esquivado el golpe
+      messageToConsole('¡Enhorabuena, has esquivado el golpe! Has elegido proteger ' + palabras[0] + ' y has acertado. No se te ha restado vida.');
       $('#empezarLuchaButton').html('Siguiente turno (contra enemigo)');
 
       // Guardamos de quien es el turno, que a continuación será del jugador (luchar contra enemigo)
@@ -219,19 +199,62 @@ function lucharContraJugador() {
         lucharContraEnemigo();
       });
     }
-  }
-  else {
-    messageToConsole('El ataque del enemigo no ha superado tu defensa, por lo que no se te ha restado vida.');
-    $('#empezarLuchaButton').html('Siguiente turno (contra enemigo)');
+    else {
+      // El jugador no ha esquivado el golpe
+      messageToConsole('Vaya, no has esquivado el golpe... Tú has elegido proteger ' + palabras[0] + ' pero el enemigo te ha golpeado en ' + palabras[1] + '. Puede que te haga daño...');
+      // Seguimos con normalidad
+      // Obtenemos la información del enemigo
+      infoEnemigo = partida.enemigos[computeCurrentFront()];
+      // Operamos para comprobar si el enemigo puede afectar al jugador
+      var ataqueEnemigo = infoEnemigo.atributos.ataque;
+      var defensaJugador = getDefensa();
+      if (ataqueEnemigo > defensaJugador) {
+        // Calculamos la vida que hay que restar al jugador
+        var resta = ataqueEnemigo - defensaJugador;
+        messageToConsole('¡El ataque del enemigo ha superado tu defensa! Se ha restado ' + resta + ' a tu vida.');
 
-    // Guardamos de quien es el turno, que a continuación será del jugador (luchar contra enemigo)
-    partida.jugador.lucha.turnoJugador = true;
-    $('#empezarLuchaButton').click(function() {
-      lucharContraEnemigo();
-    });
-  }
+        var jugadorMuerto = reducirVidaJugador(resta);
+        // Actualizamos visualmente la vida del jugador
+        mostrarInformacion();
 
-  $('#empezarLuchaButton').prop('disabled', false);
+        if (jugadorMuerto) {
+          // El jugador ha muerto
+          disableControls = false;
+          messageToConsole('¡Has muerto! El juego ha acabado.');
+          ocultarLucha();
+          // Guardamos que ya no es turno de nadie
+          partida.jugador.lucha.turnoJugador = null;
+          // Mostramos al enemigo contento porque el jugador ha muerto
+          mostrarEnemigoContento();
+          // Terminamos el juego
+          muerteJugador();
+        }
+        else {
+          // El jugador sigue vivo
+          messageToConsole('¡Sigues vivo aún! ¡Sigue atacando en los próximos turnos!');
+          $('#empezarLuchaButton').html('Siguiente turno (contra enemigo)');
+
+          // Guardamos de quien es el turno, que a continuación será del jugador (luchar contra enemigo)
+          partida.jugador.lucha.turnoJugador = true;
+          $('#empezarLuchaButton').click(function() {
+            lucharContraEnemigo();
+          });
+        }
+      }
+      else {
+        messageToConsole('El ataque del enemigo no ha superado tu defensa, por lo que no se te ha restado vida.');
+        $('#empezarLuchaButton').html('Siguiente turno (contra enemigo)');
+
+        // Guardamos de quien es el turno, que a continuación será del jugador (luchar contra enemigo)
+        partida.jugador.lucha.turnoJugador = true;
+        $('#empezarLuchaButton').click(function() {
+          lucharContraEnemigo();
+        });
+      }
+    }
+
+    $('#empezarLuchaButton').prop('disabled', false);
+  });
 }
 
 // Función que reduce la vida del jugador según la cantidad especificada y devuelve true si ha muerto
@@ -273,26 +296,8 @@ function mostrarEnemigoContento() {
   };
 }
 
-$(document).ready(function() {
-  $('#area-cabeza').hover(function() {
-    $('#protection-selector').addClass('protection-selector-cabeza');
-  }, function() {
-    $('#protection-selector').removeClass('protection-selector-cabeza');
-  });
-  $('#area-torso').hover(function() {
-    $('#protection-selector').addClass('protection-selector-torso');
-  }, function() {
-    $('#protection-selector').removeClass('protection-selector-torso');
-  });
-  $('#area-piernas').hover(function() {
-    $('#protection-selector').addClass('protection-selector-piernas');
-  }, function() {
-    $('#protection-selector').removeClass('protection-selector-piernas');
-  });
-});
-
 //llamamos la función cuando muere el jugador
-function muerteJugador(){
+function muerteJugador() {
   swal({
     title: 'Has muerto!',
     imageUrl: 'media/images/GameOver.gif',
@@ -303,8 +308,7 @@ function muerteJugador(){
   reiniciarModals();
 }
 
-
-function huir(){
+function huir() {
   disableControls = false;
   partida.jugador.lucha.activa = false;
   ocultarLucha();
@@ -320,4 +324,66 @@ function huir(){
   }
   comprobarEnemigo();
   messageToConsole('Has huido de la lucha como un cobarde y has gastado tu justificante médico');
+}
+
+function pedirProteccion(callback) {
+  // Desactivamos los clicks de las areas
+  $('#area-cabeza').off();
+  $('#area-torso').off();
+  $('#area-piernas').off();
+  // Activamos los hover
+  $('#area-cabeza').hover(function() {
+    $('#protection-selector').addClass('protection-selector-cabeza');
+  }, function() {
+    $('#protection-selector').removeClass('protection-selector-cabeza');
+  });
+  $('#area-torso').hover(function() {
+    $('#protection-selector').addClass('protection-selector-torso');
+  }, function() {
+    $('#protection-selector').removeClass('protection-selector-torso');
+  });
+  $('#area-piernas').hover(function() {
+    $('#protection-selector').addClass('protection-selector-piernas');
+  }, function() {
+    $('#protection-selector').removeClass('protection-selector-piernas');
+  });
+  // Asignamos las acciones para los clicks
+  $('#area-cabeza').click(function() {
+    // Cerramos el modal
+    $('#chooseProtectionModal').modal('hide');
+    // Llamamos al callback
+    callback(0);// Cabeza
+  });
+  $('#area-torso').click(function() {
+    // Cerramos el modal
+    $('#chooseProtectionModal').modal('hide');
+    // Llamamos al callback
+    callback(1);// Torso
+  });
+  $('#area-piernas').click(function() {
+    // Cerramos el modal
+    $('#chooseProtectionModal').modal('hide');
+    // Llamamos al callback
+    callback(2);// Piernas
+  });
+  // Mostramos el modal
+  $('#chooseProtectionModal').modal({
+    backdrop: 'static',
+    keyboard: false
+  });
+}
+
+function parteAPalabra(parte) {
+  switch (parte) {
+    case 0:
+      return 'tu cabeza';
+    case 1:
+      return 'tu torso';
+    case 2:
+      return 'tus piernas';
+  }
+}
+
+function partesAPalabras(partes) {
+  return [parteAPalabra(partes[0]), parteAPalabra(partes[1])];
 }
