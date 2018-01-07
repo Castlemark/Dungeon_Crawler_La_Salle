@@ -11,23 +11,28 @@
     <link rel="stylesheet" href="css/main.min.css" type="text/css" media="all" />
   </head>
   <body>
-    <header class="row">
-
-      <h1 class="col-md-4 logo"><img src="media/images/logo.png" width="400px" alt="LaSalle Dungeon"/></h1>
-      <nav class="col-md-8">
-        <ul>
-          <li hidden id="volumeOn"><a onclick="volume('on')"><i class="fa fa-volume-up" aria-hidden="true"></i></a></li>
-          <li id="volumeOff"><a onclick="volume('off')"><i class="fa fa-volume-off" aria-hidden="true"></i></a></li>
-          <li id="menu-jugador" hidden><a onclick="modalCambiarInfo()" class="user-info"><img class="avatar" src="media/images/user.png" width="50px" alt="avatar"/><span class="player-name"></span></a></li>
-          <li id="menu-cargarPartida"><a onclick="modalCargarPartida()">Cargar partida</a></li>
-          <li id="menu-nuevaPartida"><a onclick="modalNuevaPartida()">Nueva partida</a></li>
-          <li id="menu-salir" hidden><a onclick="salirSinGuardar()">Salir sin guardar</a></li>
-          <li id="menu-guardarPartida" hidden><a onclick="modalGuardarPartida()">Guardar partida</a></li>
-        </ul>
-      </nav>
+    <header>
+      <div class="row">
+        <div class="col-md-4">
+          <h1 class="logo"><img src="media/images/logo.png" width="400px" alt="LaSalle Dungeon"/></h1>
+        </div>
+        <div class="col-md-8">
+          <nav>
+            <ul>
+              <li hidden id="volumeOn"><a onclick="volume('on')"><i class="fa fa-volume-up" aria-hidden="true"></i></a></li>
+              <li id="volumeOff"><a onclick="volume('off')"><i class="fa fa-volume-off" aria-hidden="true"></i></a></li>
+              <li id="menu-jugador" hidden><a onclick="modalCambiarInfo()" class="user-info"><img class="avatar" src="media/images/user.png" width="50px" alt="avatar"/><span class="player-name"></span></a></li>
+              <li id="menu-cargarPartida"><a onclick="modalCargarPartida()">Cargar partida</a></li>
+              <li id="menu-nuevaPartida"><a onclick="modalNuevaPartida()">Nueva partida</a></li>
+              <li id="menu-salir" hidden><a onclick="salirSinGuardar()">Salir sin guardar</a></li>
+              <li id="menu-guardarPartida" hidden><a onclick="modalGuardarPartida()">Guardar partida</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </header>
     <section id="informacion">
-      <ul class="row">
+      <ul>
         <li class="col-md-3"><label>Xp </label><div class="progress">
               <div id="progress-bar-xp" class="progress-bar xp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
               </div>

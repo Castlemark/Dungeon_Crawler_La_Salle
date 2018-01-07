@@ -74,9 +74,9 @@ header{
   height: auto;
   text-align: right;
   padding: 8px 0px;
-  margin-right: -15px;
   ul{
     margin-bottom: 0;
+    display: flex;
     li{
       color: #fff;
       padding: 0 50px;
@@ -188,6 +188,7 @@ header{
     text-align: center;
     label{
       font-weight: bold;
+      font-size: 15px;
     }
     #info-mano-izq, #info-mano-der{
       label{
@@ -268,6 +269,8 @@ i.vacia {
 
 #player-board{
   min-width: 1150px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #mano-izq, #mano-der {
