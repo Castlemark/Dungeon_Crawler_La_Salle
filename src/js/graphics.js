@@ -66,3 +66,16 @@ function mostrarInformacion(){
   $('#progress-bar-vida').css('width', partida.jugador.vida/getMaxVidas(partida.jugador.nivel) *100 + '%');
   $('#label-vida').html(partida.jugador.vida + '/' + getMaxVidas(partida.jugador.nivel));
 }
+
+function refrescarVisor() {
+  var path = getImgOf(computeCurrentFront());
+  // Consigue el canvas
+  var canvas = document.getElementById('visor');
+  var context = canvas.getContext('2d');
+  var base_image = new Image();
+  base_image.src = "./media/images"+path;
+  base_image.onload = function () {
+    // Pinta imagen en el canvas
+    context.drawImage(this, 0, 0);
+  };
+}
