@@ -13,7 +13,8 @@ function mostrarEnMochila(infoObjeto, idEnMochila) {
 }
 
 function recogerObjeto(id) {
-  var idEnMochila = guardarEnMochila(partida.objetos[id]);
+  var copiedObject = jQuery.extend(true, {}, partida.objetos[id]);// Deep copy
+  var idEnMochila = guardarEnMochila(copiedObject);
   messageToConsole('Has recogido un ' + partida.objetos[id].nombre + '! Ahora esta en tu mochila');
   mostrarEnMochila(partida.jugador.mochila[idEnMochila], idEnMochila);
 }
@@ -21,7 +22,8 @@ function recogerObjeto(id) {
 function recogerObjetos(ids) {
   for (i = 0; i < ids.length; i++) {
     var id = ids[i];
-    var idEnMochila = guardarEnMochila(partida.objetos[id]);
+    var copiedObject = jQuery.extend(true, {}, partida.objetos[id]);// Deep copy
+    var idEnMochila = guardarEnMochila(copiedObject);
     mostrarEnMochila(partida.jugador.mochila[idEnMochila], idEnMochila);
   }
 }
