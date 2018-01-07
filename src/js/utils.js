@@ -175,6 +175,28 @@ function subirPiso(){
   }
 }
 
+function primerPiso(){
+
+  partida.jugador.posicion.mapa = 0;
+
+  partida.jugador.posicion.x = partida.mapas[partida.jugador.posicion.mapa].origen[0];
+  partida.jugador.posicion.y = partida.mapas[partida.jugador.posicion.mapa].origen[1];
+
+  partida.jugador.orientacion = partida.mapas[partida.jugador.posicion.mapa].orientacion;
+
+  limpiaMapa();
+
+  messageToConsole('Has perdido tu expediente por un error administrativo, tendras que volver a empezar de 0...');
+  swal({
+    title: "Has perdido tu expediente por un error administrativo! Tendras que volver a empezar de 0...",
+    text: "Por lo menos te quedan los amigos que has hecho",
+    imageUrl: 'media/images/thiswillneverend.gif',
+    showConfirmButton: true,
+    confirmButtonColor: '#6aade4',
+    confirmButtonText: 'Ok',
+  });
+}
+
 function victoriaJugador(){
   messageToConsole('Has ganado LaSalle Dungeon!');
   swal({
