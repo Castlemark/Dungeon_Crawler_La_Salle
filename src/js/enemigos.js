@@ -162,6 +162,7 @@ function lucharContraEnemigo() {
   }
 
   $('#empezarLuchaButton').prop('disabled', false);
+  afectarDurabilidad();
 }
 
 // Función que reduce la vida del enemigo según la cantidad especificada y devuelve true si ha muerto
@@ -190,7 +191,7 @@ function lucharContraJugador() {
     var palabras = partesAPalabras([proteccionJugador, parteAtaque]);
     if (proteccionJugador == parteAtaque) {
       // El jugador ha esquivado el golpe
-      messageToConsole('¡Enhorabuena, has esquivado el golpe! Has elegido proteger ' + palabras[0] + ' y has acertado. No se te ha restado vida.');
+      messageToConsole('¡Enhorabuena, has esquivado el golpe! Has elegido proteger ' + palabras[0] + ' y has acertado. No se te ha restado vida y la durabilidad de tus objetos no se ha afectado.');
       $('#empezarLuchaButton').html('Siguiente turno (contra enemigo)');
 
       // Guardamos de quien es el turno, que a continuación será del jugador (luchar contra enemigo)
@@ -251,6 +252,7 @@ function lucharContraJugador() {
           lucharContraEnemigo();
         });
       }
+      afectarDurabilidad();
     }
 
     $('#empezarLuchaButton').prop('disabled', false);
