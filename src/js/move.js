@@ -66,6 +66,7 @@ function mover(dir){
   }
 }
 
+//funcion que se encarga de actualizar el campo visibilidad de la variable partida y dibuja el minimapa en funcion de visibilidad
 function actualizarMapa(){
 
   var cas;
@@ -109,9 +110,10 @@ function actualizarMapa(){
   //mira el mapa de visibilidad y dibuja las casilla que sean visibles
   for (var k = 0; k < 10; k++) {
     for (var l = 0; l < 10; l++) {
-      //borra la flecha del jugador
+      //se asegura que la flecha del jugador solo este en la casilla actual haciendo un barrido de todo el mapa
       $("#"+idaux).attr("src","media/images/mapa_null.png");
 
+      //si esa casilla tiene visibilidad activada dibujara el tile correspondiente a su ID
       if (partida.mapas[partida.jugador.posicion.mapa].visibilidad[k][l] == true) {
 
         idaux = k*10 + l;
@@ -146,7 +148,7 @@ function actualizarMapa(){
     }
   }
 
-  //decide en que direccion se pondra la flecha
+  //decide en que direccion y posicion se pondra la flecha del jugador
   switch (partida.jugador.posicion.orientacion.join(' ')) {
     case "0 1":
       $("#"+id).attr("src","media/images/mapa_derecha.png");

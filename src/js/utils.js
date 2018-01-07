@@ -144,6 +144,7 @@ function limpiaMapa(){
   pintaPosicion(partida.jugador.posicion.x, partida.jugador.posicion.y);
 }
 
+//modifica los atributos de la la variable partida para poder canviar de mapa
 function subirPiso(){
 
   if (partida.jugador.posicion.mapa + 1 < partida.mapas.length) {
@@ -175,6 +176,7 @@ function subirPiso(){
   }
 }
 
+//Similar a la funcion subirPiso() , pero devuelve al jugador al primer Piso
 function primerPiso(){
 
   partida.jugador.posicion.mapa = 0;
@@ -197,6 +199,7 @@ function primerPiso(){
   });
 }
 
+//SweetAlert para la condicion de victoria
 function victoriaJugador(){
   messageToConsole('Has ganado LaSalle Dungeon!');
   swal({
