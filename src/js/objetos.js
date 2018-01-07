@@ -314,7 +314,7 @@ function afectarDurabilidad() {
     messageToConsole('Se ha reducido en 1 la durabilidad del objeto que tienes en tu mano izquierda.');
     // Refrescamos la durabilidad visualmente
     $('#durabilidad-mano-izq').html(partida.jugador.manos.izq.atributos.durabilidad);
-    if (partida.jugador.manos.izq.atributos.durabilidad == 0) {
+    if (partida.jugador.manos.izq.atributos.durabilidad <= 0) {
       vaciarMano('mano-izq');
       messageToConsole('Se ha agotado la durabilidad del objeto que tenías en tu mano izquierda, así que lo has perdido.');
     }
@@ -325,7 +325,7 @@ function afectarDurabilidad() {
     messageToConsole('Se ha reducido en 1 la durabilidad del objeto que tienes en tu mano derecha.');
     // Refrescamos la durabilidad visualmente
     $('#durabilidad-mano-der').html(partida.jugador.manos.der.atributos.durabilidad);
-    if (partida.jugador.manos.der.atributos.durabilidad == 0) {
+    if (partida.jugador.manos.der.atributos.durabilidad <= 0) {
       vaciarMano('mano-der');
       messageToConsole('Se ha agotado la durabilidad del objeto que tenías en tu mano derecha, así que lo has perdido.');
     }

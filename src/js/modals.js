@@ -236,7 +236,6 @@ function bindEmptySlotActionTo(button, slotNumber) {
         button.removeClass('btn-danger');
         button.addClass('btn-success');
         button.text('Slot ' + slotNumber + ': libre (click para guardar partida)');
-        messageToConsole('El slot ' + slotNumber + ' se ha vaciado correctamente');
         swal({
           title: 'Slot ' + slotNumber + ' vaciado correctamente',
           text: 'Ahora puedes usar el slot para guardar la partida.',
