@@ -196,3 +196,8 @@ function comprovarPosicion(){
   // Comprobamos si delante tenemos un enemigo (se está viendo un enemigo en el visor)
   comprobarEnemigo();
 }
+
+function saltar(){
+  mover('up');
+  mover('up');
+}
