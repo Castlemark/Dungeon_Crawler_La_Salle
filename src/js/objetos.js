@@ -14,6 +14,7 @@ function mostrarEnMochila(infoObjeto, idEnMochila) {
 
 function recogerObjeto(id) {
   var idEnMochila = guardarEnMochila(partida.objetos[id]);
+  messageToConsole('Has recogido un ' + partida.objetos[id].nombre + '! Ahora esta en tu mochila');
   mostrarEnMochila(partida.jugador.mochila[idEnMochila], idEnMochila);
 }
 

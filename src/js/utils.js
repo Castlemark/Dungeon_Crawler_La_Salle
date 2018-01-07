@@ -63,6 +63,7 @@ function sumXp(xp){
       vida += (firstLevel + i) * 10;
     }
     partida.jugador.vida = vida;
+    messageToConsole('Has subido al nivel ' + lastLevel + ' de experiencia');
     swal({
       title: "Level UP!",
       text: "¡Has subido de nivel! Ahora estás en el nivel " + lastLevel + " de experiencia, ¡eso significa que tus habilidades han aumentado!",
@@ -137,7 +138,7 @@ function subirPiso(){
 
     console.log("pasem del mapa " + partida.jugador.posicion.mapa + " al mapa " + (partida.jugador.posicion.mapa+1));
     console.log("El nuevo origen es: " + partida.jugador.posicion.x + " , " + partida.jugador.posicion.y + " y la nueva orientacion es: " + partida.jugador.orientacion);
-
+    messageToConsole('Has subido al siguiente piso');
     swal({
       title: "Subes de Piso!",
       text: "¡Has llegado al final del piso " + (partida.jugador.posicion.mapa - partida.mapas.length - 1) + "! ¿Estas preparado para el siguiente piso?",

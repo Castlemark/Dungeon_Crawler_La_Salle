@@ -91,6 +91,8 @@ function modalCargarPartida() {
          $(this).text('Descargando partida de slot 1...');
          descargarPartida('1', function() {
            // Partida descargada
+          messageToConsole('Partida descargada correctamente, puedes seguir jugando!');
+
            // Refrescamos la info de la UI
            refrescarInfoJugador();
            mostrarMenusPartida();
@@ -135,7 +137,7 @@ function modalCargarPartida() {
          $(this).text('Descargando partida de slot 2...');
          descargarPartida('2', function() {
            // Partida descargada
-
+           messageToConsole('Partida descargada correctamente, puedes seguir jugando!');
            // Refrescamos la info de la UI
            refrescarInfoJugador();
            mostrarMenusPartida();
@@ -188,6 +190,7 @@ function cambiarInfoJugador() {
     partida.jugador.avatar = $('#avatarId').val();
     refrescarInfoJugador();
     $('#newGameModal').modal('hide');
+    messageToConsole('Tus cambios se han guardado correctamente ' + partida.jugador.nombre);
   }
 }
 
@@ -225,6 +228,7 @@ function bindEmptySlotActionTo(button, slotNumber) {
         button.removeClass('btn-danger');
         button.addClass('btn-success');
         button.text('Slot ' + slotNumber + ': libre (click para guardar partida)');
+        messageToConsole('El slot ' + slotNumber + ' se ha vaciado correctamente');
         swal({
           title: 'Slot ' + slotNumber + ' vaciado correctamente',
           text: 'Ahora puedes usar el slot para guardar la partida.',
@@ -261,6 +265,7 @@ function bindFillSlotActionTo(button, slotNumber) {
       button.removeClass('btn-success');
       button.addClass('btn-danger');
       button.text('Slot ' + slotNumber + ': ocupado (click para vaciar)');
+      messageToConsole('La partida se ha guardado correctamente en el slot ' + slotNumber);
       swal({
         title: 'Partida guardada correctamente',
         text: 'La partida se ha guardado en el slot ' + slotNumber + '.',
@@ -354,6 +359,7 @@ function salirSinGuardar() {
     cancelButtonText: 'Cancelar'
   }).then(function() {
     // Salir sin guardar
+    location.reload();
   });
 }
 

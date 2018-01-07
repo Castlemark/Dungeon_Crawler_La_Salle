@@ -257,7 +257,7 @@ function mostrarEnemigoTriste() {
   base_image.onload = function () {
     // Pinta imagen en el canvas
     context.drawImage(this, 0, 0);
-  }
+  };
 }
 
 function mostrarEnemigoContento() {
@@ -270,11 +270,7 @@ function mostrarEnemigoContento() {
   base_image.onload = function () {
     // Pinta imagen en el canvas
     context.drawImage(this, 0, 0);
-  }
-}
-
-function muerteJugador() {
-  alert('Has muerto');
+  };
 }
 
 $(document).ready(function() {
@@ -323,5 +319,5 @@ function huir(){
     console.log('error justificante');
   }
   comprobarEnemigo();
-  messageToConsole('Has huido de la lucha como un cobarde!');
+  messageToConsole('Has huido de la lucha como un cobarde y has gastado tu justificante médico');
 }
