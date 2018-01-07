@@ -91,6 +91,10 @@ function modalCargarPartida() {
          $(this).text('Descargando partida de slot 1...');
          descargarPartida('1', function() {
            // Partida descargada
+           //actualizamos la Consola
+           $('#first-console-text').html(partida.consola.first);
+           $('#console-text').html(partida.consola.text);
+
           messageToConsole('Partida descargada correctamente, puedes seguir jugando!');
 
            // Refrescamos la info de la UI
@@ -137,7 +141,11 @@ function modalCargarPartida() {
          $(this).text('Descargando partida de slot 2...');
          descargarPartida('2', function() {
            // Partida descargada
+           //actualizamos la Consola
+           $('#first-console-text').html(partida.consola.first);
+           $('#console-text').html(partida.consola.text);
            messageToConsole('Partida descargada correctamente, puedes seguir jugando!');
+
            // Refrescamos la info de la UI
            refrescarInfoJugador();
            mostrarMenusPartida();
