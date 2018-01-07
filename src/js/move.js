@@ -75,85 +75,66 @@ function actualizarMapa(){
   var oposx = partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0];
   var oposy = partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1];
 
+  //limpiamos la flecha del jugador del mapa
+  for (var i = 0; i < 10; i++) {
+    for (var j = 0; j < 10; j++) {
+      idaux = i*10 + j;
+
+      $("#"+idaux).attr("src","media/images/mapa_null.png");
+    }
+  }
+
+  //decide que casilla dibujar en la posicion que esta mirando el jugador
   if ( oposx > -1 && oposy > -1 && oposx < 10 && oposy < 10) {
     oid = (partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0]) * 10 + (partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1]);
     ocasilla = partida.mapas[partida.jugador.posicion.mapa].distribucion[partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0]][partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1]];
 
     if (ocasilla == 10) {
-      $("#"+oid).attr("src","media/images/mapa_pared.png");
+      $("#"+oid).css("background-image", "url(media/images/mapa_pared.png)");
+    }
+    else if (ocasilla == 12) {
+      $("#"+oid).css("background-image", "url(media/images/mapa_salida.png)");
     }
     else if (ocasilla >= 30) {
-      $("#"+oid).attr("src","media/images/mapa_enemigo.png");
+      $("#"+oid).css("background-image", "url(media/images/mapa_enemigo.png)");
+    }
+    else if (ocasilla >= 20 && ocasilla < 30) {
+      $("#"+oid).css("background-image", "url(media/images/mapa_objeto.png)");
     }
   }
 
-  switch (casilla) {
-    case 10:
-      console.log("pared");
-      $("#"+id).attr("src","media/images/mapa_pared.png");
+  //decide en que direccion se pondra la flecha
+  switch (partida.jugador.posicion.orientacion.join(' ')) {
+    case "0 1":
+      $("#"+id).attr("src","media/images/mapa_derecha.png");
     break;
+    case "0 -1":
+      $("#"+id).attr("src","media/images/mapa_izquierda.png");
+    break;
+    case "1 0":
+      $("#"+id).attr("src","media/images/mapa_abajo.png");
+    break;
+    case "-1 0":
+      $("#"+id).attr("src","media/images/mapa_arriba.png");
+    break;
+    default:
+  }
+
+  //decide que casilla dibujar en la posicion del jugador
+  switch (casilla) {
     case 11:
       console.log("suelo");
-      $("#"+id).attr("src","media/images/mapa_suelo.png");
+      $("#"+id).css("background-image", "url(media/images/mapa_suelo.png)");
     break;
     case 12:
       console.log(id);
-      $("#"+id).attr("src","media/images/mapa_salida.png");
+      $("#"+id).css("background-image", "url(media/images/mapa_salida.png)");
     break;
     case 13:
       console.log("origen");
-      $("#"+id).attr("src","media/images/mapa_origen.png");
-    break;
-    case 20:
-      console.log("portatil");
-      $("#"+id).attr("src","media/images/mapa_objeto.png");
-    break;
-    case 21:
-      console.log("soldador");
-      $("#"+id).attr("src","media/images/mapa_objeto.png");
-    break;
-    case 22:
-      console.log("calculadora");
-      $("#"+id).attr("src","media/images/mapa_objeto.png");
-    break;
-    case 23:
-      console.log("usb");
-      $("#"+id).attr("src","media/images/mapa_objeto.png");
-    break;
-    case 30:
-      console.log("lsmaker");
-      $("#"+id).attr("src","media/images/mapa_enemigo.png");
-    break;
-    case 31:
-      console.log("daniel");
-      $("#"+id).attr("src","media/images/mapa_enemigo.png");
-    break;
-    case 32:
-      console.log("emiliano");
-      $("#"+id).attr("src","media/images/mapa_enemigo.png");
-    break;
-    case 33:
-      console.log("eva");
-      $("#"+id).attr("src","media/images/mapa_enemigo.png");
-    break;
-    case 34:
-      console.log("guillem");
-      $("#"+id).attr("src","media/images/mapa_enemigo.png");
-    break;
-    case 35:
-      console.log("ignasi");
-      $("#"+id).attr("src","media/images/mapa_enemigo.png");
-    break;
-    case 36:
-      console.log("joseantonio");
-      $("#"+id).attr("src","media/images/mapa_enemigo.png");
-    break;
-    case 37:
-      console.log("xavier");
-      $("#"+id).attr("src","media/images/mapa_enemigo.png");
+      $("#"+id).css("background-image", "url(media/images/mapa_origen.png)");
     break;
     default:
-      console.log(id + " :id no reconeguda");
     break;
 
   }

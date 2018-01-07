@@ -117,7 +117,8 @@ function limpiaMapa(){
     for (var j = 0; j < 10; j++) {
       id = i*10 + j;
 
-      $("#"+id).attr("src","media/images/mapa_blanco.png");
+      $("#"+id).css("background-image", "url(media/images/mapa_blanco.png)");
+      $("#"+id).attr("src","media/images/mapa_null.png");
     }
   }
   pintaPosicion(partida.jugador.posicion.x, partida.jugador.posicion.y);
