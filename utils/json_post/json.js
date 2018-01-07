@@ -60,7 +60,7 @@ var json = `
       "atributos": {
         "ataque": 5,
         "defensa": 1,
-        "durabilitat": 30,
+        "durabilidad": 30,
         "accionHuir": false
       }
     },

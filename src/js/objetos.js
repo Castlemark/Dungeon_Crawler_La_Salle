@@ -190,10 +190,10 @@ function ponerEnMano(infoObjeto, idMano) {
 function mostrarEnMano(infoObjeto, idMano) {
   if (idMano == 'mano-izq') {
     $('#info-mano-izq').show();
-    $('#nombre-mano-izq').text(infoObjeto.nombre);
-    $('#ataque-mano-izq').text(infoObjeto.atributos.ataque);
-    $('#defensa-mano-izq').text(infoObjeto.atributos.defensa);
-    $('#durabilidad-mano-izq').text(infoObjeto.atributos.durabilidad);
+    $('#nombre-mano-izq').html(infoObjeto.nombre);
+    $('#ataque-mano-izq').html(infoObjeto.atributos.ataque);
+    $('#defensa-mano-izq').html(infoObjeto.atributos.defensa);
+    $('#durabilidad-mano-izq').html(infoObjeto.atributos.durabilidad);
     $('#' + idMano).css('background-image', 'url("' + imagenPeqObjeto(infoObjeto.id) + '")');
     $('#' + idMano).off();
     $('#' + idMano).hover(
@@ -218,10 +218,10 @@ function mostrarEnMano(infoObjeto, idMano) {
   }
   else if (idMano == 'mano-der') {
     $('#info-mano-der').show();
-    $('#nombre-mano-der').text(infoObjeto.nombre);
-    $('#ataque-mano-der').text(infoObjeto.atributos.ataque);
-    $('#defensa-mano-der').text(infoObjeto.atributos.defensa);
-    $('#durabilidad-mano-der').text(infoObjeto.atributos.durabilidad);
+    $('#nombre-mano-der').html(infoObjeto.nombre);
+    $('#ataque-mano-der').html(infoObjeto.atributos.ataque);
+    $('#defensa-mano-der').html(infoObjeto.atributos.defensa);
+    $('#durabilidad-mano-der').html(infoObjeto.atributos.durabilidad);
     $('#' + idMano).css('background-image', 'url("' + imagenPeqObjeto(infoObjeto.id) + '")');
     $('#' + idMano).off();
     $('#' + idMano).hover(
