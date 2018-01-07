@@ -33,6 +33,9 @@ function mostrarInformacion(){
     nextLevelP += distPoints + 10;
     distPoints += 10;
   }
+  if(nextLevelP == partida.jugador.experiencia){
+    nextLevelP += distPoints + 10;
+  }
 
   $('#progress-bar-xp').attr('aria-valuemax', nextLevelP).attr('aria-valuenow', partida.jugador.experiencia).css('width', partida.jugador.experiencia/$('#progress-bar-xp').attr('aria-valuemax') *100 + '%');
   $('#label-xp').html(partida.jugador.experiencia + '/' + $('#progress-bar-xp').attr('aria-valuemax') + ' (Nivel ' + getNivel(partida.jugador.experiencia) + ')');
