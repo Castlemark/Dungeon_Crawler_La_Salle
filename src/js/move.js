@@ -163,6 +163,19 @@ function actualizarMapa(){
     default:
     break;
   }
+
+  //poner nivel de mapa
+  switch(partida.jugador.posicion.mapa){
+    case 0:
+    $('#nivel-actual').html('Nivel -3');
+    break;
+    case 1:
+    $('#nivel-actual').html('Nivel -2');
+    break;
+    case 2:
+    $('#nivel-actual').html('Nivel -1');
+    break;
+  }
 }
 
 function comprovarPosicion(){
