@@ -423,3 +423,14 @@ td img {
 #huirButton{
   margin-top: 10px;
 }
+
+footer{
+  background-color: $web-color;
+  font-size: 15px;
+  text-align: center;
+  p{
+    margin: 0px;
+    padding: 5px;
+    color: white;
+  }
+}
