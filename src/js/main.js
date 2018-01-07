@@ -63,6 +63,8 @@ function getImgOf(id) {
       return ('/dungeon_step.png');
     case 14:
       return ('/dungeon_xp.png');
+    case 15:
+      return('/dungeon_reset.png');
     case 20:
       // Portátil
       return ('/dungeon_portatil.png');

@@ -196,6 +196,10 @@ function comprovarPosicion(){
     messageToConsole('Has encontrado 10 puntos xp extras!');
     pintaPosicion(partida.jugador.posicion.x, partida.jugador.posicion.y);
   }
+  if (casilla == 15) {
+    //portal al primer piso
+    primerPiso();
+  }
   if(casilla >= 20 && casilla <= 29){
     //objeto
     recogerObjeto(casilla);
