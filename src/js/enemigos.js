@@ -44,7 +44,14 @@ function mostrarLucha() {
     });
   }
   else {
-    // Es el turno de alguien. Miramos de quién
+    // Es el turno de alguien
+    // En primer lugar actualizamos la vida del enemigo
+    // Obtenemos la información del enemigo
+    infoEnemigo = partida.enemigos[computeCurrentFront()];
+    $('#vida-actual-enemigo').html(partida.jugador.lucha.vidaEnemigo);
+    var porcentaje = (partida.jugador.lucha.vidaEnemigo * 1.0)/(infoEnemigo.atributos.vida * 1.0) * 100.0;
+    $('#progress-bar-vida-enemigo').css('width', Math.round(porcentaje) + '%');
+    // Miramos de quién es el turno
     // Si es el turno del jugador
     if (partida.jugador.lucha.turnoJugador) {
       $('#empezarLuchaButton').html('Siguiente turno (contra enemigo)');
@@ -137,6 +144,8 @@ function lucharContraEnemigo() {
       // Quitamos al enemigo del mapa. Ponemos suelo (11)
       var frontCoords = computeCurrentFrontCoords();
       partida.mapas[partida.jugador.posicion.mapa].distribucion[frontCoords[0]][frontCoords[1]] = 11;
+      // Actualizamos el minimapa para que ya no aparezca el enemigo
+      actualizarMapa();
     }
     else {
       // El enemigo sigue vivo
