@@ -79,7 +79,7 @@ function empezarLucha() {
   // Ocultamos los controles e indicamos que estamos luchando
   disableControls = true;
   comprobarJustificante();
-
+  messageToConsole('Empieza la lucha contra ' + infoEnemigo.nombre + '!');
   $('#controles').slideUp();
   luchar();
 

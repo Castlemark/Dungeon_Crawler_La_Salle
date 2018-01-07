@@ -176,6 +176,7 @@ function subirPiso(){
 }
 
 function victoriaJugador(){
+  messageToConsole('Has ganado LaSalle Dungeon!');
   swal({
     title: 'Felicidades! Acabas de superar la Salle Dungeon, toma tu licenciatura y ve a buscar un trabajo',
     text: "Dale a Nueva Partida para volver a empezar",
