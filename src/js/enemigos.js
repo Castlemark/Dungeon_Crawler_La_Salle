@@ -56,7 +56,7 @@ function mostrarLucha() {
     $('#empezarLuchaButton').click(function() {
       luchar();
     });
-
+    comprobarJustificante();
   }
   $('#lucha').slideDown();
   $('#mensaje-lucha').show();
@@ -78,8 +78,11 @@ function empezarLucha() {
   partida.jugador.lucha.vidaEnemigo = infoEnemigo.atributos.vida;
   // Ocultamos los controles e indicamos que estamos luchando
   disableControls = true;
+  comprobarJustificante();
+
   $('#controles').slideUp();
   luchar();
+
 }
 
 function luchar() {
@@ -311,5 +314,14 @@ function huir(){
   ocultarLucha();
   // Guardamos que ya no es turno de nadie
   partida.jugador.lucha.turnoJugador = null;
-  
+  //eliminamos el justificante de la mano
+  if(partida.jugador.manos.izq != null && partida.jugador.manos.izq.id == 24){
+    vaciarMano('mano-izq');
+  }else if(partida.jugador.manos.der != null && partida.jugador.manos.der.id == 24){
+    vaciarMano('mano-der');
+  }else{
+    console.log('error justificante');
+  }
+  comprobarEnemigo();
+  messageToConsole('Has huido de la lucha como un cobarde!');
 }

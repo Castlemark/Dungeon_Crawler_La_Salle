@@ -71,6 +71,9 @@ function getImgOf(id) {
     case 23:
       // USB
       return ('/dungeon_usb.png');
+    case 24:
+      //justificantes
+      return ('/dungeon_justificante.png');
     case 30:
       return ('/dungeon_lsmaker_standing.png');
     case 31:

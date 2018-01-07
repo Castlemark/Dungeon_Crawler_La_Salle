@@ -35,6 +35,8 @@ function imagenPeqObjeto(idObjeto) {
       return 'media/images/square22.jpg';
     case 23:
       return 'media/images/square23.jpg';
+    case 24:
+      return 'media/images/square24.jpg';
   }
 }
 
@@ -180,6 +182,8 @@ function ponerEnMano(infoObjeto, idMano) {
   }
   // Actualizamos las barras de ataque y defensa
   mostrarInformacion();
+  //comprobamos si tenemos un justificante en la mano
+  comprobarJustificante();
 }
 
 function mostrarEnMano(infoObjeto, idMano) {
@@ -203,6 +207,8 @@ function mostrarEnMano(infoObjeto, idMano) {
       $(this).off();
       deManoAMochila(partida.jugador.manos.izq);
       partida.jugador.manos.izq = null;
+      comprobarJustificante();
+
       $(this).unbind('mouseenter mouseleave');
       $(this).removeClass('mano-hover');
       $(this).css('background-image', 'none');
@@ -229,6 +235,8 @@ function mostrarEnMano(infoObjeto, idMano) {
       $(this).off();
       deManoAMochila(partida.jugador.manos.der);
       partida.jugador.manos.der = null;
+      comprobarJustificante();
+
       $(this).unbind('mouseenter mouseleave');
       $(this).removeClass('mano-hover');
       $(this).css('background-image', 'none');
@@ -266,30 +274,34 @@ function cargarMochilaYManos() {
   }
 }
 
-<<<<<<< HEAD
 //funcion que comprueba si se puede utilizar el justificante medico
 function comprobarJustificante(){
-  if(partida.jugador.lucha.activa && (partida.jugador.manos.izq.id == 24 || partida.jugador.manos.der.id == 24)){
+  if(partida.jugador.lucha.activa && ((partida.jugador.manos.izq != null && partida.jugador.manos.izq.id == 24) || (partida.jugador.manos.der != null && partida.jugador.manos.der.id == 24))){
     $('#huirButton').prop('hidden', false);
   }else{
     $('#huirButton').prop('hidden', true);
-=======
+  }
+}
+
 function vaciarMano(idMano) {
   if (idMano == 'mano-izq') {
     $('#' + idMano).off();
     partida.jugador.manos.izq = null;
+    comprobarJustificante();
+
     $('#' + idMano).unbind('mouseenter mouseleave');
     $('#' + idMano).removeClass('mano-hover');
     $('#' + idMano).css('background-image', 'none');
     $('#info-mano-izq').hide();
   }
   else if (idMano == 'mano-der') {
-    ('#' + idMano).off();
+    $('#' + idMano).off();
     partida.jugador.manos.der = null;
+    comprobarJustificante();
+
     $('#' + idMano).unbind('mouseenter mouseleave');
     $('#' + idMano).removeClass('mano-hover');
     $('#' + idMano).css('background-image', 'none');
     $('#info-mano-der').hide();
->>>>>>> c3db34c17d41b14f37a348d5dbecb3ce1d670db2
   }
 }
