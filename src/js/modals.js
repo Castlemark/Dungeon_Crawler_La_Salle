@@ -20,6 +20,18 @@ function modalNuevaPartida() {
    });
 }
 
+//función que se llama si falla descargar la configuración de nueva partida
+function volverModalNuevaPartida() {
+  // Hacemos que el modal se pueda cerrar
+  newGameModalDisableClose = false;
+  $('#newGameModalClose').fadeTo('fast', 1);
+  // Quitamos el aviso de que estamos descargando la configuración de partida nueva
+  $('#newGameModal-info').slideDown();
+  $('#newGameForm').slideDown();
+  $('#iniciarPartidaButton').fadeTo('fast', 1);
+  $('#newGameModal-info-downloading').slideUp();
+}
+
 //función que se llama al iniciar partida en el modal
 function iniciarPartida() {
   if ($('#name').val() != '' && $('#avatarId').val() != 0) {
