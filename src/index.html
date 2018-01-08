@@ -14,14 +14,14 @@
     <header>
       <div class="row">
         <div class="col-md-4">
-          <h1 class="logo"><img src="media/images/logo.png" width="400px" alt="LaSalle Dungeon"/></h1>
+          <h1 class="logo"><img src="media/images/logo.png" width="400" alt="LaSalle Dungeon"/></h1>
         </div>
         <div class="col-md-8">
           <nav>
             <ul>
               <li hidden id="volumeOn"><a onclick="volume('on')"><i class="fa fa-volume-up" aria-hidden="true"></i></a></li>
               <li id="volumeOff"><a onclick="volume('off')"><i class="fa fa-volume-off" aria-hidden="true"></i></a></li>
-              <li id="menu-jugador" hidden><a onclick="modalCambiarInfo()" class="user-info"><img class="avatar" src="media/images/user.png" width="50px" alt="avatar"/><span class="player-name"></span></a></li>
+              <li id="menu-jugador" hidden><a onclick="modalCambiarInfo()" class="user-info"><img class="avatar" src="media/images/user.png" width="50" alt="avatar"/><span class="player-name"></span></a></li>
               <li id="menu-cargarPartida"><a onclick="modalCargarPartida()">Cargar partida</a></li>
               <li id="menu-nuevaPartida"><a onclick="modalNuevaPartida()">Nueva partida</a></li>
               <li id="menu-salir" hidden><a onclick="salirSinGuardar()">Salir sin guardar</a></li>
@@ -60,7 +60,7 @@
           </div>
           <div class="box-body">
             <table>
-              <body>
+              <tbody>
                 <tr>
                   <td><img style="background-image:url(media/images/mapa_blanco.png)" src = "media/images/mapa_null.png" id="0" alt="mapa"/></td>
                   <td><img style="background-image:url(media/images/mapa_blanco.png)" src = "media/images/mapa_null.png" id="1" alt="mapa"/></td>
@@ -181,7 +181,7 @@
                   <td><img style="background-image:url(media/images/mapa_blanco.png)" src = "media/images/mapa_null.png" id="98" alt="mapa"/></td>
                   <td><img style="background-image:url(media/images/mapa_blanco.png)" src = "media/images/mapa_null.png" id="99" alt="mapa"/></td>
                 </tr>
-              </body>
+              </tbody>
             </table>
           </div>
         </section>
@@ -228,8 +228,8 @@
             <h2>Consola</h2>
           </div>
           <div class="box-body">
-            <text id="first-console-text" class="first-line"></text>
-            <text id="console-text" class="second-line"></text>
+            <label id="first-console-text" class="first-line"></label>
+            <label id="console-text" class="second-line"></label>
           </div>
         </section>
       </div>
@@ -240,15 +240,15 @@
           </div>
           <div class="box-body">
             <div>
-              <a onclick="mover('up')" id="movendavant"><img src="media/images/up.png" width="25%" alt="arriba"/></a>
+              <a onclick="mover('up')" id="movendavant"><img src="media/images/up.png" width="75" alt="arriba"/></a>
             </div>
             <div>
-              <a onclick="mover('left')" id="movesquerra"><img src="media/images/left.png" width="25%" alt="izquierda"/></a>
-              <a onclick="mover('down')" id="movdreta"><img src="media/images/down.png" width="25%" alt="abajo"/></a>
-              <a onclick="mover('right')" id="movendarrere"><img src="media/images/right.png" width="25%" alt="derecha"/></a>
+              <a onclick="mover('left')" id="movesquerra"><img src="media/images/left.png" width="75" alt="izquierda"/></a>
+              <a onclick="mover('down')" id="movdreta"><img src="media/images/down.png" width="75" alt="abajo"/></a>
+              <a onclick="mover('right')" id="movendarrere"><img src="media/images/right.png" width="75" alt="derecha"/></a>
             </div>
             <div class="barra">
-              <a onclick="saltar()" id="saltar"><img src="media/images/barra.png" width="80%" alt="saltar"/></a>
+              <a onclick="saltar()" id="saltar"><img src="media/images/barra.png" width="225" alt="saltar"/></a>
             </div>
           </div>
         </section>
@@ -258,7 +258,7 @@
           </div>
           <div class="box-body">
             <p id="mensaje-lucha">¡Tienes un enemigo delante! Intenta que tu ataque supere su defensa y que tu defensa supere su ataque.</p>
-            <p style="text-align: center">
+            <div style="text-align: center">
               <button id="empezarLuchaButton" type="button" class="btn btn-salle">¡Empezar lucha!</button>
               <button hidden onclick="huir()" id="huirButton" type="button" class="btn btn-salle">Huir (usar justificante)</button>
               <div id="info-enemigo">
@@ -278,7 +278,7 @@
                 <p id="objetos-enemigo">
                 </p>
               </div>
-            </p>
+            </div>
           </div>
         </section>
       </div>
@@ -293,7 +293,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="newGameModalLabel"></h5>
+            <h5 class="modal-title" id="newGameModalLabel">NUEVA PARTIDA</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="newGameModalClose">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -311,16 +311,16 @@
               </div>
               <div class="row avatares">
                 <div class="col-md-3">
-                  <img id="avatar_1" onclick="selectAvatar(1)" src="media/images/avatar1.png" width="80%" alt="avatar1"/>
+                  <img id="avatar_1" onclick="selectAvatar(1)" src="media/images/avatar1.png" width="80" alt="avatar1"/>
                 </div>
                 <div class="col-md-3">
-                  <img id="avatar_2" onclick="selectAvatar(2)" src="media/images/avatar2.png" width="80%" alt="avatar2"/>
+                  <img id="avatar_2" onclick="selectAvatar(2)" src="media/images/avatar2.png" width="80" alt="avatar2"/>
                 </div>
                 <div class="col-md-3">
-                  <img id="avatar_3" onclick="selectAvatar(3)" src="media/images/avatar3.png" width="80%" alt="avatar3"/>
+                  <img id="avatar_3" onclick="selectAvatar(3)" src="media/images/avatar3.png" width="80" alt="avatar3"/>
                 </div>
                 <div class="col-md-3">
-                  <img id="avatar_4" onclick="selectAvatar(4)" src="media/images/avatar4.png" width="80%" alt="avatar4"/>
+                  <img id="avatar_4" onclick="selectAvatar(4)" src="media/images/avatar4.png" width="80" alt="avatar4"/>
                 </div>
               </div>
             </form>
