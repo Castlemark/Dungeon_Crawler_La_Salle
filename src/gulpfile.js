@@ -22,7 +22,7 @@ gulp.task('images', function() {
 });
 
 gulp.task('audio', function() {
-  return gulp.src('media/audio/*.{mp3}')
+  return gulp.src('media/audio/*.mp3')
     .pipe(gulp.dest('../build/media/audio'))
 });
 
