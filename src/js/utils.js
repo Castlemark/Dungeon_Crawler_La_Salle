@@ -158,8 +158,6 @@ function subirPiso(){
 
     limpiaMapa();
 
-    console.log("pasem del mapa " + partida.jugador.posicion.mapa + " al mapa " + (partida.jugador.posicion.mapa+1));
-    console.log("El nuevo origen es: " + partida.jugador.posicion.x + " , " + partida.jugador.posicion.y + " y la nueva orientacion es: " + partida.jugador.orientacion);
     messageToConsole('Has subido al siguiente piso');
     swal({
       title: "Subes de Piso!",

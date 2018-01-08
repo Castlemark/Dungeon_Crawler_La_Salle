@@ -7,7 +7,6 @@ function guardarEnMochila(infoObjeto) {
 // Función que muestra el objeto en la UI dentro de la mochila
 function mostrarEnMochila(infoObjeto, idEnMochila) {
   $('#mochila').children().filter('i').remove();
-  console.log($('#mochila').children().filter('i'));
   $('#mochila').append('<img id="objeto' + idEnMochila + '" src="' + imagenPeqObjeto(infoObjeto.id) + '" class="tooltip-element draggable drag-drop objeto-mochila" data-toggle="tooltip" title="' + infoObjeto.nombre + '" alt="' + infoObjeto.nombre + '"/>');
   $('#objeto' + idEnMochila).tooltip();
   // Actualizamos las barras de ataque y defensa
