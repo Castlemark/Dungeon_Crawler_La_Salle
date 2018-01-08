@@ -10,6 +10,7 @@ function descargarPartidaNueva(callback) {
     success: function(json) {
       // Ahora que ya tenemos la información podemos inicializar la variable global de la partida
       partida = json;
+      limpiaMapa();
       callback();
     },
     error: function(responseText) {
