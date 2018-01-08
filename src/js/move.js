@@ -14,7 +14,6 @@ function mover(dir){
           if(computeCurrentFront() != 10 && !(computeCurrentFront() >= 30 && computeCurrentFront() <= 39)){
             partida.jugador.posicion.x += partida.jugador.posicion.orientacion[0];
             partida.jugador.posicion.y += partida.jugador.posicion.orientacion[1];
-            console.log('ok');
             comprovarPosicion();
           }
           //else if (computeCurrentFront() >= 30 && computeCurrentFront() <= 39) {
@@ -27,7 +26,6 @@ function mover(dir){
           if(computeCurrentBack() != 10 && !(computeCurrentBack() >= 30 && computeCurrentBack() <= 39)){
             partida.jugador.posicion.x -= partida.jugador.posicion.orientacion[0];
             partida.jugador.posicion.y -= partida.jugador.posicion.orientacion[1];
-            console.log('ok');
             comprovarPosicion();
           }
           //else if (computeCurrentBack() >= 30 && computeCurrentBack() <= 39) {
@@ -60,10 +58,7 @@ function mover(dir){
         comprobarEnemigo();
       break;
     }
-    console.log(partida.jugador.posicion.x + " , " + partida.jugador.posicion.y);
     actualizarMapa();
-  }else{
-    console.log('Controles deshabilitados');
   }
 }
 
@@ -105,7 +100,6 @@ function actualizarMapa() {
     else if (ocasilla >= 20 && ocasilla < 30) {
       partida.mapas[partida.jugador.posicion.mapa].visibilidad[oposx][oposy] = true;
     }
-    console.log(partida.mapas[partida.jugador.posicion.mapa].visibilidad);
   }
 
   //mira el mapa de visibilidad y dibuja las casilla que sean visibles

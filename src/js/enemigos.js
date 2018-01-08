@@ -12,7 +12,6 @@ function comprobarEnemigo() {
 
 // Función que pone en la UI la información del enemigo que hay delante
 function cargarInfoEnemigo() {
-  console.log(partida.enemigos[computeCurrentFront()]);
   var infoEnemigo = partida.enemigos[computeCurrentFront()];
   $('#nombre-enemigo').text(infoEnemigo.nombre);
   $('#vida-actual-enemigo').text(infoEnemigo.atributos.vida);
@@ -25,7 +24,6 @@ function cargarInfoEnemigo() {
     $(this).tooltip('hide');
     $(this).tooltip('disable');
     $(this).remove();
-    console.log($(this));
   });
   for (i = 0; i < infoEnemigo.objetos.length; i++) {
     var infoObjeto = partida.objetos[infoEnemigo.objetos[i]];
@@ -343,8 +341,6 @@ function huir() {
     vaciarMano('mano-izq');
   }else if(partida.jugador.manos.der != null && partida.jugador.manos.der.id == 24){
     vaciarMano('mano-der');
-  }else{
-    console.log('error justificante');
   }
   comprobarEnemigo();
   messageToConsole('Has huido de la lucha como un cobarde y has gastado tu justificante médico');
