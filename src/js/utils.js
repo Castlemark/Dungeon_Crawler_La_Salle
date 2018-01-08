@@ -1,4 +1,4 @@
-//funcion para saber en que nivel está el jugador mediante sus xp
+// Función para saber en que nivel está el jugador mediante sus xp
 function getNivel(xp){
   var nivel = 1;
   var puntos = xp;
@@ -56,7 +56,7 @@ function computeCurrentBack() {
   return computeBack(partida.jugador.posicion.x, partida.jugador.posicion.y);
 }
 
-//función que suma puntos xp y muestra si has subido de nivel y actualiza la vida máxima, el ataque y la defensa.
+// Función que suma puntos xp y muestra si has subido de nivel y actualiza la vida máxima, el ataque y la defensa.
 function sumXp(xp){
   var firstLevel =getNivel(partida.jugador.experiencia);
   partida.jugador.experiencia += xp;
@@ -96,8 +96,7 @@ function sumXp(xp){
   mostrarInformacion();
 }
 
-/*función que retorna la vida máxima que se podria tener en el nivel
-d'exepriencia, eso nos será útil para pintar la barra de infromación del jugador*/
+// Función que retorna la vida máxima que se podria tener en el nivel d'exepriencia, eso nos será útil para pintar la barra de infromación del jugador
 function getMaxVidas(nivel){
   var vidaMax = 10;
   for(var i = 2; i <= nivel; i++){
@@ -106,7 +105,7 @@ function getMaxVidas(nivel){
   return vidaMax;
 }
 
-//función que retorna la suma de ataque de jugador y los objetos que tiene en las manos
+// Función que retorna la suma de ataque de jugador y los objetos que tiene en las manos
 function getAtaque(){
   var ataque = partida.jugador.ataque;
   if(partida.jugador.manos.der != null){
@@ -118,7 +117,7 @@ function getAtaque(){
   return ataque;
 }
 
-//función que retorna la suma de defensa de jugador y los objetos que tiene en las manos
+// Función que retorna la suma de defensa de jugador y los objetos que tiene en las manos
 function getDefensa(){
   var defensa = partida.jugador.defensa;
   if(partida.jugador.manos.der != null){
@@ -129,7 +128,8 @@ function getDefensa(){
   }
   return defensa;
 }
-//funcion que devuelve todo el minimapa a su estado original (negro)
+
+// Función que devuelve todo el minimapa a su estado original (negro)
 function limpiaMapa(){
   var id;
 
@@ -144,7 +144,7 @@ function limpiaMapa(){
   pintaPosicion(partida.jugador.posicion.x, partida.jugador.posicion.y);
 }
 
-//modifica los atributos de la la variable partida para poder canviar de mapa
+// Función que modifica los atributos de la la variable partida para poder canviar de mapa
 function subirPiso(){
 
   if (partida.jugador.posicion.mapa + 1 < partida.mapas.length) {
@@ -176,9 +176,8 @@ function subirPiso(){
   }
 }
 
-//Similar a la funcion subirPiso() , pero devuelve al jugador al primer Piso
-function primerPiso(){
-
+// Función similar a la funcion subirPiso(), pero ésta devuelve al jugador al primer piso
+function primerPiso() {
   partida.jugador.posicion.mapa = 0;
 
   partida.jugador.posicion.x = partida.mapas[partida.jugador.posicion.mapa].origen[0];
@@ -199,7 +198,7 @@ function primerPiso(){
   });
 }
 
-//SweetAlert para la condicion de victoria
+// Función que muestra un SweetAlert para la condicion de victoria
 function victoriaJugador(){
   messageToConsole('Has ganado LaSalle Dungeon!');
   swal({
@@ -213,6 +212,7 @@ function victoriaJugador(){
   reiniciarModals();
 }
 
+// Función que activa o desactiva la música
 function volume(option){
   switch(option){
     case 'on':

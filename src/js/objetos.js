@@ -1,8 +1,10 @@
+// Función que guarda en la mochila el objeto que recibe
 function guardarEnMochila(infoObjeto) {
   partida.jugador.mochila.push(infoObjeto);
   return partida.jugador.mochila.length-1;
 }
 
+// Función que muestra el objeto en la UI dentro de la mochila
 function mostrarEnMochila(infoObjeto, idEnMochila) {
   $('#mochila').children().filter('i').remove();
   console.log($('#mochila').children().filter('i'));
@@ -12,6 +14,7 @@ function mostrarEnMochila(infoObjeto, idEnMochila) {
   mostrarInformacion();
 }
 
+// Función que guarda en la mochila el objeto que recibe en forma de id
 function recogerObjeto(id) {
   var copiedObject = jQuery.extend(true, {}, partida.objetos[id]);// Deep copy
   var idEnMochila = guardarEnMochila(copiedObject);
@@ -19,6 +22,7 @@ function recogerObjeto(id) {
   mostrarEnMochila(partida.jugador.mochila[idEnMochila], idEnMochila);
 }
 
+// Función que guarda en la mochila los objetos que recibe en forma de array de ids
 function recogerObjetos(ids) {
   for (i = 0; i < ids.length; i++) {
     var id = ids[i];
@@ -28,6 +32,7 @@ function recogerObjetos(ids) {
   }
 }
 
+// Función que recibe el id de un objeto y devuelve la ruta a su imágen pequeña
 function imagenPeqObjeto(idObjeto) {
   switch (idObjeto) {
     case 20:
@@ -43,34 +48,34 @@ function imagenPeqObjeto(idObjeto) {
   }
 }
 
-// target elements with the "draggable" class
-interact('.draggable')
-  .draggable({
-    // enable inertial throwing
-    inertia: true,
-    // keep the element within the area of it's parent
-    /*restrict: {
-      restriction: "parent",
-      endOnly: false,
-      elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-    },*/
-    // enable autoScroll
-    autoScroll: true,
+// Target elements with the "draggable" class
+interact('.draggable').draggable({
+  // enable inertial throwing
+  inertia: true,
+  // keep the element within the area of it's parent
+  /*restrict: {
+    restriction: "parent",
+    endOnly: false,
+    elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+  },*/
+  // enable autoScroll
+  autoScroll: true,
 
-    // call this function on every dragmove event
-    onmove: dragMoveListener,
-    // call this function on every dragend event
-    onend: function (event) {
-      var textEl = event.target.querySelector('p');
+  // call this function on every dragmove event
+  onmove: dragMoveListener,
+  // call this function on every dragend event
+  onend: function (event) {
+    var textEl = event.target.querySelector('p');
 
-      textEl && (textEl.textContent =
-        'moved a distance of '
-        + (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-                     Math.pow(event.pageY - event.y0, 2) | 0))
-            .toFixed(2) + 'px');
-    }
-  });
+    textEl && (textEl.textContent =
+      'moved a distance of '
+      + (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
+                   Math.pow(event.pageY - event.y0, 2) | 0))
+          .toFixed(2) + 'px');
+  }
+});
 
+// Función que se llama para cada evento dragmove
 function dragMoveListener (event) {
   var target = event.target,
       // keep the dragged position in the data-x/data-y attributes
@@ -87,7 +92,7 @@ function dragMoveListener (event) {
   target.setAttribute('data-y', y);
 }
 
-// enable draggables to be dropped into this
+// Enable draggables to be dropped into this
 interact('.dropzone').dropzone({
   // only accept elements matching this CSS selector
   accept: '.objeto-mochila',
@@ -102,11 +107,13 @@ interact('.dropzone').dropzone({
   ondropdeactivate: onDropDeactivate
 });
 
+// Función llamada por el evento onDropActivate
 function onDropActivate(event) {
   // add active dropzone feedback
   event.target.classList.add('drop-active');
 }
 
+// Función llamada por el evento onDragEnter
 function onDragEnter(event) {
   var draggableElement = event.relatedTarget,
       dropzoneElement = event.target;
@@ -117,18 +124,21 @@ function onDragEnter(event) {
   draggableElement.textContent = 'Dragged in';
 }
 
+// Función llamada por el evento onDragLeave
 function onDragLeave(event) {
   // remove the drop feedback style
   event.target.classList.remove('drop-target');
   event.relatedTarget.classList.remove('can-drop');
 }
 
+// Función llamada por el evento onDrop
 function onDrop(event) {
   $(event.relatedTarget).tooltip('hide');
   $(event.relatedTarget).tooltip('disable');
   deMochilaAMano(event.relatedTarget.id.substr('objeto'.length), event.target.id);
 }
 
+// Función llamada por el evento onDropDeactivate
 function onDropDeactivate(event) {
   var target = event.relatedTarget;
   if (!target.classList.contains('can-drop')) {
@@ -145,17 +155,20 @@ function onDropDeactivate(event) {
   event.target.classList.remove('drop-target');
 }
 
+// Función que transfiere un objeto de la mochila a la mano
 function deMochilaAMano(idEnMochila, idMano) {
   var infoObjeto = sacarDeMochila(idEnMochila);
   ponerEnMano(infoObjeto, idMano);
 }
 
+// Función que saca un objeto de la mochila
 function sacarDeMochila(idEnMochila) {
   var infoObjeto = partida.jugador.mochila.splice(idEnMochila, 1);// The second parameter of splice is the number of elements to remove
   cargarMochila();
   return infoObjeto[0];
 }
 
+// Función que muestra en la UI los objetos que hay en la mochila
 function cargarMochila() {
   $('#mochila').children().each(function() {
     $(this).remove();
@@ -168,6 +181,7 @@ function cargarMochila() {
   }
 }
 
+// Función que pone en la mano el objeto que recibe (tanto internamente como en la UI)
 function ponerEnMano(infoObjeto, idMano) {
   if (idMano == 'mano-izq') {
     mostrarEnMano(infoObjeto, idMano);
@@ -189,6 +203,7 @@ function ponerEnMano(infoObjeto, idMano) {
   comprobarJustificante();
 }
 
+// Función que muestra en la UI el objeto en la mano
 function mostrarEnMano(infoObjeto, idMano) {
   if (idMano == 'mano-izq') {
     $('#info-mano-izq').show();
@@ -252,11 +267,13 @@ function mostrarEnMano(infoObjeto, idMano) {
   }
 }
 
+// Función que transfiere un objeto de la mano a la mochila
 function deManoAMochila(infoObjeto) {
   var idEnMochila = guardarEnMochila(infoObjeto);
   mostrarEnMochila(partida.jugador.mochila[idEnMochila], idEnMochila);
 }
 
+// Función que muestra en la UI lo que hay en las manos y en la mochila
 function cargarMochilaYManos() {
   cargarMochila();// Vacia visualmente la mochila y muestra lo que hay
   if (partida.jugador.manos.izq != null) {
@@ -281,7 +298,7 @@ function cargarMochilaYManos() {
   }
 }
 
-//funcion que comprueba si se puede utilizar el justificante medico
+// Función que comprueba si se puede utilizar el justificante medico
 function comprobarJustificante(){
   if(partida.jugador.lucha.activa && ((partida.jugador.manos.izq != null && partida.jugador.manos.izq.id == 24) || (partida.jugador.manos.der != null && partida.jugador.manos.der.id == 24))){
     $('#huirButton').prop('hidden', false);
@@ -290,6 +307,7 @@ function comprobarJustificante(){
   }
 }
 
+// Función que quita el objeto que tiene la mano, tanto internamente como en la UI
 function vaciarMano(idMano) {
   if (idMano == 'mano-izq') {
     $('#' + idMano).off();
@@ -313,6 +331,7 @@ function vaciarMano(idMano) {
   }
 }
 
+// Función que reduce en una unidad la durabilidad de los objetos que tiene en las manos
 function afectarDurabilidad() {
   if (partida.jugador.manos.izq != null) {
     // Hay algo. Afectamos a su durabilidad

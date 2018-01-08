@@ -1,4 +1,3 @@
-
 /* Inicializar la partida */
 var partida = {};
 partida.mapa = mapa;
@@ -22,9 +21,8 @@ var actualPosition = {
 
 var enemigos = {};
 
+// Función que da la bienvenida al jugador y prepara la web
 function iniciarJuego() {
-  /* TODO */
-  //preparar variables de la partida
   partida.objetos = {};
 
   //mostramos la imagen de inicio en el visor
@@ -37,7 +35,7 @@ function iniciarJuego() {
   messageToConsole('¡Bienvenido a LaSalle Dungeon! Selecciona "Nueva partida" o "Cargar partida" para empezar a jugar');
 }
 
-/* Convierte lo que hay en el mapa en un archivo de imagen */
+// Función que convierte lo que hay en el mapa en un archivo de imagen */
 function mapaToImg(x, y) {
   if (!(partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] < 0 || partida.jugador.posicion.x + partida.jugador.posicion.orientacion[0] > 9 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] < 0 || partida.jugador.posicion.y + partida.jugador.posicion.orientacion[1] > 9)) {
     var front = computeFront(x, y);
@@ -51,6 +49,7 @@ function mapaToImg(x, y) {
   }
 }
 
+// Función que convierte un id de casilla en un archivo de imagen */
 function getImgOf(id) {
   switch (id) {
     case 10:

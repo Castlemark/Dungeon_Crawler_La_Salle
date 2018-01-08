@@ -1,5 +1,6 @@
 var token = '844dc4d3-d096-4a5b-b6bf-b6515691cce6';
 
+// Función que realiza la llamada ajax para descargar la configuración de una partida nueva. Recibe una función (callback) para ejecutarla cuando la llamada ajax haya tenido éxito
 function descargarPartidaNueva(callback) {
   console.log('Descargando la configuración de partida nueva...');
   $.ajax({
@@ -29,6 +30,7 @@ function descargarPartidaNueva(callback) {
   });
 }
 
+// Función que realiza la llamada ajax para descargar la información sobre los slots. Recibe una función (callback) para ejecutarla cuando la llamada ajax haya tenido éxito
 function descargarInfoSlots(callback) {
   console.log('Descargando la información de los slots...');
   $.ajax({
@@ -60,6 +62,7 @@ function descargarInfoSlots(callback) {
   });
 }
 
+// Función que realiza la llamada ajax para descargar una partida existente. Recibe una función (callback) para ejecutarla cuando la llamada ajax haya tenido éxito
 function descargarPartida(slot, callback) {
   console.log('Descargando la configuración de partida existente...');
   $.ajax({
@@ -91,6 +94,7 @@ function descargarPartida(slot, callback) {
   });
 }
 
+// Función que realiza la llamada ajax para guardar una partida. Recibe una función (callback) para ejecutarla cuando la llamada ajax haya tenido éxito
 function guardarPartida(slot, callback) {
   console.log('Guardando partida en slot...');
   $.ajax({
@@ -121,6 +125,7 @@ function guardarPartida(slot, callback) {
   });
 }
 
+// Función que realiza la llamada ajax para vaciar un slot. Recibe una función (callback) para ejecutarla cuando la llamada ajax haya tenido éxito
 function vaciarSlot(slot, callback) {
   console.log('Vaciando slot...');
   $.ajax({

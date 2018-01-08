@@ -5,6 +5,7 @@ function colocarEnInicioMapa() {
   partida.jugador.posicion.orientacion = partida.mapas[partida.jugador.posicion.mapa].orientacion;
 }
 
+// Función que mueve el jugador en la dirección indicada
 function mover(dir){
   if(!disableControls){
     switch (dir){
@@ -66,8 +67,8 @@ function mover(dir){
   }
 }
 
-//funcion que se encarga de actualizar el campo visibilidad de la variable partida y dibuja el minimapa en funcion de visibilidad
-function actualizarMapa(){
+// Función que se encarga de actualizar el campo visibilidad de la variable partida y dibuja el minimapa en funcion de visibilidad
+function actualizarMapa() {
 
   var cas;
 
@@ -180,6 +181,7 @@ function actualizarMapa(){
   }
 }
 
+// Función que comprueba la posición actual del jugador y, si hay que hacer alguna acción especial, la hace
 function comprovarPosicion(){
   var casilla = partida.mapas[partida.jugador.posicion.mapa].distribucion[partida.jugador.posicion.x][partida.jugador.posicion.y];
   //si está en una casilla sin ninguna acción solo pintamos esta
@@ -216,6 +218,7 @@ function comprovarPosicion(){
   comprobarEnemigo();
 }
 
+// Función que hace un salto (movimiento de dos casillas hacia adelante)
 function saltar(){
   mover('up');
   mover('up');

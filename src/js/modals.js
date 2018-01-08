@@ -3,7 +3,7 @@ var loadGameModalDisableClose = false;
 var saveGameModalDisableClose = false;
 
 
-//Abre el modal #newGameForm con la configuración para iniciar una nueva partida
+// Función que abre el modal #newGameForm con la configuración para iniciar una nueva partida
 function modalNuevaPartida() {
   $('#name').prop('value', '');
   $('#avatarId').prop('value', 0);
@@ -20,7 +20,7 @@ function modalNuevaPartida() {
    });
 }
 
-//función que se llama si falla descargar la configuración de nueva partida
+// Función que se llama si falla descargar la configuración de nueva partida
 function volverModalNuevaPartida() {
   // Hacemos que el modal se pueda cerrar
   newGameModalDisableClose = false;
@@ -32,7 +32,7 @@ function volverModalNuevaPartida() {
   $('#newGameModal-info-downloading').slideUp();
 }
 
-//función que se llama al iniciar partida en el modal
+// Función que se llama al iniciar partida en el modal
 function iniciarPartida() {
   if ($('#name').val() != '' && $('#avatarId').val() != 0) {
     // Hacemos que el modal no se pueda cerrar
@@ -71,6 +71,7 @@ function iniciarPartida() {
   }
 }
 
+// Función que cierra el modal de cargar partida
 function closeLoadGameModal() {
   // Hacemos que el modal se pueda cerrar
   loadGameModalDisableClose = false;
@@ -79,6 +80,7 @@ function closeLoadGameModal() {
   $('#loadGameModal').modal('hide');
 }
 
+// Función que muestra el modal de cargar partida
 function modalCargarPartida() {
   // En primer lugar "desatamos" (unbind) los eventos de click de los botones
   $('#slot1-load').off();
@@ -191,7 +193,7 @@ function modalCargarPartida() {
    });
 }
 
-//Abre el modal #newGameModal con la configuración para cambiar la info
+// Función que abre el modal #newGameModal con la configuración para cambiar la info
 function modalCambiarInfo() {
   $('#name').prop('value', partida.jugador.nombre);
   $('#avatarId').prop('value', partida.jugador.avatar);
@@ -208,7 +210,7 @@ function modalCambiarInfo() {
   $('#newGameModal').modal('show');
 }
 
-//función que se llama al guardar cambios del jugador en el modal
+// Función que se llama al guardar cambios del jugador en el modal
 function cambiarInfoJugador() {
   if($('#name').val() != '' && $('#avatarId').val() != 0){
     partida.jugador.nombre = $('#name').val();
@@ -309,6 +311,7 @@ function bindFillSlotActionTo(button, slotNumber) {
   });
 }
 
+// Función que cierra el modal de guardar partida
 function closeSaveGameModal() {
   // Hacemos que el modal se pueda cerrar
   saveGameModalDisableClose = false;
@@ -317,6 +320,7 @@ function closeSaveGameModal() {
   $('#saveGameModal').modal('hide');
 }
 
+// Función que refresca la información de los slots en el menú de guardar partida
 function refrescarSlotsGuardarPartida() {
   descargarInfoSlots(function(json) {
     // En primer lugar "desatamos" (unbind) los eventos de click de los botones
@@ -361,6 +365,7 @@ function refrescarSlotsGuardarPartida() {
   });
 }
 
+// Función que muestra el modal de guardar partida
 function modalGuardarPartida() {
   // En primer lugar "desatamos" (unbind) los eventos de click de los botones
   $('#slot1-save').off();
@@ -375,7 +380,7 @@ function modalGuardarPartida() {
    refrescarSlotsGuardarPartida();
 }
 
-// Función para salir sin guardar de la partida. Ésta pregunta al usuario si realmente quieres salir sin guardar
+// Función para salir sin guardar de la partida. Ésta pregunta al usuario si realmente quiere salir sin guardar
 function salirSinGuardar() {
   swal({
     title: '¿Estás seguro?',
@@ -392,6 +397,7 @@ function salirSinGuardar() {
   });
 }
 
+// Función que resetea la configuración de los modals para un nuevo uso de ellos
 function reiniciarModals(){
   var newGameModalDisableClose = false;
 
@@ -405,5 +411,4 @@ function reiniciarModals(){
   $('#menu-jugador').prop('hidden', true);
   $('#menu-guardarPartida').prop('hidden', true);
   $('#menu-salir').prop('hidden', true);
-
 }

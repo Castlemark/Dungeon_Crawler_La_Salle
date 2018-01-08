@@ -1,3 +1,4 @@
+// Función que comprueba si delante hay un enemigo. Si lo hay, muestra el panel de la lucha
 function comprobarEnemigo() {
   // Comprobamos si delante tenemos un enemigo (se está viendo un enemigo en el visor)
   if (computeCurrentFront() >= 30 && computeCurrentFront() <= 39) {
@@ -9,6 +10,7 @@ function comprobarEnemigo() {
   }
 }
 
+// Función que pone en la UI la información del enemigo que hay delante
 function cargarInfoEnemigo() {
   console.log(partida.enemigos[computeCurrentFront()]);
   var infoEnemigo = partida.enemigos[computeCurrentFront()];
@@ -32,6 +34,7 @@ function cargarInfoEnemigo() {
   }
 }
 
+// Función que muestra el panel de la lucha
 function mostrarLucha() {
   $('#empezarLuchaButton').off();
   // Miramos el estado de la lucha
@@ -69,11 +72,13 @@ function mostrarLucha() {
   $('#mensaje-lucha').show();
 }
 
+// Función que oculta el panel de la lucha
 function ocultarLucha() {
   $('#lucha').slideUp();
   $('#controles').slideDown();
 }
 
+// Función que da inicio a la lucha (solo primer turno)
 function empezarLucha() {
   // Obtenemos la información del enemigo
   infoEnemigo = partida.enemigos[computeCurrentFront()];
@@ -92,6 +97,7 @@ function empezarLucha() {
 
 }
 
+// Función que da inicio a la lucha (válida para cualquier turno)
 function luchar() {
   // Si es el turno del jugador
   if (partida.jugador.lucha.turnoJugador) {
@@ -102,6 +108,7 @@ function luchar() {
   }
 }
 
+// Función que da inicio a la lucha. Se utiliza cuando es turno de que ataque el jugador
 function lucharContraEnemigo() {
   // Obtenemos la información del enemigo
   infoEnemigo = partida.enemigos[computeCurrentFront()];
@@ -189,6 +196,7 @@ function reducirVidaEnemigo(cantidad) {
   }
 }
 
+// Función que da inicio a la lucha. Se utiliza cuando es turno de que ataque el enemigo
 function lucharContraJugador() {
 
   // Indicamos que estamos luchando
@@ -283,6 +291,7 @@ function reducirVidaJugador(cantidad) {
   }
 }
 
+// Función que muestra la versión triste del enemigo en el visor
 function mostrarEnemigoTriste() {
   var path = getImgOf(computeCurrentFront()).replace('standing', 'sad');
   // Consigue el canvas
@@ -296,6 +305,7 @@ function mostrarEnemigoTriste() {
   };
 }
 
+// Función que muestra la versión contenta del enemigo en el visor
 function mostrarEnemigoContento() {
   var path = getImgOf(computeCurrentFront()).replace('standing', 'happy');
   // Consigue el canvas
@@ -309,7 +319,7 @@ function mostrarEnemigoContento() {
   };
 }
 
-//llamamos la función cuando muere el jugador
+// Función que es llamada cuando muere el jugador
 function muerteJugador() {
   swal({
     title: 'Has muerto!',
@@ -321,6 +331,7 @@ function muerteJugador() {
   reiniciarModals();
 }
 
+// Función que se utiliza para huir de la lucha
 function huir() {
   disableControls = false;
   partida.jugador.lucha.activa = false;
@@ -339,6 +350,7 @@ function huir() {
   messageToConsole('Has huido de la lucha como un cobarde y has gastado tu justificante médico');
 }
 
+// Función que se utiliza para pedir al usuario que elija dónde quiere protegerse. Recibe una función (callback) que ejecuta cuando el usuario ha respondido
 function pedirProteccion(callback) {
   // Desactivamos los clicks de las areas
   $('#area-cabeza').off();
@@ -386,6 +398,7 @@ function pedirProteccion(callback) {
   });
 }
 
+// Traduce el número de la parte del cuerpo a una palabra
 function parteAPalabra(parte) {
   switch (parte) {
     case 0:
@@ -397,6 +410,7 @@ function parteAPalabra(parte) {
   }
 }
 
+// Traduce los números de dos partes del cuerpo a dos palabras
 function partesAPalabras(partes) {
   return [parteAPalabra(partes[0]), parteAPalabra(partes[1])];
 }

@@ -1,15 +1,17 @@
-//Remarca el avatar selecionado en el modal
+// Función que remarca el avatar selecionado en el modal
 function selectAvatar(id) {
   $('#avatarId').prop('value', id);
   $('.avatar_selected').removeClass('avatar_selected');
   $('#avatar_' + id).addClass('avatar_selected');
 }
 
+// Función que actualiza la información del jugador en la UI
 function refrescarInfoJugador() {
   $('header .player-name').html(partida.jugador.nombre);
   $('header .avatar').prop('src', 'media/images/avatar' + partida.jugador.avatar + '.png');
 }
 
+// Función que muestra los menús necesarios para cuando se ha iniciado una partida
 function mostrarMenusPartida() {
   $('#menu-nuevaPartida').prop('hidden', true);
   $('#menu-cargarPartida').prop('hidden', true);
@@ -18,7 +20,7 @@ function mostrarMenusPartida() {
   $('#menu-salir').prop('hidden', false);
 }
 
-//Funcion que va añadiendo mensajes a la consola y que usa la librería moment.js para poner la hora
+// Función que va añadiendo mensajes a la consola y que usa la librería moment.js para poner la hora
 function messageToConsole(msg) {
   var now = new moment();
   $('#console-text').prepend($('#first-console-text').html());
@@ -29,7 +31,7 @@ function messageToConsole(msg) {
   }
 }
 
-//función que al llamarla actualiza las barras de xp, ataque, defensa y vida
+// Función que al llamarla actualiza las barras de xp, ataque, defensa y vida
 function mostrarInformacion(){
   var nextLevelP = 20;
   var distPoints = 20;
@@ -67,6 +69,7 @@ function mostrarInformacion(){
   $('#label-vida').html(partida.jugador.vida + '/' + getMaxVidas(partida.jugador.nivel));
 }
 
+// Función que actualizar el visor con la imagen de la casilla que hay delante
 function refrescarVisor() {
   var path = getImgOf(computeCurrentFront());
   // Consigue el canvas
